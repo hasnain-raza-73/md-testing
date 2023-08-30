@@ -1,0 +1,67 @@
+<div class="page-width">
+{% if request.locale.iso_code == 'ar' %}
+	<div class="ramadan-banner">
+		<a href="{{ section.settings.ar_banner_link }}" class="banner_link">
+		<picture class="banner__image">
+			<source data-srcset="{{ section.settings.ar_desk_image | img_url:'master'}}" media="(min-width: 750px)" srcset="{{ section.settings.ar_desk_image | img_url:'master'}}" />
+			<source data-srcset="{{ section.settings.ar_mob_image | img_url:'original'}}" media="(max-width: 749px)" srcset="{{ section.settings.ar_mob_image | img_url:'original'}}" />
+			<img class="lazy" data-src="{{ section.settings.ar_desk_image | img_url:'master'}}"  />
+		</picture>
+		</a>
+	</div>
+{% else %}
+	<div class="ramadan-banner">
+		<a href="{{ section.settings.banner_link }}" class="banner__link">
+		<picture class="banner__image">
+			<source data-srcset="{{ section.settings.desk_image | img_url:'master'}}" media="(min-width: 750px)" srcset="{{ section.settings.desk_image | img_url:'master'}}" />
+			<source data-srcset="{{ section.settings.mob_image | img_url:'original'}}" media="(max-width: 749px)" srcset="{{ section.settings.mob_image | img_url:'original'}}" />
+			<img class="lazy" data-src="{{ section.settings.desk_image | img_url:'master'}}"  />
+		</picture>
+		</a>
+	</div>
+{% endif %}
+</div>
+
+{% schema %}
+{
+"name": "ramadan banner",
+"tag": "section",
+"class": "ramadan-sec",
+"settings":[
+	{
+		"type": "image_picker",
+		"id": "desk_image",
+		"label": "Desktop Image"
+	},
+	{
+		"type": "image_picker",
+		"id": "mob_image",
+		"label": "Mobile Image"
+	},
+	{
+		"type": "url",
+		"id": "banner_link",
+		"label": "Link"
+	},
+	{
+		"type": "header",
+		"content": "AR banner"
+	},
+	{
+		"type": "image_picker",
+		"id": "ar_desk_image",
+		"label": "AR Desktop Image"
+	},
+	{
+		"type": "image_picker",
+		"id": "ar_mob_image",
+		"label": "AR Mobile Image"
+	},
+	{
+		"type": "url",
+		"id": "ar_banner_link",
+		"label": "AR Link"
+	}
+ ]
+}
+{% endschema %}

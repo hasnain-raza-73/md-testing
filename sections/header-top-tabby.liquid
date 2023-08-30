@@ -1,0 +1,129 @@
+<style>
+  .tabby ul {
+    background-color: {{ section.settings.color_bgs }};
+    text-align: center;
+    padding: 3px 0;
+    min-height:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    position:relative;
+        box-sizing: border-box;
+  }
+  .tabby ul li{
+    position:absolute;
+    transition: visibility 0s, opacity 0.5s linear;
+  }
+  .tabby ul li:first-child{
+    display:block;
+  }
+  .tabby ul li:not(:first-child) {
+      display:none;
+  }
+  .tabby ul li,
+  .tabby ul li p,
+  .tabby ul li a
+  {
+    font-size: 13px;
+    font-weight:600;
+    color: {{ section.settings.color_text }};
+  }
+  .tabby ul li a:hover, .tabby ul li p:hover{
+      color: {{ section.settings.color_text }};
+  }
+
+  @media(max-width:640px){
+      .tabby ul li{
+        font-size: 11px;
+        padding: 0 10px;
+    }
+    .tabby ul li p{
+      font-size: 11px;
+    }
+    .tabby ul li a{
+        font-size: 11px;
+    }
+  }
+  
+  
+  @media(max-width:350px){
+    .tabby ul li, 
+    .tabby ul li a
+    {
+      font-size: 9px;
+    }
+  }
+  
+
+</style>
+
+
+{% if section.blocks != blank %}
+<div class="tabby">
+    <ul class="tabby-list">
+        {% for block in section.blocks %}
+        <li>{{block.settings.msg}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}  
+
+<script>
+  $(document).ready(function(){
+  var ind = 1;
+  function showHide(index) {
+    if(index > $(".tabby-list li").length-1) {
+      index = 0;
+    }
+    $(".tabby-list li").css("display", "none");
+    $(".tabby-list li").eq(index).fadeIn(300).css("display", "block");
+    setTimeout(()=>{
+      showHide(++index);
+    },3000); 
+  }
+  setTimeout(()=>{
+  showHide(ind);
+  },3000);	
+
+  });
+</script> 
+
+{% schema %}
+{ 
+   "settings": [
+      {
+      "type": "color",
+      "id": "color_bgs",
+      "label": {
+      "en": "Bar"
+      },
+      "default": "#dddddd"
+      },
+      {
+      "type": "color",
+      "id": "color_text",
+      "label": {
+      "en": "Text"
+      },
+      "default": "#000000"
+      }
+     
+       
+   ],
+   "blocks":[
+    {
+       "name": "content-tabby",
+       "type": "Announcement",
+       "settings":[
+         {
+             "type":"richtext",
+             "id":"msg",
+             "label": "Message"
+         }
+
+       ]
+    }
+   ]
+}
+{% endschema %}

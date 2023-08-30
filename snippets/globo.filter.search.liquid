@@ -1,0 +1,72 @@
+{% raw %}
+{% assign root_url = {% endraw %}"{%- if routes.root_url != "/" -%}{{ routes.root_url }}{%- endif -%}"{% raw %} %}
+{% if result.isEmpty %}
+  <li class="gf-search-no-result" aria-label="{% if translation.search.not_found %}{{translation.search.not_found }}{% else %}Sorry, nothing found for{% endif %} "{{result.term}}": {{result.term}}">
+    <p>{% if translation.search.not_found %}{{translation.search.not_found }}{% else %}Sorry, nothing found for{% endif %}&nbsp;<b>{{result.term}}</b></p>
+  </li>
+{% else %}
+    {% if result.suggestions %}
+    <li class="gf-search-suggestions">
+      <a class="gf-search-header">{{translation.search.suggestions | default: "Suggestions"}}</a>
+      <ul>
+        {% for suggestion in result.suggestions %}
+          <li aria-label="{{translation.search.suggestions | default: "Suggestions"}}: {{suggestion.keyword}}">
+            <a href="{{root_url}}/search?q={{suggestion.keyword | url_encode}}">{{suggestion.keyword}}<span class="count">{{suggestion.count}}</span></a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+      {% if result.collections %}
+    <li class="gf-search-collections">
+      <a class="gf-search-header">{{translation.search.collections | default: "Collections"}}</a>
+      <ul>
+        {% for collection in result.collections %}
+          <li aria-label="{{translation.search.collections | default: "Collections"}}: {{collection.title}}"><a href="{{root_url}}/collections/{{collection.handle}}">{{collection.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+    {% if result.pages %}
+    <li class="gf-search-pages">
+      <a class="gf-search-header">{{translation.search.pages | default: "Pages"}}</a>
+      <ul>
+        {% for page in result.pages %}
+          <li aria-label="{{translation.search.pages | default: "Pages"}}: {{page.title}}"><a href="{{root_url}}/pages/{{page.handle}}">{{page.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+    {% if result.products %}
+    <li class="gf-search-products">
+      <a class="gf-search-header">{{translation.search.products | default: "Products"}}</a>
+      <ul>
+        {% for product in result.products %}
+          <li aria-label="{{translation.search.products | default: "Products"}}: {{product.title}}">
+            <a aria-label="{{product.handle}}" href="{{root_url}}/products/{{product.handle}}">
+              <div class="gf-search-left">
+                {% if product.image %}
+                <img src="{{product.image.src | img_url: '100x'}}">
+                {% else %}
+                <img src="{{'https://cdn.shopify.com/s/images/themes/product-1.png' | img_url: '100x'}}">
+                {% endif %}
+              </div>
+              <div class="gf-search-right">
+                <div class="gf-search-item-product-title">{{product.title}}</div>
+                                {% if product.vendor %}
+                <div class="gf-search-item-product-vendor">{{product.vendor}}</div>
+                {% endif %}
+                                                                              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+    <li class="gf-search-item gf-search-item-product gf-search-viewall">
+    <a href="{% if result.url %}{{result.url}}{% else %}{{root_url}}/search?q={{result.term | url_encode}}{% endif %}">
+      {% if translation.search.view_all %}{{translation.search.view_all}}{% else %}Search for{% endif %} "{{result.term}}"
+    </a>
+  </li>
+{% endif %}
+{% endraw %}

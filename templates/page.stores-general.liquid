@@ -1,0 +1,518 @@
+<style type="text/css">
+   .store-list.hide-dists .is-dist-loc, .store-list.hide-stores .is-store-loc {
+       display: none;
+   }
+   .store-img-mb{
+      margin-top: 4px;
+   }
+  </style> 
+   
+   <div class="store_wrap">
+      <div class="page_container">
+         <div class="page_header">
+            <h1>STORE LOCATOR</h1>
+         </div>
+         <div class="store_grid">
+            <div class="store-sidebar">
+               <!-- Create a div to hold the filter check boxes. --> 
+               <div id="legend">
+                  <h3>Filter by: </h3>
+               </div>
+               <div id="stores_and_dist" class="store-list">
+                  <ul class="store-list-wrap">
+                     <li class="store-list-item is-store-loc" id="1">
+                        <a href="{{shop.url}}/pages/molton-brown-mall-of-the-emirates">
+                        <div class="store-img">
+                           {{ 'mb-detail-tabstore.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Dubai, Mall of the Emirates
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Mall of the Emirates, First Floor,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 295="" 7851="">+971 4 295 7851 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 12am
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}                              
+                           </div>
+                        </div>
+                        </a>
+                     </li>
+                     
+                     <li class="store-list-item is-dist-loc" id="2">
+                         <a href="{{shop.url}}/pages/molton-brown-harvey-nichols-store-mall-of-the-emirates">
+                        <div class="store-img">
+                           {{ 'harvey-nichols-logo-100x100_1024x1024.jpeg' | asset_url | img_tag }}                           
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Harvey Nichols, Dubai, Mall of the Emirates
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Mall of the Emirates, Ground Floor, Main Entrance,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 409="" 8888="">+971 4 409 8888 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 12am
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     
+                     <li class="store-list-item is-dist-loc" id="3">
+                         <a href="{{shop.url}}/pages/bloomingdale-s-dubai-the-dubai-mall">
+                        <div class="store-img">
+                           {{ 'bloom-logo.jpg' | asset_url | img_tag }}                                                     
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Bloomingdale’s, Dubai, The Dubai Mall
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    The Dubai Mall, Second Floor, P2 Dubai,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 350="" 5333="">+971 4 350 5333 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 11pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     
+                     <li class="store-list-item is-store-loc" id="4">
+                         <a href="{{shop.url}}/pages/molton-brown-dubai-the-dubai-mall">
+                        <div class="store-img">
+                           {{ 'mb-detail-tabstore.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Dubai, The Dubai Mall
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    The Dubai Mall, First Floor, Main Entrance,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 339="" 8317="">+971 4 339 8317 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 12am
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     
+                     <li class="store-list-item is-dist-loc" id="5">
+                         <a href="{{shop.url}}/pages/galeries-lafayette-dubai-the-dubai-mall">
+                        <div class="store-img">
+                           {{ 'galeries-lafayette-loc-icn1.jpg' | asset_url | img_tag }}                                                        
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Galeries Lafayette, Dubai, The Dubai Mall
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    The Dubai Mall, Level 2, Galeries Lafayette,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 339="" 9933="">+971 4 339 9933 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     
+                     <li class="store-list-item is-store-loc" id="6">
+                         <a href="{{shop.url}}/pages/molton-brown-dubai-mirdif-city-centre">
+                        <div class="store-img">
+                           {{ 'mb-detail-tabstore.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Dubai, Mirdif City Centre
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    City Centre Mrdif, Level 1, South Entrance,
+                                    Dubai
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 288="" 3461="">+971 4 288 3461 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+
+                     <!-- Molton Brown, The Galleria AlMaryah Island-->
+                     <li class="store-list-item is-store-loc" id="7">
+                         <a href="{{shop.url}}/pages/molton-brown-the-galleria-almaryah-island">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, The Galleria AlMaryah Island, 
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Abu Dhabi, 1st floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 2="" 876="" 1605="">+971 2 876 1605 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     <!-- Molton Brown, Abu Dhabi, Yas Mall, Ground Floor-->
+                     <li class="store-list-item is-store-loc" id="8">
+                         <a href="{{shop.url}}/pages/molton-brown-abu-dhabi-yas-mall">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Abu Dhabi
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Yas Mall, Ground Floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 2="" 448="" 3595="">+971 2 448 3595</a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+                     <!-- Molton Brown, Dubai,Dubai Hills Mall, Ground Floor,-->
+                     <li class="store-list-item is-store-loc" id="9">
+                         <a href="{{shop.url}}/pages/molton-brown-dubai-dubai-hills-mall">
+                        <div class="store-img store-img-mb">
+                           {{ 'mb_logo_storefinder.png' | asset_url | img_tag }}
+                        </div>
+                        <div class="store-desc">
+                           <div class="store-desc-left">
+                              <div class="store-name">
+                                 Molton Brown, Dubai
+                              </div>
+                              <div class="store-address">
+                                 <address>
+                                    Dubai Hills Mall, Ground Floor
+                                 </address>
+                              </div>
+                              <div class="store-info">
+                                 <ul>
+                                    <li class="mobile-no">
+                                       <a tel:+971="" 4="" 385="" 2504="">+971 4 385 2504 </a>
+                                    </li>
+                                    <li class="working-hrs">
+                                       10am to 10pm
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="store-desc-right">
+                              {{ 'arrow-right.png' | asset_url | img_tag }}
+                           </div>
+                        </div>
+                     </a>
+                     </li>
+
+                  </ul>
+               </div>
+            </div>
+            <div class="store-content">
+               <div id="map_canvas"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+    
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD97Exq7AvYMeF6V2BYCirywp2fpKAkew&sensor=false">
+   </script>
+  
+ 
+   
+   <script type="text/javascript">
+   
+     var map; // Create a global variable for the map. 
+     var markers = [];  // Create a global variable for the markers.
+     
+     // Load the map on the page, center and set zoom level. 
+     function initialize() {
+       map = new google.maps.Map(document.getElementById('map_canvas'), {
+         zoom: 11,
+         center: new google.maps.LatLng(25.152988,55.311686),
+         mapTypeId: google.maps.MapTypeId.ROADMAP,
+       });
+   
+   
+   
+   // Add the markers from the marker array.    
+       function addMarker(feature) {
+         var marker = new google.maps.Marker({
+           position: feature.position,
+           icon: features[i].icon,
+           title: features[i].name,
+           map: map
+         });
+         markers.push({
+           marker: marker,
+           type: feature.type
+         });
+           google.maps.event.addListener(marker, 'click', function(){
+         if (typeof infowindow != 'undefined') infowindow.close();
+         infowindow = new google.maps.InfoWindow({
+           content: feature.name
+         });
+         infowindow.open(map, marker);
+       });
+    // This section will close any open info windows when you click anywhere on the map. 
+         google.maps.event.addListener(map, 'click', function(){
+       infowindow.close();
+     });
+       }
+   
+   // Create a "set" of filter types.    
+     
+       var icons = {
+         dist: {
+           name: 'Distributor'
+         },
+         store: {
+           name: 'Stores'
+         }
+       };
+       
+   // Marker array
+       var features = [
+         {
+           name: 'Harvey Nichols, Dubai, Mall of the Emirates',
+           position: new google.maps.LatLng(25.1182205,55.1991809),
+           type: 'branch',
+           icon: '{{"mb-dist-pin.png" | asset_img_url: "original"}}'
+         }, 
+   
+         {
+           name: 'Molton Brown, Dubai, Mall of the Emirates',
+          position: new google.maps.LatLng(25.1192547,55.1996966),
+           type: 'store',
+           icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+           },
+   
+   
+   
+         {
+           name: 'Bloomingdales, Dubai, The Dubai Mall',
+           position: new google.maps.LatLng(25.1984786,55.2763745),
+           type: 'branch',
+           icon: '{{"mb-dist-pin.png" | asset_img_url: "original"}}'
+         },
+   
+           {
+               name: 'Molton Brown, Dubai, The Dubai Mall',
+             position: new google.maps.LatLng(25.1981198,55.2795764),  
+              type: 'store',
+              icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+           },
+   
+   
+   
+         {
+           name: 'Galeries Lafayette, Dubai, The Dubai Mall',
+           position: new google.maps.LatLng(25.1977891,55.2788712),
+           type: 'branch',
+           icon: '{{"mb-dist-pin.png" | asset_img_url: "original"}}'
+         },
+   
+   
+           {
+               name: 'Molton Brown, Dubai, Mirdif City Centre',
+              position: new google.maps.LatLng(25.2160919,55.4077522),
+              type: 'store',
+              icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+           },
+
+
+         // Molton Brown, The Galleria AlMaryah Island
+         {
+            name: 'Molton Brown, The Galleria AlMaryah Island',
+            position: new google.maps.LatLng(24.5013014,54.3897024),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         },
+
+         //Molton Brown, Abu Dhabi
+         {
+            name: 'Molton Brown, Abu Dhabi, Yas Mall',
+            position: new google.maps.LatLng(24.4888196,54.6086898),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         },
+
+         //Molton Brown, Dubai
+         {
+            name: 'Molton Brown, Dubai,Dubai Hills Mall',
+            position: new google.maps.LatLng(25.1016938,55.2399376),
+            type: 'store',
+            icon: '{{"mb-stores-pin.png" | asset_img_url: "original"}}'
+         }
+
+   
+   
+       ];
+   
+   // Itterate through through the markers and add them to the map.
+       for (var i = 0, feature; feature = features[i]; i++) {
+         addMarker(feature);
+       }
+   
+   // This section creates the filter box. 
+       var legend = document.getElementById('legend');
+       var i=0;
+       for (var key in icons) {
+         var type = icons[key];
+         var name = type.name;
+         var icon = type.icon;
+         var div = document.createElement('div');
+         div.innerHTML = '<div id="is-' + name + '"><span onclick="my'+ name +'Function()"><input checked="checked" type="checkbox" onchange="toggleType(this, event, \'' + features[i].type + '\')"></span>' + '<span>' + name + '</span>';
+         legend.appendChild(div);
+         i++;
+       }
+     
+     }
+   
+   // Filter markers. 
+     function toggleType(elm, event, type) {
+       var on = elm.checked ;
+       for(var i=0; i<markers.length; i++) {
+         if (markers[i].type == type) {
+           markers[i].marker.setMap( on ? map : null);
+         }
+       }
+     } 
+     
+     google.maps.event.addDomListener(window, 'load', initialize);
+   
+   
+     var the_stores_parent = document.getElementById("stores_and_dist");
+   
+     function myDistributorFunction() {    
+        the_stores_parent.classList.toggle("hide-dists");
+     }
+     
+     function myStoresFunction () {    
+        the_stores_parent.classList.toggle("hide-stores");
+     }
+    
+   
+   
+   </script>

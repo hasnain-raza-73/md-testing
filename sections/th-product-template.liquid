@@ -1,0 +1,41 @@
+{%- comment -%}Variables{%- endcomment -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% render 'product-info-mobile-only' %}
+
+<div class="pdp">
+    {% render 'product-media-gallery' %}
+    {% render 'th-product-info' with {
+        current_variant: current_variant
+    }%}
+</div>
+
+{% render 'product-related' with {
+    title: section.settings.related_products_title_english,
+    titleAr: section.settings.related_products_title_arabic,
+} %}
+
+
+
+{% schema %}
+{
+    "name" : "Product",
+    "settings": [
+        {
+            "type": "text",
+            "label": "Related Products Title",
+            "id": "related_products_title_english"
+        },
+        {
+            "type": "text",
+            "label": "Related Products Title - Arabic",
+            "id": "related_products_title_arabic"
+        },
+        {
+            "type": "text",
+            "label": "Delivery Message",
+            "id": "related_products_del_msg"
+        }         
+    ]
+}
+{% endschema %}

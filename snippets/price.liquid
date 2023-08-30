@@ -1,0 +1,4 @@
+<span class="price-text">{{ product.price | money }}</span>
+{% if product.compare_at_price > product.price %}
+<span class="price-dis"><del>{{product.compare_at_price | money }} <del></span> 
+  {% endif %}

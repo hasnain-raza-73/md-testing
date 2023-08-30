@@ -1,0 +1,101 @@
+{% style %}
+  {% if section.settings.bg_style == "image" %}
+      .shipping-wrap{
+        background:url("{{ section.settings.image | image_url }}") center no-repeat;
+        background-size:cover;
+      }
+  {% else %}
+    .shipping-wrap{
+      background-color:{{ section.settings.color }}
+    }
+  {% endif %}
+  .shipping-des{
+    color:{{ section.settings.text_color }}
+  }
+{% endstyle %}
+<section class="shipping-wrap">
+  <div class="shipping-grid">
+    {% for block in section.blocks %}
+      <div class="shipping-items">
+        <div class="shipping-img">
+          <img
+            src="{{ block.settings.imgepic | img_url:'65px'}}"
+            width="{{ block.settings.img_width }}px"
+            height="{{ block.settings.img_height }}px"
+          >
+        </div>
+        <div class="shipping-des">{{ block.settings.title }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Footer Icon List",
+  "settings": [
+    {
+      "type": "select",
+      "label": "Choose background style",
+      "id": "bg_style",
+      "options": [
+        {
+          "value": "color",
+          "label": "Color"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "label": "Choose image",
+      "id": "image"
+    },
+    {
+      "type": "color",
+      "label": "Choose color",
+      "id": "color"
+    },
+    {
+      "type": "color",
+      "label": "Choose text color",
+      "id": "text_color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imgepic",
+          "label": "icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "text"
+        },
+        {
+          "type": "text",
+          "id": "img_width",
+          "label": "Image Width: ",
+          "default": "100"
+        },
+        {
+          "type": "text",
+          "id": "img_height",
+          "label": "Image Height: ",
+          "default": "100"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

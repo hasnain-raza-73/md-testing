@@ -1,0 +1,114 @@
+<div class="page_container">
+  <div class="page_header">
+    <h1>{{ page.title }}</h1>
+  </div>
+  <div class="account-wrap support_wrap">
+    <div class="left-sidebar">
+    	<ul id="profile_tabs">
+            <li class="current">
+                <a href="javascript:void(0)">
+                    SUPPORT
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li> 
+				<a href="/pages/about-us">
+                    WHO WE ARE
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li >
+                 <a href="/pages/sustainability">
+                    OUR SERVICES
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+          	<li >
+                 <a href="/pages/our-policies">
+                    OUR POLICIES
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="sidebar-content">
+      <div class="accordion-block">
+        
+     
+      {% for block in section.blocks %}
+        <div class="accordion_items">
+          <div class="accordion_header">
+          <h4 class="accordion_title">
+            {{ block.settings.questions }}
+            <span class="icon-plus">
+				<img src="{{"plus_icon.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+            </span>
+             <span class="icon-minus">
+				<img src="{{"minus_icon.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+            </span>
+            </h4>
+        </div>
+        
+        <div class="accordion_body">
+          <p>{{ block.settings.answers }}</p>
+        </div>
+          
+        </div>
+        {% endfor %}
+        
+         </div>
+      
+    </div>
+  </div>
+</div> 
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+     "name": "faq",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "QA",
+        "name": "QA",
+        "settings": [
+          {
+            "type": "text",
+            "id": "questions",
+            "label": "Questions"
+          },
+          {
+          "type":"textarea",
+          "id":"answers",
+          "label":"Answers"
+          }
+		   
+          
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}

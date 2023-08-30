@@ -1,0 +1,255 @@
+{% if section.settings.video %}
+<div class="sustainbility-video">
+          <video id="hp-video" autoplay muted loop playsinline autoplay>
+            <source src="{{ section.settings.video }}" type="video/mp4">
+          </video>
+</div>
+{%endif%}
+
+<div class="sustainability">
+  
+  <div class="journal-intro-section">
+    {% if section.settings.heading %}
+    <h1 class="intro-title">{{section.settings.heading}}</h1> 
+    {%endif%}
+    {% if section.settings.sub_heading %}
+    <h2 class="intro-sub-title">{{section.settings.sub_heading}}</h2>
+    {%endif%}
+    {% if section.settings.min_text %}
+    <div class="time-duartion">              
+      <div class="time-circle ">{{section.settings.min_text}}</div>              
+    </div> 
+    {%endif%}
+    {% if section.settings.description %}
+    <div class="intro-page-desc"> 
+      <p>{{section.settings.description}}</p>
+    </div>
+    {%endif %}
+  </div>
+  
+  <ul>
+    <li>
+      {% if section.settings.block1_img %}
+      <div class="image-pic">
+        <img src="{{section.settings.block1_img | img_url: "424x424"}}">
+      </div>
+      {%endif%}
+      {% if section.settings.block1_desc or section.settings.block1_heading %}
+      <div class="story-content">
+        {% if section.settings.block1_heading %}
+        <h3>{{section.settings.block1_heading}}</h3>
+        {%endif%}
+        {% if section.settings.block1_desc %}
+        	<p>{{section.settings.block1_desc}}</p>
+        {%endif%}
+      </div>
+      {%endif%}
+    </li>
+    <li>
+      {% if section.settings.block2_img %}
+      <div class="image-pic">
+        <img src="{{section.settings.block2_img | img_url: "424x424"}}">
+      </div>
+      {%endif%}
+      {% if section.settings.block2_heading or section.settings.block2_desc %}
+      <div class="story-content">
+        {% if section.settings.block2_heading %}
+        <h3>{{section.settings.block2_heading}}</h3>
+        {%endif%}
+        {% if section.settings.block2_desc %}
+        	<p>{{section.settings.block2_desc}}</p>
+        {%endif%}
+      </div>
+      {%endif%}
+    </li>
+    <li>
+      {% if section.settings.block3_desc %}
+      <div class="story-content">
+        <blockquote>
+          <h3><em><p>{{section.settings.block3_desc}}</p>
+            </em></h3>
+        </blockquote>
+      </div>
+      {%endif%}
+    </li>
+    <li>
+      {% if section.settings.block4_img %}
+      <div class="image-pic">
+        <img src="{{section.settings.block4_img | img_url: "424x424"}}">
+      </div>
+      {%endif%}
+      {% if section.settings.block4_heading or section.settings.block4_desc %}
+      <div class="story-content">
+        {% if section.settings.block4_heading %}
+        <h3>{{section.settings.block4_heading}}</h3>
+        {%endif%}
+        {% if section.settings.block4_desc %}
+        	<p>{{section.settings.block4_desc}}</p>
+        {%endif%}
+      </div>
+      {%endif%}
+    </li>
+    <li>
+      {% if section.settings.block5_img %}
+      <div class="image-pic">
+        <img src="{{section.settings.block5_img | img_url: "424x424"}}">
+      </div>
+      {%endif%}
+      {% if section.settings.block5_heading or section.settings.block5_desc %}
+      <div class="story-content">
+        {% if section.settings.block5_heading %}
+        <h3>{{section.settings.block5_heading}}</h3>
+        {%endif%}
+        {% if section.settings.block5_desc %}
+        	<p>{{section.settings.block5_desc}}</p>
+        {%endif%}
+      </div>
+      {%endif%}
+    </li>
+    <li>
+      {% if section.settings.block6_img %}
+      <div class="image-pic">
+        <img src="{{section.settings.block6_img | img_url: "424x424"}}">
+      </div>
+      {%endif%}
+      {% if section.settings.block6_heading or section.settings.block6_desc %}
+      <div class="story-content">
+        {% if section.settings.block6_heading %}
+        <h3>{{section.settings.block6_heading}}</h3>
+        {%endif%}
+        {% if section.settings.block6_desc %}
+        	<p>{{section.settings.block6_desc}}</p>
+        {%endif%}
+      </div>
+      {%endif%}
+    </li>
+
+  </ul>
+</div>
+
+
+{% schema %}
+{
+"name": "Sustainability Content",
+"settings": [
+{
+"type":"text",
+"id":"video",
+ "placeholder": "Put CDN Url",
+"label":"Video URL"
+},
+{
+"type":"text",
+"id":"heading",
+"label":"Put heading"
+},
+{
+"type":"text",
+"id":"sub_heading",
+"label":"Put Sub heading"
+},
+{
+"type":"text",
+"id":"min_text",
+"label":"Put Min text"
+},
+{
+"type":"textarea",
+"id":"description",
+"label":"Put Description"
+},
+
+{
+"type": "header",
+"content": "Blocks Data"
+},
+{
+"type": "image_picker",
+"id": "block1_img",
+"label": "Block Image"
+},
+{
+"type":"text",
+"id":"block1_heading",
+"label":"Block 1 Heading"
+},
+{
+"type":"textarea",
+"id":"block1_desc",
+"label":"Put Block 1 Description"
+},
+
+{
+"type": "image_picker",
+"id": "block2_img",
+"label": "Block 1 Image"
+},
+{
+"type":"text",
+"id":"block2_heading",
+"label":"Block 2 Heading"
+},
+{
+"type":"textarea",
+"id":"block2_desc",
+"label":"Put Block 2 Description"
+},
+
+{
+"type":"textarea",
+"id":"block3_desc",
+"label":"Block 3 Description"
+},
+
+{
+"type": "image_picker",
+"id": "block4_img",
+"label": "Block 4 Image"
+},
+{
+"type":"text",
+"id":"block4_heading",
+"label":"Block 4 Heading"
+},
+{
+"type":"richtext",
+"id":"block4_desc",
+"label":"Put Block 4 Description"
+},
+
+{
+"type": "image_picker",
+"id": "block5_img",
+"label": "Block 5 Image"
+},
+{
+"type":"text",
+"id":"block5_heading",
+"label":"Block 5 Heading"
+},
+{
+"type":"richtext",
+"id":"block5_desc",
+"label":"Put Block 5 Description"
+},
+
+{
+"type": "image_picker",
+"id": "block6_img",
+"label": "Block 6 Image"
+},
+{
+"type":"text",
+"id":"block6_heading",
+"label":"Block 6 Heading"
+},
+{
+"type":"richtext",
+"id":"block6_desc",
+"label":"Put Block 6 Description"
+}
+
+
+]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+{% section 'cart-template' %}
+
+{% if settings.is_privatesale and settings.privatesale_couponcode and settings.privatesale_couponcode != blank and customer %}
+    <script>
+        const coponCode = "{{ settings.privatesale_couponcode }}";
+        const checkoutButton = document.querySelector('#checkout-button');
+        checkoutButton.addEventListener('click', function(e){
+            e.preventDefault();
+            location.assign(`/checkout?discount=${coponCode}`);
+        });
+    </script>
+{% endif %}
+{% include 'wiser_related' %}{% include 'wiser_recommended' %}{% include 'wiser_trending' %}{% include 'wiser_recentview' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_topselling' %}{% include 'wiser_recent_related' %}

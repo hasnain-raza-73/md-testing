@@ -1,0 +1,286 @@
+<div class="about-wrap">
+  <div class="about_cont">
+    <div class="about_intro">
+      {% if section.settings.info-title != blank %}
+      	<h1 class="intro_title">{{ section.settings.info-title }}</h1>
+       {% endif %}
+      {% if section.settings.info-subtitle != blank %}
+      <h2 class="intro_subtitle">{{ section.settings.info-subtitle }} </h2>
+      {% endif %}
+      {% if section.settings.info-des != blank %}
+      <div class="intro_des">
+        <p>{{ section.settings.info-des }}</p>
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="about-grid">
+      <div class="about-row">
+        
+        <div class="left_colm">
+          {% if section.settings.img-block1 != blank %}
+          <div class="ab-blockimg">
+				<img src="{{ section.settings.img-block1 | img_url:'original' }}" />
+          </div>
+          {% endif %}
+          <div class="ab-blockcon">
+            {% if section.settings.title-block1 != blank %}
+            <h2 class="ab-title">{{ section.settings.title-block1 }}</h2>
+            {% endif %}
+            {% if section.settings.des-block1 != blank %}
+            <div class="ab-para">
+              <p>{{ section.settings.des-block1 }}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="right_colm">
+          {% if section.settings.img-block2 != blank %}
+            <div class="ab-blockimg">
+              <img src="{{ section.settings.img-block2 | img_url:'original' }}" />
+            </div>
+          {% endif %}
+          <div class="ab-blockcon">
+             {% if section.settings.title-block2 != blank %}
+            <h2 class="ab-title">{{ section.settings.title-block2 }}</h2>
+            {% endif %}
+            {% if section.settings.des-block2 != blank %}
+            <div class="ab-para">
+              <p>{{ section.settings.des-block2 }}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      <div class="about-row">
+        
+        <div class="left_colm">
+          {% if section.settings.img-block3 != blank %}
+          <div class="ab-blockimg">
+				<img src="{{ section.settings.img-block3 | img_url:'original' }}" />
+          </div>
+          {% endif %}
+          <div class="ab-blockcon">
+            {% if section.settings.title-block3 != blank %}
+            <h2 class="ab-title">{{ section.settings.title-block3 }}</h2>
+            {% endif %}
+            {% if section.settings.des-block3 != blank %}
+            <div class="ab-para">
+              <p>{{ section.settings.des-block3 }}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="right_colm">
+          {% if section.settings.img-block4 != blank %}
+            <div class="ab-blockimg">
+              <img src="{{ section.settings.img-block4 | img_url:'original' }}" />
+            </div>
+          {% endif %}
+          <div class="ab-blockcon">
+             {% if section.settings.title-block4 != blank %}
+            <h2 class="ab-title">{{ section.settings.title-block2 }}</h2>
+            {% endif %}
+            {% if section.settings.des-block4 != blank %}
+            <div class="ab-para">
+              <p>{{ section.settings.des-block4 }}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        
+      </div>
+      
+      
+      <div class="about-row">
+        
+        <div class="left_colm ab_quote">
+          <div class="quote_box">
+            {% if section.settings.quote != blank %}
+          	<blockquote>
+            <img src="{{ 'quotes-icon.svg'| asset_url }}" alt="quotes-icon">
+				<h3><em><p>{{ section.settings.quote }}</p>
+                </em></h3>
+			</blockquote>
+            {% endif %}
+            {% if section.settings.quote-author != blank %}
+              <div class="quote_btm">
+                <p>{{ section.settings.quote-author }} </p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="right_colm">
+          {% if section.settings.img-block6 != blank %}
+            <div class="ab-blockimg">
+              <img src="{{ section.settings.img-block6 | img_url:'original' }}" />
+            </div>
+          {% endif %}
+          
+           <div class="ab-blockcon">
+             {% if section.settings.title-block6 != blank %}
+            <h2 class="ab-title">{{ section.settings.title-block6 }}</h2>
+            {% endif %}
+            {% if section.settings.des-block6 != blank %}
+            <div class="ab-para">
+              <p>{{ section.settings.des-block6 }}</p>
+            </div>
+            {% endif %}
+          </div>
+          
+          
+        </div>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  </div>
+  
+  
+</div>
+
+{% schema %}
+    {
+        "name": "Our History",
+        "settings": [
+			{
+              "type": "header",
+              "content": "About Info"
+            },
+			{
+              "type": "text",
+              "id": "info-title",
+              "label": "Title"
+            },
+			{
+              "type": "text",
+              "id": "info-subtitle",
+              "label": "Subtitle"
+            },
+			{
+              "type": "textarea",
+              "id": "info-des",
+              "label": "description"
+            },
+			{
+              "type": "header",
+              "content": "About Block 1"
+            },
+			{
+              "type":"image_picker",
+              "id":"img-block1",
+              "label":"Image"
+			},
+			{
+              "type": "text",
+              "id": "title-block1",
+              "label": "Title"
+            },
+			{
+              "type": "textarea",
+              "id": "des-block1",
+              "label": "Description"
+            },
+			{
+              "type": "header",
+              "content": "About Block 2"
+            },
+			{
+              "type":"image_picker",
+              "id":"img-block2",
+              "label":"Image"
+			},
+			{
+              "type": "text",
+              "id": "title-block2",
+              "label": "Title"
+            },
+			{
+              "type": "textarea",
+              "id": "des-block2",
+              "label": "Description"
+            },
+			{
+              "type": "header",
+              "content": "About Block 3"
+            },
+			{
+              "type":"image_picker",
+              "id":"img-block3",
+              "label":"Image"
+			},
+			{
+              "type": "text",
+              "id": "title-block3",
+              "label": "Title"
+            },
+			{
+              "type": "textarea",
+              "id": "des-block3",
+              "label": "Description"
+            },
+			{
+              "type": "header",
+              "content": "About Block 4"
+            },
+			{
+              "type":"image_picker",
+              "id":"img-block4",
+              "label":"Image"
+			},
+			{
+              "type": "text",
+              "id": "title-block4",
+              "label": "Title"
+            },
+			{
+              "type": "textarea",
+              "id": "des-block4",
+              "label": "Description"
+            },
+			{
+              "type": "header",
+              "content": "About Block 5"
+            },
+			{
+              "type": "textarea",
+              "id": "quote",
+              "label": "blockquote"
+            },
+			{
+			  "type": "text",
+              "id": "quote-author",
+              "label": "author"	
+			},
+			{
+              "type": "header",
+              "content": "About Block 6"
+            },
+			{
+              "type":"image_picker",
+              "id":"img-block6",
+              "label":"Image"
+			},
+			{
+              "type": "text",
+              "id": "title-block6",
+              "label": "Title"
+            },
+			{
+              "type": "textarea",
+              "id": "des-block6",
+              "label": "Description"
+            }
+			
+        ]
+    }  
+{% endschema %}     

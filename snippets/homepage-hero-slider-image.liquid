@@ -1,0 +1,36 @@
+<div class="h__slide">
+  <div class="h__slide__inner slide__inner_media" data-count="{{ count }}">
+    <div class="h__slide__media">
+      {% unless block.button_text == blank or block.button_link == blank %}
+        <a href="{{ block.button_link }}" class="h__slide__url"></a>
+      {% endunless %}
+      <picture class="h__slide__picture">
+        <source media="(min-width:768px)" srcset="{{ block.image_desktop | img_url: '800x', scale: 2 }}">
+        <img
+          class="h__slide__img"
+          src="{{ block.image_mobile | img_url: '500x', scale: 2 }}"
+          alt=""
+        >
+      </picture>
+    </div>
+    <div class="h__slide__info-overlay {% if block.content-position-english == 'right'  %} position-right {%endif%}{% if shop.locale == 'ar' %} {% if block.content-position-arabic == 'right'  %}ar-position-right{%endif%}{% endif %}">
+      <div class="h__slide__info-overlay__title">
+        {% if shop.locale == 'ar' %}
+          {{ block.title_arabic }}
+        {% else %}
+          {{ block.title -}}
+        {%- endif %}
+      </div>
+      <div class="h__slide__info-overlay__desc">
+        {% if shop.locale == 'ar' %}
+          {{ block.subtitle_arabic }}
+        {% else %}
+          {{ block.subtitle -}}
+        {%- endif %}
+      </div>
+      {% unless block.button_text == blank or block.button_link == blank %}
+        <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text }}</a>
+      {% endunless %}
+    </div>
+  </div>
+</div>

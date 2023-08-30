@@ -1,0 +1,950 @@
+<div class="contact_wrap">
+        <div class="contact-form">
+            <div class="contact-form form-vertical">
+        {%- assign formId = 'ContactForm' -%}
+        {% form 'contact', id: formId %}
+          {% include 'form-status', form: form, form_id: formId %}
+
+          <div class="contact-form-con login-wrap">
+            
+            <div class="form-row">
+            <div class="form-group">
+               <label class="form-control-label">
+                  Contact Us Reason *
+              </label>
+              <span class="float-right">*mandatory fields</span>
+              <select required name="contact[contact_reason]">
+              <option selected value="My Account">
+                                My Account
+                            </option>
+                            <option value="Marketing">
+                                Marketing
+                            </option>
+                            <option value="Order">
+                                Order
+                            </option>
+                            <option value="Product">
+                                Product
+                            </option>
+                            <option value="Shipping">
+                                Shipping
+                            </option>
+                            <option value="Store">
+                                Store
+                            </option>
+            
+          	</select>
+            </div>
+            </div>
+            
+            <div class="form-row-flex">
+              <div class="form-group">
+              		<div class="first-name">
+                      <label for="first-name">{{ 'contact.form.first_name' | t }} *</label>
+                      <input type="text" required name="contact[first_name]" />
+                    </div>
+              </div>
+              
+              <div class="form-group">
+              	<div class="last-name">
+                  <label for="last-name">{{ 'contact.form.last_name' | t }} *</label>
+                  <input type="text" required name="contact[last_name]" />
+                </div>
+              </div> 
+              
+            </div>
+            
+            
+            
+            
+            <div class="form-row-flex">
+              <div class="form-group">
+                
+                
+
+          
+              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="{{ formId }}-email"
+                name="contact[email]"
+                autocorrect="off"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                     required
+                {%- if form.errors contains 'email' -%}
+                  class="input--error"
+                  aria-invalid="true"
+                  aria-describedby="{{ formId }}-email-error"
+                {%- endif -%}
+                >
+              {%- if form.errors contains 'email' -%}
+                <span id="{{ formId}}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
+              {%- endif -%}
+          </div>
+              
+              <div class="form-group">
+					<label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }} *</label>
+                
+                <div class="mobile-row">
+                  <div class="phone-area-div">
+                  	<select
+                          class="phone-country-field"
+                          name="contact[country_code]"
+                          id="phoneAreaCode"
+                      >
+                          <option id="AD" data-country="AD" data-phone-code="+376" data-phone-prefix="" data-phone-removeprefix="" value="+376">
+                              AND (+376)
+                          </option>
+                          <option id="AE" data-country="AE" data-phone-code="+971" data-phone-prefix="" data-phone-removeprefix="0" value="+971" selected="">
+                              UAE (+971)
+                          </option>
+                          <option id="AF" data-country="AF" data-phone-code="+93" data-phone-prefix="" data-phone-removeprefix="" value="+93">
+                              AFG (+93)
+                          </option>
+                          <option id="AG" data-country="AG" data-phone-code="+1 268" data-phone-prefix="" data-phone-removeprefix="" value="+1 268">
+                              ATG (+1 268)
+                          </option>
+                          <option id="AI" data-country="AI" data-phone-code="+1 264" data-phone-prefix="" data-phone-removeprefix="" value="+1 264">
+                              AIA (+1 264)
+                          </option>
+                          <option id="AL" data-country="AL" data-phone-code="+355" data-phone-prefix="" data-phone-removeprefix="" value="+355">
+                              ALB (+355)
+                          </option>
+                          <option id="AM" data-country="AM" data-phone-code="+374" data-phone-prefix="" data-phone-removeprefix="" value="+374">
+                              ARM (+374)
+                          </option>
+                          <option id="AN" data-country="AN" data-phone-code="+599" data-phone-prefix="" data-phone-removeprefix="" value="+599">
+                              +599
+                          </option>
+                          <option id="AO" data-country="AO" data-phone-code="+244" data-phone-prefix="" data-phone-removeprefix="" value="+244">
+                              AGO (+244)
+                          </option>
+                          <option id="AQ" data-country="AQ" data-phone-code="+672" data-phone-prefix="" data-phone-removeprefix="" value="+672">
+                              ATA (+672)
+                          </option>
+                          <option id="AR" data-country="AR" data-phone-code="+54" data-phone-prefix="" data-phone-removeprefix="" value="+54">
+                              ARG (+54)
+                          </option>
+                          <option id="AS" data-country="AS" data-phone-code="+1 684" data-phone-prefix="" data-phone-removeprefix="" value="+1 684">
+                              ASM (+1 684)
+                          </option>
+                          <option id="AT" data-country="AT" data-phone-code="+43" data-phone-prefix="" data-phone-removeprefix="" value="+43">
+                              AUT (+43)
+                          </option>
+                          <option id="AU" data-country="AU" data-phone-code="+61" data-phone-prefix="" data-phone-removeprefix="" value="+61">
+                              AUS (+61)
+                          </option>
+                          <option id="AW" data-country="AW" data-phone-code="+297" data-phone-prefix="" data-phone-removeprefix="" value="+297">
+                              ABW (+297)
+                          </option>
+                          <option id="AX" data-country="AX" data-phone-code="+358" data-phone-prefix="" data-phone-removeprefix="" value="+358">
+                              ALA (+358)
+                          </option>
+                          <option id="AZ" data-country="AZ" data-phone-code="+994" data-phone-prefix="" data-phone-removeprefix="" value="+994">
+                              AZE (+994)
+                          </option>
+                          <option id="BA" data-country="BA" data-phone-code="+387" data-phone-prefix="" data-phone-removeprefix="" value="+387">
+                              BIH (+387)
+                          </option>
+                          <option id="BB" data-country="BB" data-phone-code="+1 246" data-phone-prefix="" data-phone-removeprefix="" value="+1 246">
+                              BRB (+1 246)
+                          </option>
+                          <option id="BD" data-country="BD" data-phone-code="+880" data-phone-prefix="" data-phone-removeprefix="" value="+880">
+                              BGD (+880)
+                          </option>
+                          <option id="BE" data-country="BE" data-phone-code="+32" data-phone-prefix="" data-phone-removeprefix="" value="+32">
+                              BEL (+32)
+                          </option>
+                          <option id="BF" data-country="BF" data-phone-code="+226" data-phone-prefix="" data-phone-removeprefix="" value="+226">
+                              BFA (+226)
+                          </option>
+                          <option id="BG" data-country="BG" data-phone-code="+359" data-phone-prefix="" data-phone-removeprefix="" value="+359">
+                              BGR (+359)
+                          </option>
+                          <option id="BH" data-country="BH" data-phone-code="+973" data-phone-prefix="" data-phone-removeprefix="" value="+973">
+                              BHR (+973)
+                          </option>
+                          <option id="BI" data-country="BI" data-phone-code="+257" data-phone-prefix="" data-phone-removeprefix="" value="+257">
+                              BDI (+257)
+                          </option>
+                          <option id="BJ" data-country="BJ" data-phone-code="+229" data-phone-prefix="" data-phone-removeprefix="" value="+229">
+                              BEN (+229)
+                          </option>
+                          <option id="BL" data-country="BL" data-phone-code="+590" data-phone-prefix="" data-phone-removeprefix="" value="+590">
+                              BLM (+590)
+                          </option>
+                          <option id="BM" data-country="BM" data-phone-code="+1 441" data-phone-prefix="" data-phone-removeprefix="" value="+1 441">
+                              BMU (+1 441)
+                          </option>
+                          <option id="BN" data-country="BN" data-phone-code="+673" data-phone-prefix="" data-phone-removeprefix="" value="+673">
+                              BRN (+673)
+                          </option>
+                          <option id="BO" data-country="BO" data-phone-code="+591" data-phone-prefix="" data-phone-removeprefix="" value="+591">
+                              BOL (+591)
+                          </option>
+                          <option id="BR" data-country="BR" data-phone-code="+55" data-phone-prefix="" data-phone-removeprefix="" value="+55">
+                              BRA (+55)
+                          </option>
+                          <option id="BS" data-country="BS" data-phone-code="+1 242" data-phone-prefix="" data-phone-removeprefix="" value="+1 242">
+                              BHS (+1 242)
+                          </option>
+                          <option id="BT" data-country="BT" data-phone-code="+975" data-phone-prefix="" data-phone-removeprefix="" value="+975">
+                              BTN (+975)
+                          </option>
+                          <option id="BW" data-country="BW" data-phone-code="+267" data-phone-prefix="" data-phone-removeprefix="" value="+267">
+                              BWA (+267)
+                          </option>
+                          <option id="BY" data-country="BY" data-phone-code="+375" data-phone-prefix="" data-phone-removeprefix="" value="+375">
+                              BLR (+375)
+                          </option>
+                          <option id="BZ" data-country="BZ" data-phone-code="+501" data-phone-prefix="" data-phone-removeprefix="" value="+501">
+                              BLZ (+501)
+                          </option>
+                          <option id="CA" data-country="CA" data-phone-code="+1" data-phone-prefix="" data-phone-removeprefix="" value="+1">
+                              CAN (+1)
+                          </option>
+                          <option id="CC" data-country="CC" data-phone-code="+61" data-phone-prefix="" data-phone-removeprefix="" value="+61">
+                              CCK (+61)
+                          </option>
+                          <option id="CD" data-country="CD" data-phone-code="+243" data-phone-prefix="" data-phone-removeprefix="" value="+243">
+                              COD (+243)
+                          </option>
+                          <option id="CF" data-country="CF" data-phone-code="+236" data-phone-prefix="" data-phone-removeprefix="" value="+236">
+                              CAF (+236)
+                          </option>
+                          <option id="CG" data-country="CG" data-phone-code="+242" data-phone-prefix="" data-phone-removeprefix="" value="+242">
+                              COG (+242)
+                          </option>
+                          <option id="CH" data-country="CH" data-phone-code="+41" data-phone-prefix="" data-phone-removeprefix="" value="+41">
+                              CHE (+41)
+                          </option>
+                          <option id="CI" data-country="CI" data-phone-code="+225" data-phone-prefix="" data-phone-removeprefix="" value="+225">
+                              CIV (+225)
+                          </option>
+                          <option id="CK" data-country="CK" data-phone-code="+682" data-phone-prefix="" data-phone-removeprefix="" value="+682">
+                              COK (+682)
+                          </option>
+                          <option id="CL" data-country="CL" data-phone-code="+56" data-phone-prefix="" data-phone-removeprefix="" value="+56">
+                              CHL (+56)
+                          </option>
+                          <option id="CM" data-country="CM" data-phone-code="+237" data-phone-prefix="" data-phone-removeprefix="" value="+237">
+                              CMR (+237)
+                          </option>
+                          <option id="CN" data-country="CN" data-phone-code="+86" data-phone-prefix="" data-phone-removeprefix="" value="+86">
+                              CHN (+86)
+                          </option>
+                          <option id="CO" data-country="CO" data-phone-code="+57" data-phone-prefix="" data-phone-removeprefix="" value="+57">
+                              COL (+57)
+                          </option>
+                          <option id="CR" data-country="CR" data-phone-code="+506" data-phone-prefix="" data-phone-removeprefix="" value="+506">
+                              CRI (+506)
+                          </option>
+                          <option id="CU" data-country="CU" data-phone-code="+53" data-phone-prefix="" data-phone-removeprefix="" value="+53">
+                              CUB (+53)
+                          </option>
+                          <option id="CV" data-country="CV" data-phone-code="+238" data-phone-prefix="" data-phone-removeprefix="" value="+238">
+                              CPV (+238)
+                          </option>
+                          <option id="CX" data-country="CX" data-phone-code="+61" data-phone-prefix="" data-phone-removeprefix="" value="+61">
+                              CXR (+61)
+                          </option>
+                          <option id="CY" data-country="CY" data-phone-code="+537" data-phone-prefix="" data-phone-removeprefix="" value="+537">
+                              CYP (+537)
+                          </option>
+                          <option id="CZ" data-country="CZ" data-phone-code="+420" data-phone-prefix="" data-phone-removeprefix="" value="+420">
+                              CZE (+420)
+                          </option>
+                          <option id="DE" data-country="DE" data-phone-code="+49" data-phone-prefix="" data-phone-removeprefix="" value="+49">
+                              DEU (+49)
+                          </option>
+                          <option id="DJ" data-country="DJ" data-phone-code="+253" data-phone-prefix="" data-phone-removeprefix="" value="+253">
+                              DJI (+253)
+                          </option>
+                          <option id="DK" data-country="DK" data-phone-code="+45" data-phone-prefix="" data-phone-removeprefix="" value="+45">
+                              DNK (+45)
+                          </option>
+                          <option id="DM" data-country="DM" data-phone-code="+1 767" data-phone-prefix="" data-phone-removeprefix="" value="+1 767">
+                              DMA (+1 767)
+                          </option>
+                          <option id="DO" data-country="DO" data-phone-code="+1 849" data-phone-prefix="" data-phone-removeprefix="" value="+1 849">
+                              DOM (+1 849)
+                          </option>
+                          <option id="DZ" data-country="DZ" data-phone-code="+213" data-phone-prefix="" data-phone-removeprefix="" value="+213">
+                              DZA (+213)
+                          </option>
+                          <option id="EC" data-country="EC" data-phone-code="+593" data-phone-prefix="" data-phone-removeprefix="" value="+593">
+                              ECU (+593)
+                          </option>
+                          <option id="EE" data-country="EE" data-phone-code="+372" data-phone-prefix="" data-phone-removeprefix="" value="+372">
+                              EST (+372)
+                          </option>
+                          <option id="EG" data-country="EG" data-phone-code="+20" data-phone-prefix="" data-phone-removeprefix="" value="+20">
+                              EGY (+20)
+                          </option>
+                          <option id="ER" data-country="ER" data-phone-code="+291" data-phone-prefix="" data-phone-removeprefix="" value="+291">
+                              ERI (+291)
+                          </option>
+                          <option id="ES" data-country="ES" data-phone-code="+34" data-phone-prefix="" data-phone-removeprefix="" value="+34">
+                              ESP (+34)
+                          </option>
+                          <option id="ET" data-country="ET" data-phone-code="+251" data-phone-prefix="" data-phone-removeprefix="" value="+251">
+                              ETH (+251)
+                          </option>
+                          <option id="FI" data-country="FI" data-phone-code="+358" data-phone-prefix="" data-phone-removeprefix="" value="+358">
+                              FIN (+358)
+                          </option>
+                          <option id="FJ" data-country="FJ" data-phone-code="+679" data-phone-prefix="" data-phone-removeprefix="" value="+679">
+                              FJI (+679)
+                          </option>
+                          <option id="FK" data-country="FK" data-phone-code="+500" data-phone-prefix="" data-phone-removeprefix="" value="+500">
+                              FLK (+500)
+                          </option>
+                          <option id="FM" data-country="FM" data-phone-code="+691" data-phone-prefix="" data-phone-removeprefix="" value="+691">
+                              FSM (+691)
+                          </option>
+                          <option id="FO" data-country="FO" data-phone-code="+298" data-phone-prefix="" data-phone-removeprefix="" value="+298">
+                              FRO (+298)
+                          </option>
+                          <option id="FR" data-country="FR" data-phone-code="+33" data-phone-prefix="" data-phone-removeprefix="" value="+33">
+                              FRA (+33)
+                          </option>
+                          <option id="GA" data-country="GA" data-phone-code="+241" data-phone-prefix="" data-phone-removeprefix="" value="+241">
+                              GAB (+241)
+                          </option>
+                          <option id="GB" data-country="GB" data-phone-code="+44" data-phone-prefix="" data-phone-removeprefix="" value="+44">
+                              GBR (+44)
+                          </option>
+                          <option id="GD" data-country="GD" data-phone-code="+1 473" data-phone-prefix="" data-phone-removeprefix="" value="+1 473">
+                              GRD (+1 473)
+                          </option>
+                          <option id="GE" data-country="GE" data-phone-code="+995" data-phone-prefix="" data-phone-removeprefix="" value="+995">
+                              GEO (+995)
+                          </option>
+                          <option id="GF" data-country="GF" data-phone-code="+594" data-phone-prefix="" data-phone-removeprefix="" value="+594">
+                              GUF (+594)
+                          </option>
+                          <option id="GG" data-country="GG" data-phone-code="+44" data-phone-prefix="" data-phone-removeprefix="" value="+44">
+                              GGY (+44)
+                          </option>
+                          <option id="GH" data-country="GH" data-phone-code="+233" data-phone-prefix="" data-phone-removeprefix="" value="+233">
+                              GHA (+233)
+                          </option>
+                          <option id="GI" data-country="GI" data-phone-code="+350" data-phone-prefix="" data-phone-removeprefix="" value="+350">
+                              GIB (+350)
+                          </option>
+                          <option id="GL" data-country="GL" data-phone-code="+299" data-phone-prefix="" data-phone-removeprefix="" value="+299">
+                              GRL (+299)
+                          </option>
+                          <option id="GM" data-country="GM" data-phone-code="+220" data-phone-prefix="" data-phone-removeprefix="" value="+220">
+                              GMB (+220)
+                          </option>
+                          <option id="GN" data-country="GN" data-phone-code="+224" data-phone-prefix="" data-phone-removeprefix="" value="+224">
+                              GIN (+224)
+                          </option>
+                          <option id="GP" data-country="GP" data-phone-code="+590" data-phone-prefix="" data-phone-removeprefix="" value="+590">
+                              GLP (+590)
+                          </option>
+                          <option id="GQ" data-country="GQ" data-phone-code="+240" data-phone-prefix="" data-phone-removeprefix="" value="+240">
+                              GNQ (+240)
+                          </option>
+                          <option id="GR" data-country="GR" data-phone-code="+30" data-phone-prefix="" data-phone-removeprefix="" value="+30">
+                              GRC (+30)
+                          </option>
+                          <option id="GS" data-country="GS" data-phone-code="+500" data-phone-prefix="" data-phone-removeprefix="" value="+500">
+                              SGS (+500)
+                          </option>
+                          <option id="GT" data-country="GT" data-phone-code="+502" data-phone-prefix="" data-phone-removeprefix="" value="+502">
+                              GTM (+502)
+                          </option>
+                          <option id="GU" data-country="GU" data-phone-code="+1 671" data-phone-prefix="" data-phone-removeprefix="" value="+1 671">
+                              GUM (+1 671)
+                          </option>
+                          <option id="GW" data-country="GW" data-phone-code="+245" data-phone-prefix="" data-phone-removeprefix="" value="+245">
+                              GNB (+245)
+                          </option>
+                          <option id="GY" data-country="GY" data-phone-code="+595" data-phone-prefix="" data-phone-removeprefix="" value="+595">
+                              GUY (+595)
+                          </option>
+                          <option id="HK" data-country="HK" data-phone-code="+852" data-phone-prefix="" data-phone-removeprefix="" value="+852">
+                              HKG (+852)
+                          </option>
+                          <option id="HN" data-country="HN" data-phone-code="+504" data-phone-prefix="" data-phone-removeprefix="" value="+504">
+                              HND (+504)
+                          </option>
+                          <option id="HR" data-country="HR" data-phone-code="+385" data-phone-prefix="" data-phone-removeprefix="" value="+385">
+                              HRV (+385)
+                          </option>
+                          <option id="HT" data-country="HT" data-phone-code="+509" data-phone-prefix="" data-phone-removeprefix="" value="+509">
+                              HTI (+509)
+                          </option>
+                          <option id="HU" data-country="HU" data-phone-code="+36" data-phone-prefix="" data-phone-removeprefix="" value="+36">
+                              HUN (+36)
+                          </option>
+                          <option id="ID" data-country="ID" data-phone-code="+62" data-phone-prefix="" data-phone-removeprefix="" value="+62">
+                              IDN (+62)
+                          </option>
+                          <option id="IE" data-country="IE" data-phone-code="+353" data-phone-prefix="" data-phone-removeprefix="" value="+353">
+                              IRL (+353)
+                          </option>
+                          <option id="IL" data-country="IL" data-phone-code="+972" data-phone-prefix="" data-phone-removeprefix="" value="+972">
+                              ISR (+972)
+                          </option>
+                          <option id="IM" data-country="IM" data-phone-code="+44" data-phone-prefix="" data-phone-removeprefix="" value="+44">
+                              IMN (+44)
+                          </option>
+                          <option id="IN" data-country="IN" data-phone-code="+91" data-phone-prefix="" data-phone-removeprefix="" value="+91">
+                              IND (+91)
+                          </option>
+                          <option id="IO" data-country="IO" data-phone-code="+246" data-phone-prefix="" data-phone-removeprefix="" value="+246">
+                              IOT (+246)
+                          </option>
+                          <option id="IQ" data-country="IQ" data-phone-code="+964" data-phone-prefix="" data-phone-removeprefix="" value="+964">
+                              IRQ (+964)
+                          </option>
+                          <option id="IR" data-country="IR" data-phone-code="+98" data-phone-prefix="" data-phone-removeprefix="" value="+98">
+                              IRN (+98)
+                          </option>
+                          <option id="IS" data-country="IS" data-phone-code="+354" data-phone-prefix="" data-phone-removeprefix="" value="+354">
+                              ISL (+354)
+                          </option>
+                          <option id="IT" data-country="IT" data-phone-code="+39" data-phone-prefix="" data-phone-removeprefix="" value="+39">
+                              ITA (+39)
+                          </option>
+                          <option id="JE" data-country="JE" data-phone-code="+44" data-phone-prefix="" data-phone-removeprefix="" value="+44">
+                              JEY (+44)
+                          </option>
+                          <option id="JM" data-country="JM" data-phone-code="+1 876" data-phone-prefix="" data-phone-removeprefix="" value="+1 876">
+                              JAM (+1 876)
+                          </option>
+                          <option id="JO" data-country="JO" data-phone-code="+962" data-phone-prefix="" data-phone-removeprefix="" value="+962">
+                              JOR (+962)
+                          </option>
+                          <option id="JP" data-country="JP" data-phone-code="+81" data-phone-prefix="" data-phone-removeprefix="" value="+81">
+                              JPN (+81)
+                          </option>
+                          <option id="KE" data-country="KE" data-phone-code="+254" data-phone-prefix="" data-phone-removeprefix="" value="+254">
+                              KEN (+254)
+                          </option>
+                          <option id="KG" data-country="KG" data-phone-code="+996" data-phone-prefix="" data-phone-removeprefix="" value="+996">
+                              KGZ (+996)
+                          </option>
+                          <option id="KH" data-country="KH" data-phone-code="+855" data-phone-prefix="" data-phone-removeprefix="" value="+855">
+                              KHM (+855)
+                          </option>
+                          <option id="KI" data-country="KI" data-phone-code="+686" data-phone-prefix="" data-phone-removeprefix="" value="+686">
+                              KIR (+686)
+                          </option>
+                          <option id="KM" data-country="KM" data-phone-code="+269" data-phone-prefix="" data-phone-removeprefix="" value="+269">
+                              COM (+269)
+                          </option>
+                          <option id="KN" data-country="KN" data-phone-code="+1 869" data-phone-prefix="" data-phone-removeprefix="" value="+1 869">
+                              KNA (+1 869)
+                          </option>
+                          <option id="KP" data-country="KP" data-phone-code="+850" data-phone-prefix="" data-phone-removeprefix="" value="+850">
+                              PRK (+850)
+                          </option>
+                          <option id="KR" data-country="KR" data-phone-code="+82" data-phone-prefix="" data-phone-removeprefix="" value="+82">
+                              KOR (+82)
+                          </option>
+                          <option id="KW" data-country="KW" data-phone-code="+965" data-phone-prefix="" data-phone-removeprefix="" value="+965">
+                              KWT (+965)
+                          </option>
+                          <option id="KY" data-country="KY" data-phone-code="+345" data-phone-prefix="" data-phone-removeprefix="" value="+345">
+                              CYM (+345)
+                          </option>
+                          <option id="KZ" data-country="KZ" data-phone-code="+7 7" data-phone-prefix="" data-phone-removeprefix="" value="+7 7">
+                              KAZ (+7 7)
+                          </option>
+                          <option id="LA" data-country="LA" data-phone-code="+856" data-phone-prefix="" data-phone-removeprefix="" value="+856">
+                              LAO (+856)
+                          </option>
+                          <option id="LB" data-country="LB" data-phone-code="+961" data-phone-prefix="" data-phone-removeprefix="" value="+961">
+                              LBN (+961)
+                          </option>
+                          <option id="LC" data-country="LC" data-phone-code="+1 758" data-phone-prefix="" data-phone-removeprefix="" value="+1 758">
+                              LCA (+1 758)
+                          </option>
+                          <option id="LI" data-country="LI" data-phone-code="+423" data-phone-prefix="" data-phone-removeprefix="" value="+423">
+                              LIE (+423)
+                          </option>
+                          <option id="LK" data-country="LK" data-phone-code="+94" data-phone-prefix="" data-phone-removeprefix="" value="+94">
+                              LKA (+94)
+                          </option>
+                          <option id="LR" data-country="LR" data-phone-code="+231" data-phone-prefix="" data-phone-removeprefix="" value="+231">
+                              LBR (+231)
+                          </option>
+                          <option id="LS" data-country="LS" data-phone-code="+266" data-phone-prefix="" data-phone-removeprefix="" value="+266">
+                              LSO (+266)
+                          </option>
+                          <option id="LT" data-country="LT" data-phone-code="+370" data-phone-prefix="" data-phone-removeprefix="" value="+370">
+                              LTU (+370)
+                          </option>
+                          <option id="LU" data-country="LU" data-phone-code="+352" data-phone-prefix="" data-phone-removeprefix="" value="+352">
+                              LUX (+352)
+                          </option>
+                          <option id="LV" data-country="LV" data-phone-code="+371" data-phone-prefix="" data-phone-removeprefix="" value="+371">
+                              LVA (+371)
+                          </option>
+                          <option id="LY" data-country="LY" data-phone-code="+218" data-phone-prefix="" data-phone-removeprefix="" value="+218">
+                              LBY (+218)
+                          </option>
+                          <option id="MA" data-country="MA" data-phone-code="+212" data-phone-prefix="" data-phone-removeprefix="" value="+212">
+                              MAR (+212)
+                          </option>
+                          <option id="MC" data-country="MC" data-phone-code="+377" data-phone-prefix="" data-phone-removeprefix="" value="+377">
+                              MCO (+377)
+                          </option>
+                          <option id="MD" data-country="MD" data-phone-code="+373" data-phone-prefix="" data-phone-removeprefix="" value="+373">
+                              MDA (+373)
+                          </option>
+
+                          <option id="ME" data-country="ME" data-phone-code="+382" data-phone-prefix="" data-phone-removeprefix="" value="+382">
+                              MNE (+382)
+                          </option>
+                          <option id="MF" data-country="MF" data-phone-code="+590" data-phone-prefix="" data-phone-removeprefix="" value="+590">
+                              MAF (+590)
+                          </option>
+                          <option id="MG" data-country="MG" data-phone-code="+261" data-phone-prefix="" data-phone-removeprefix="" value="+261">
+                              MDG (+261)
+                          </option>
+                          <option id="MH" data-country="MH" data-phone-code="+692" data-phone-prefix="" data-phone-removeprefix="" value="+692">
+                              MHL (+692)
+                          </option>
+                          <option id="MK" data-country="MK" data-phone-code="+389" data-phone-prefix="" data-phone-removeprefix="" value="+389">
+                              MKD (+389)
+                          </option>
+                          <option id="ML" data-country="ML" data-phone-code="+223" data-phone-prefix="" data-phone-removeprefix="" value="+223">
+                              MLI (+223)
+                          </option>
+                          <option id="MM" data-country="MM" data-phone-code="+95" data-phone-prefix="" data-phone-removeprefix="" value="+95">
+                              MMR (+95)
+                          </option>
+                          <option id="MN" data-country="MN" data-phone-code="+976" data-phone-prefix="" data-phone-removeprefix="" value="+976">
+                              MNG (+976)
+                          </option>
+                          <option id="MO" data-country="MO" data-phone-code="+853" data-phone-prefix="" data-phone-removeprefix="" value="+853">
+                              MAC (+853)
+                          </option>
+                          <option id="MP" data-country="MP" data-phone-code="+1 670" data-phone-prefix="" data-phone-removeprefix="" value="+1 670">
+                              MNP (+1 670)
+                          </option>
+                          <option id="MQ" data-country="MQ" data-phone-code="+596" data-phone-prefix="" data-phone-removeprefix="" value="+596">
+                              MTQ (+596)
+                          </option>
+                          <option id="MR" data-country="MR" data-phone-code="+222" data-phone-prefix="" data-phone-removeprefix="" value="+222">
+                              MRT (+222)
+                          </option>
+                          <option id="MS" data-country="MS" data-phone-code="+1 664" data-phone-prefix="" data-phone-removeprefix="" value="+1 664">
+                              MSR (+1 664)
+                          </option>
+                          <option id="MT" data-country="MT" data-phone-code="+356" data-phone-prefix="" data-phone-removeprefix="" value="+356">
+                              MLT (+356)
+                          </option>
+                          <option id="MU" data-country="MU" data-phone-code="+230" data-phone-prefix="" data-phone-removeprefix="" value="+230">
+                              MUS (+230)
+                          </option>
+                          <option id="MV" data-country="MV" data-phone-code="+960" data-phone-prefix="" data-phone-removeprefix="" value="+960">
+                              MDV (+960)
+                          </option>
+                          <option id="MW" data-country="MW" data-phone-code="+265" data-phone-prefix="" data-phone-removeprefix="" value="+265">
+                              MWI (+265)
+                          </option>
+                          <option id="MX" data-country="MX" data-phone-code="+52" data-phone-prefix="" data-phone-removeprefix="" value="+52">
+                              MEX (+52)
+                          </option>
+                          <option id="MY" data-country="MY" data-phone-code="+60" data-phone-prefix="" data-phone-removeprefix="" value="+60">
+                              MYS (+60)
+                          </option>
+                          <option id="MZ" data-country="MZ" data-phone-code="+258" data-phone-prefix="" data-phone-removeprefix="" value="+258">
+                              MOZ (+258)
+                          </option>
+                          <option id="NA" data-country="NA" data-phone-code="+264" data-phone-prefix="" data-phone-removeprefix="" value="+264">
+                              NAM (+264)
+                          </option>
+                          <option id="NC" data-country="NC" data-phone-code="+687" data-phone-prefix="" data-phone-removeprefix="" value="+687">
+                              NCL (+687)
+                          </option>
+                          <option id="NE" data-country="NE" data-phone-code="+227" data-phone-prefix="" data-phone-removeprefix="" value="+227">
+                              NER (+227)
+                          </option>
+                          <option id="NF" data-country="NF" data-phone-code="+672" data-phone-prefix="" data-phone-removeprefix="" value="+672">
+                              NFK (+672)
+                          </option>
+                          <option id="NG" data-country="NG" data-phone-code="+234" data-phone-prefix="" data-phone-removeprefix="" value="+234">
+                              NGA (+234)
+                          </option>
+                          <option id="NI" data-country="NI" data-phone-code="+505" data-phone-prefix="" data-phone-removeprefix="" value="+505">
+                              NIC (+505)
+                          </option>
+                          <option id="NL" data-country="NL" data-phone-code="+31" data-phone-prefix="" data-phone-removeprefix="" value="+31">
+                              NLD (+31)
+                          </option>
+                          <option id="NO" data-country="NO" data-phone-code="+47" data-phone-prefix="" data-phone-removeprefix="" value="+47">
+                              NOR (+47)
+                          </option>
+                          <option id="NP" data-country="NP" data-phone-code="+977" data-phone-prefix="" data-phone-removeprefix="" value="+977">
+                              NPL (+977)
+                          </option>
+                          <option id="NR" data-country="NR" data-phone-code="+674" data-phone-prefix="" data-phone-removeprefix="" value="+674">
+                              NRU (+674)
+                          </option>
+                          <option id="NU" data-country="NU" data-phone-code="+683" data-phone-prefix="" data-phone-removeprefix="" value="+683">
+                              NIU (+683)
+                          </option>
+                          <option id="NZ" data-country="NZ" data-phone-code="+64" data-phone-prefix="" data-phone-removeprefix="" value="+64">
+                              NZL (+64)
+                          </option>
+                          <option id="OM" data-country="OM" data-phone-code="+968" data-phone-prefix="" data-phone-removeprefix="" value="+968">
+                              OMN (+968)
+                          </option>
+                          <option id="PA" data-country="PA" data-phone-code="+507" data-phone-prefix="" data-phone-removeprefix="" value="+507">
+                              PAN (+507)
+                          </option>
+                          <option id="PE" data-country="PE" data-phone-code="+51" data-phone-prefix="" data-phone-removeprefix="" value="+51">
+                              PER (+51)
+                          </option>
+                          <option id="PF" data-country="PF" data-phone-code="+689" data-phone-prefix="" data-phone-removeprefix="" value="+689">
+                              PYF (+689)
+                          </option>
+                          <option id="PG" data-country="PG" data-phone-code="+675" data-phone-prefix="" data-phone-removeprefix="" value="+675">
+                              PNG (+675)
+                          </option>
+                          <option id="PH" data-country="PH" data-phone-code="+63" data-phone-prefix="" data-phone-removeprefix="" value="+63">
+                              PHL (+63)
+                          </option>
+                          <option id="PK" data-country="PK" data-phone-code="+92" data-phone-prefix="" data-phone-removeprefix="" value="+92">
+                              PAK (+92)
+                          </option>
+                          <option id="PL" data-country="PL" data-phone-code="+48" data-phone-prefix="" data-phone-removeprefix="" value="+48">
+                              POL (+48)
+                          </option>
+                          <option id="PM" data-country="PM" data-phone-code="+508" data-phone-prefix="" data-phone-removeprefix="" value="+508">
+                              SPM (+508)
+                          </option>
+                          <option id="PN" data-country="PN" data-phone-code="+872" data-phone-prefix="" data-phone-removeprefix="" value="+872">
+                              PCN (+872)
+                          </option>
+                          <option id="PR" data-country="PR" data-phone-code="+1 939" data-phone-prefix="" data-phone-removeprefix="" value="+1 939">
+                              PRI (+1 939)
+                          </option>
+                          <option id="PS" data-country="PS" data-phone-code="+970" data-phone-prefix="" data-phone-removeprefix="" value="+970">
+                              PSE (+970)
+                          </option>
+                          <option id="PT" data-country="PT" data-phone-code="+351" data-phone-prefix="" data-phone-removeprefix="" value="+351">
+                              PRT (+351)
+                          </option>
+                          <option id="PW" data-country="PW" data-phone-code="+680" data-phone-prefix="" data-phone-removeprefix="" value="+680">
+                              PLW (+680)
+                          </option>
+                          <option id="PY" data-country="PY" data-phone-code="+595" data-phone-prefix="" data-phone-removeprefix="" value="+595">
+                              PRY (+595)
+                          </option>
+                          <option id="QA" data-country="QA" data-phone-code="+974" data-phone-prefix="" data-phone-removeprefix="" value="+974">
+                              QAT (+974)
+                          </option>
+                          <option id="RE" data-country="RE" data-phone-code="+262" data-phone-prefix="" data-phone-removeprefix="" value="+262">
+                              REU (+262)
+                          </option>
+                          <option id="RO" data-country="RO" data-phone-code="+40" data-phone-prefix="" data-phone-removeprefix="" value="+40">
+                              ROU (+40)
+                          </option>
+                          <option id="RS" data-country="RS" data-phone-code="+381" data-phone-prefix="" data-phone-removeprefix="" value="+381">
+                              SRB (+381)
+                          </option>
+                          <option id="RU" data-country="RU" data-phone-code="+7" data-phone-prefix="" data-phone-removeprefix="" value="+7">
+                              RUS (+7)
+                          </option>
+                          <option id="RW" data-country="RW" data-phone-code="+250" data-phone-prefix="" data-phone-removeprefix="" value="+250">
+                              RWA (+250)
+                          </option>
+                          <option id="SA" data-country="SA" data-phone-code="+966" data-phone-prefix="" data-phone-removeprefix="0" value="+966">
+                              SAU (+966)
+                          </option>
+                          <option id="SB" data-country="SB" data-phone-code="+677" data-phone-prefix="" data-phone-removeprefix="" value="+677">
+                              SLB (+677)
+                          </option>
+                          <option id="SC" data-country="SC" data-phone-code="+248" data-phone-prefix="" data-phone-removeprefix="" value="+248">
+                              SYC (+248)
+                          </option>
+                          <option id="SD" data-country="SD" data-phone-code="+249" data-phone-prefix="" data-phone-removeprefix="" value="+249">
+                              SDN (+249)
+                          </option>
+                          <option id="SE" data-country="SE" data-phone-code="+46" data-phone-prefix="" data-phone-removeprefix="" value="+46">
+                              SWE (+46)
+                          </option>
+                          <option id="SG" data-country="SG" data-phone-code="+65" data-phone-prefix="" data-phone-removeprefix="" value="+65">
+                              SGP (+65)
+                          </option>
+                          <option id="SH" data-country="SH" data-phone-code="+290" data-phone-prefix="" data-phone-removeprefix="" value="+290">
+                              SHN (+290)
+                          </option>
+                          <option id="SI" data-country="SI" data-phone-code="+386" data-phone-prefix="" data-phone-removeprefix="" value="+386">
+                              SVN (+386)
+                          </option>
+                          <option id="SJ" data-country="SJ" data-phone-code="+47" data-phone-prefix="" data-phone-removeprefix="" value="+47">
+                              SJM (+47)
+                          </option>
+                          <option id="SK" data-country="SK" data-phone-code="+421" data-phone-prefix="" data-phone-removeprefix="" value="+421">
+                              SVK (+421)
+                          </option>
+                          <option id="SL" data-country="SL" data-phone-code="+232" data-phone-prefix="" data-phone-removeprefix="" value="+232">
+                              SLE (+232)
+                          </option>
+                          <option id="SM" data-country="SM" data-phone-code="+378" data-phone-prefix="" data-phone-removeprefix="" value="+378">
+                              SMR (+378)
+                          </option>
+                          <option id="SN" data-country="SN" data-phone-code="+221" data-phone-prefix="" data-phone-removeprefix="" value="+221">
+                              SEN (+221)
+                          </option>
+                          <option id="SO" data-country="SO" data-phone-code="+252" data-phone-prefix="" data-phone-removeprefix="" value="+252">
+                              SOM (+252)
+                          </option>
+                          <option id="SR" data-country="SR" data-phone-code="+597" data-phone-prefix="" data-phone-removeprefix="" value="+597">
+                              SUR (+597)
+                          </option>
+                          <option id="ST" data-country="ST" data-phone-code="+239" data-phone-prefix="" data-phone-removeprefix="" value="+239">
+                              STP (+239)
+                          </option>
+                          <option id="SV" data-country="SV" data-phone-code="+503" data-phone-prefix="" data-phone-removeprefix="" value="+503">
+                              SLV (+503)
+                          </option>
+                          <option id="SY" data-country="SY" data-phone-code="+963" data-phone-prefix="" data-phone-removeprefix="" value="+963">
+                              SYR (+963)
+                          </option>
+                          <option id="SZ" data-country="SZ" data-phone-code="+268" data-phone-prefix="" data-phone-removeprefix="" value="+268">
+                              SWZ (+268)
+                          </option>
+                          <option id="TC" data-country="TC" data-phone-code="+1 649" data-phone-prefix="" data-phone-removeprefix="" value="+1 649">
+                              TCA (+1 649)
+                          </option>
+                          <option id="TD" data-country="TD" data-phone-code="+235" data-phone-prefix="" data-phone-removeprefix="" value="+235">
+                              TCD (+235)
+                          </option>
+                          <option id="TG" data-country="TG" data-phone-code="+228" data-phone-prefix="" data-phone-removeprefix="" value="+228">
+                              TGO (+228)
+                          </option>
+                          <option id="TH" data-country="TH" data-phone-code="+66" data-phone-prefix="" data-phone-removeprefix="" value="+66">
+                              THA (+66)
+                          </option>
+                          <option id="TJ" data-country="TJ" data-phone-code="+992" data-phone-prefix="" data-phone-removeprefix="" value="+992">
+                              TJK (+992)
+                          </option>
+
+                          <option id="TK" data-country="TK" data-phone-code="+690" data-phone-prefix="" data-phone-removeprefix="" value="+690">
+                              TKL (+690)
+                          </option>
+                          <option id="TL" data-country="TL" data-phone-code="+670" data-phone-prefix="" data-phone-removeprefix="" value="+670">
+                              TLS (+670)
+                          </option>
+                          <option id="TM" data-country="TM" data-phone-code="+993" data-phone-prefix="" data-phone-removeprefix="" value="+993">
+                              TKM (+993)
+                          </option>
+                          <option id="TN" data-country="TN" data-phone-code="+216" data-phone-prefix="" data-phone-removeprefix="" value="+216">
+                              TUN (+216)
+                          </option>
+                          <option id="TO" data-country="TO" data-phone-code="+676" data-phone-prefix="" data-phone-removeprefix="" value="+676">
+                              TON (+676)
+                          </option>
+                          <option id="TR" data-country="TR" data-phone-code="+90" data-phone-prefix="" data-phone-removeprefix="" value="+90">
+                              TUR (+90)
+                          </option>
+                          <option id="TT" data-country="TT" data-phone-code="+1 868" data-phone-prefix="" data-phone-removeprefix="" value="+1 868">
+                              TTO (+1 868)
+                          </option>
+                          <option id="TV" data-country="TV" data-phone-code="+688" data-phone-prefix="" data-phone-removeprefix="" value="+688">
+                              TUV (+688)
+                          </option>
+                          <option id="TW" data-country="TW" data-phone-code="+886" data-phone-prefix="" data-phone-removeprefix="" value="+886">
+                              TWN (+886)
+                          </option>
+                          <option id="TZ" data-country="TZ" data-phone-code="+255" data-phone-prefix="" data-phone-removeprefix="" value="+255">
+                              TZA (+255)
+                          </option>
+                          <option id="UA" data-country="UA" data-phone-code="+380" data-phone-prefix="" data-phone-removeprefix="" value="+380">
+                              UKR (+380)
+                          </option>
+                          <option id="UG" data-country="UG" data-phone-code="+256" data-phone-prefix="" data-phone-removeprefix="" value="+256">
+                              UGA (+256)
+                          </option>
+                          <option id="US" data-country="US" data-phone-code="+1" data-phone-prefix="" data-phone-removeprefix="" value="+1">
+                              USA (+1)
+                          </option>
+                          <option id="UY" data-country="UY" data-phone-code="+598" data-phone-prefix="" data-phone-removeprefix="" value="+598">
+                              URY (+598)
+                          </option>
+                          <option id="UZ" data-country="UZ" data-phone-code="+998" data-phone-prefix="" data-phone-removeprefix="" value="+998">
+                              UZB (+998)
+                          </option>
+                          <option id="VA" data-country="VA" data-phone-code="+379" data-phone-prefix="" data-phone-removeprefix="" value="+379">
+                              VAT (+379)
+                          </option>
+                          <option id="VC" data-country="VC" data-phone-code="+1 784" data-phone-prefix="" data-phone-removeprefix="" value="+1 784">
+                              VCT (+1 784)
+                          </option>
+                          <option id="VE" data-country="VE" data-phone-code="+58" data-phone-prefix="" data-phone-removeprefix="" value="+58">
+                              VEN (+58)
+                          </option>
+                          <option id="VG" data-country="VG" data-phone-code="+1 284" data-phone-prefix="" data-phone-removeprefix="" value="+1 284">
+                              VGB (+1 284)
+                          </option>
+                          <option id="VI" data-country="VI" data-phone-code="+1 340" data-phone-prefix="" data-phone-removeprefix="" value="+1 340">
+                              VIR (+1 340)
+                          </option>
+                          <option id="VN" data-country="VN" data-phone-code="+84" data-phone-prefix="" data-phone-removeprefix="" value="+84">
+                              VNM (+84)
+                          </option>
+                          <option id="VU" data-country="VU" data-phone-code="+678" data-phone-prefix="" data-phone-removeprefix="" value="+678">
+                              VUT (+678)
+                          </option>
+                          <option id="WF" data-country="WF" data-phone-code="+681" data-phone-prefix="" data-phone-removeprefix="" value="+681">
+                              WLF (+681)
+                          </option>
+                          <option id="WS" data-country="WS" data-phone-code="+685" data-phone-prefix="" data-phone-removeprefix="" value="+685">
+                              WSM (+685)
+                          </option>
+                          <option id="YE" data-country="YE" data-phone-code="+967" data-phone-prefix="" data-phone-removeprefix="" value="+967">
+                              YEM (+967)
+                          </option>
+                          <option id="YT" data-country="YT" data-phone-code="+262" data-phone-prefix="" data-phone-removeprefix="" value="+262">
+                              MYT (+262)
+                          </option>
+                          <option id="ZA" data-country="ZA" data-phone-code="+27" data-phone-prefix="" data-phone-removeprefix="" value="+27">
+                              ZAF (+27)
+                          </option>
+                          <option id="ZM" data-country="ZM" data-phone-code="+260" data-phone-prefix="" data-phone-removeprefix="" value="+260">
+                              ZMB (+260)
+                          </option>
+                          <option id="ZW" data-country="ZW" data-phone-code="+263" data-phone-prefix="" data-phone-removeprefix="" value="+263">
+                              ZWE (+263)
+                          </option>
+                      </select>
+
+                  	
+                  </div>
+                   <div class="phone_number">
+                      <input type="tel" required id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                  </div>
+                </div>
+               
+              </div>
+
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <div class="subject">
+                    <label for="subject">{{ 'contact.form.subject' | t }} *</label>
+                    <input type="text" required name="contact[subject]" />
+                  <div class="count-text">
+                    <span> 255 chars left </span>
+                  </div>
+                  </div>
+              </div>
+            </div>
+            
+            
+             <div class="form-row">
+              <div class="form-group">
+                <div class="messages">
+					<label for="{{ formId }}-message">{{ 'contact.form.message' | t }} *</label>
+          			<textarea rows="10" required id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                  <div class="count-text">
+                    <span> 1000 chars left  </span>
+                  </div>
+                  </div>
+              </div>
+            </div>
+
+          
+            <div class="form-actions">
+				<input type="submit" class="btn-ctm" value="{{ 'contact.form.submit' | t }}">
+            </div>
+
+
+        {% endform %}
+      </div>
+        </div>
+      
+      <div class="contact-info-wrap">
+      	<div class="content-asset">
+          {% if section.settings.block_heading %}
+            <h5>
+                    <span>{{section.settings.block_heading}}</span>
+            </h5>
+          {%endif%}
+          	
+          <div class="contact-info-cont">
+          	<div class="contact-info-item">
+              <span class="icon-img">
+				<img src="{{"phone.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+              </span> 
+              {{section.settings.phone_text}}: <a href="tel:{{section.settings.phone_number}}" target="_blank">{{section.settings.phone_number}}</a> &nbsp;
+            </div>
+            <div class="contact-info-item">
+                <span class="icon-img">
+				<img src="{{"envelope.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+              </span> 
+              {{section.settings.email_text}}: <a href="mailto:{{section.settings.email_address}}" target="_blank">{{section.settings.email_address}}</a> &nbsp;
+          	</div>
+            <div class="contact-info-item">
+                {{section.settings.time_details}}
+            </div>
+          
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+
+
+{% schema %}
+  {
+    "name": "Block details",
+    "settings": [
+  {
+  "type": "text",
+  "id": "block_heading",
+  "label": "Block Heading"
+  },
+  {
+  "type": "text",
+  "id": "phone_text",
+  "label": "Phone Text"
+  },
+  {
+  "type": "text",
+  "id": "phone_number",
+  "label": "Phone Number"
+  },
+  {
+  "type": "text",
+  "id": "email_text",
+  "label": "Email text"
+  },
+  {
+  "type": "text",
+  "id": "email_address",
+  "label": "Email address"
+  },
+  {
+  "type": "text",
+  "id": "time_details",
+  "label": "time detail"
+  }
+  
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

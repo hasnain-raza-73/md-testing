@@ -1,0 +1,255 @@
+<section id="mb-mob-nav-cont">
+  <ul class="mb-mb-nav-ul pad0">
+
+    <li class="mobile-nav__item border-bottom menu-mob-ttl">
+      <div class="mob-search">
+
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="search-form search-page-form">
+          <div class="input-group input-group--nowrap">
+            <div class="input-group__field input-group__field--connected search-form__input-wrapper">
+              <input
+                type="search"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="Search..."
+                role="combobox"
+                aria-autocomplete="list"
+                aria-owns="predictive-search-results"
+                aria-expanded="false"
+                aria-label="search"
+                aria-haspopup="listbox"
+                class="search-form__input search-input"
+                data-search-page-predictive-search-input
+                data-base-url="{{ routes.search_url }}" />
+
+              <input
+                type="hidden"
+                name="options[prefix]"
+                value="last"
+                aria-hidden="true" />
+
+              <button
+                type="reset"
+                class="search-form__clear-action"
+                aria-label="Search"
+                data-search-page-predictive-search-clear>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMiAxMS4yOTNsMTAuMjkzLTEwLjI5My43MDcuNzA3LTEwLjI5MyAxMC4yOTMgMTAuMjkzIDEwLjI5My0uNzA3LjcwNy0xMC4yOTMtMTAuMjkzLTEwLjI5MyAxMC4yOTMtLjcwNy0uNzA3IDEwLjI5My0xMC4yOTMtMTAuMjkzLTEwLjI5My43MDctLjcwNyAxMC4yOTMgMTAuMjkzeiIvPjwvc3ZnPg==">
+              </button>
+
+              <div class="predictive-search-wrapper" data-predictive-search-mount="default"></div>
+            </div>
+
+            <div class="search-result-weap">
+              <div class="productData"></div>
+              <a class="customSearchredirect" href="">
+                <div class="viewResults"></div>
+              </a>
+            </div>
+
+            <button
+              type="submit"
+              class="search-form__connected-submit"
+              aria-label="Submit"
+              data-search-page-predictive-search-submit>
+              <img src="{{ 'mb-icon-search.svg' | asset_url }}" />
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </li>
+
+    <!--mobile langify -->
+    <li class="no-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
+      <a
+        class='mobile-nav__link mobile-nav__link--active
+        {% if request.locale.iso_code == 'ar' %}
+          lang-is-ar
+        {% else %}
+          lang-is-en{% endif %}'>
+        <span class="ly-custom-0 mob-langify"></span>
+      </a>
+    </li>
+
+    <li class="1 has-child-one mobile-nav__item border-bottom li-lvlone bold-mb">
+      <div class="dropdown_custom_item custom-nav-country uae-field">
+        <span class="mobile-nav__label ">
+          <a href="javascript:void(0);">{{ section.settings.change_country_text | default: "Change Country" }} -</a>
+        </span>
+        <a href="{{section.settings.uae_text_url | default: "https://molton-brown-uae.myshopify.com/" }}" target="_blank">
+          {% if section.settings.uae_img != empty %}
+            <img
+              class="lazy"
+              src="{{section.settings.uae_img | img_url: "1x1"}}"
+              data-src="{{section.settings.uae_img | img_url: "21x21"}}"
+              alt="icon"
+              width="21px"
+              height="21px">
+          {% endif %}
+          {{ section.settings.uae_text | default: "UAE" }}
+        </a>
+      </div>
+      <div class="togglenewmob lvlonemob togglenewmob-wrap">
+        <div class="mobile-nav__icon lvlonemob-chiv ">
+          <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+        </div>
+      </div>
+      <ul
+        class="innercontent pad0 mobile-nav__dropdown   "
+        data-parent="bath-and-body-4"
+        data-level="2">
+        <li class="child2_without_btn mobile-nav__item li-lvltwo">
+          <span class="mobile-nav__label lable_without_btn kas-fild">
+            <a
+              href="{{section.settings.ksa_text_url | default: "https://molton-brown-ksa.myshopify.com/"}}"
+              target="_blank"
+              second-lvl-sub="yes">
+              {% if section.settings.ksa_img != empty %}<img
+                  class="lazy"
+                  src="{{section.settings.ksa_img | img_url: "1x1"}}"
+                  data-src="{{section.settings.ksa_img | img_url: "21x21"}}"
+                  alt="icon"
+                  width="21px"
+                  height="21px">{% endif %}
+              {{ section.settings.ksa_text | default: "KSA" }}
+            </a>
+          </span>
+        </li>
+      </ul>
+    </li>
+
+
+
+    <!--mobile langify -->
+    {% assign nav_menu_color = section.settings.menu_handle_color %}
+    <style>
+      span.mobile-nav__label.nav-color-{{ mob_menu_handle_color}}> a, li.no-child-one.mobile-nav__item.nav-color-{{ mob_menu_handle_color}}> a {
+        color: {{ section.settings.nav_color}}
+         !important;
+      }
+    </style>
+
+    {%- for link in linklists.main-menu.links -%}
+      {%- assign outerLoopIndex = forloop.index -%}
+      {% if link.links != blank %}
+        {% capture child_list_handle %}
+          {{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
+        <li class="1 has-child-one mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvlone {% for childlink in link.links %}{% if childlink.current %}has-2ndd{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %} has-thirdd {% endif %} {% endfor %}{% endfor %}">
+          <div class="dropdown_custom_item">
+            <span class="mobile-nav__label {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }} {% endif %}{% for childlink in link.links %}{% if childlink.current %}bold{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} bold{% endif %}{% endfor %}{% endfor %}">
+              <a
+                href="{{ link.url }}"
+                {% if link.current %}
+                nav-lvl-a="ok"
+                aria-current="page"
+                {% endif %}>{{ link.title | escape }}</a>
+            </span>
+          </div>
+          <div class="togglenewmob lvlonemob togglenewmob-wrap">
+            <div class="mobile-nav__icon lvlonemob-chiv {% for childlink in link.links %}{% if childlink.current %}mobchiv-up{% endif %}{% endfor %}{% for childlink in link.links %}{% for grandchildlink in childlink.links %}{% if grandchildlink.current %} mobchiv-up{% endif %}{% endfor %}{% endfor %}">
+              <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+            </div>
+          </div>
+          <ul
+            class="innercontent pad0 mobile-nav__dropdown {% for childlink in link.links %}{% if childlink.current %}show{% endif %}{% endfor %} {% for childlink in link.links %}{% for grandchildlink in childlink.links %} {% if grandchildlink.current %}show{% endif %}{% endfor %}{% endfor %}"
+            data-parent="{{ child_list_handle }}"
+            data-level="2">
+
+            {% for childlink in link.links %}
+              {% if childlink.links != blank and childlink.title != "All products" %}
+                <li class="child2_without_btn mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} li-lvltwo">
+                  {% capture grandchild_list_handle %}
+                    {{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
+
+                  <span class="mobile-nav__label lable_without_btn">
+                    <a
+                      href="{{ childlink.url }}"
+                      second-lvl-sub="yes"
+                      {% if childlink.current %}
+                      nav-lvl-b="ok"
+                      aria-current="page"
+                      {% endif %}>{{ childlink.title | escape }}</a>
+                  </span>
+                  <div class="lvlonemob mobile-nav__icon lvltwomob-chiv togglenewmob btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link">
+                    <span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00IC43NTVsMTQuMzc0IDExLjI0NS0xNC4zNzQgMTEuMjE5LjYxOS43ODEgMTUuMzgxLTEyLTE1LjM5MS0xMi0uNjA5Ljc1NXoiLz48L3N2Zz4="></span>
+                  </div>
+
+
+                  <ul
+                    class="innercontent pad0 mobile-nav__dropdown"
+                    data-parent="{{ grandchild_list_handle }}"
+                    data-level="3">
+
+                    {% for grandchildlink in childlink.links %}
+                      <li class="mobile-nav__item li-lvlthree">
+                        <a
+                          href="{{ grandchildlink.url }}"
+                          class="mobile-nav__sublist-link"
+                          {% if grandchildlink.current %}
+                          nav-lvl-three="ok"
+                          aria-current="page"
+                          {% endif %}>
+                          <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li class="mobile-nav__item">
+                  <a
+                    href="{{ childlink.url }}"
+                    class="mobile-nav__sublist-link"
+                    {% if childlink.current %}
+                    nav-lvl-two
+                    aria-current="page"
+                    {% endif %}>
+                    <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                  </a>
+                </li>
+                {% if childlink.links != blank %}
+                  {% for grandchildlink in childlink.links %}
+                    <li class="mobile-nav__item">
+                      <a
+                        href="{{ grandchildlink.url }}"
+                        class="mobile-nav__sublist-link"
+                        {% if grandchildlink.current %}
+                        nav-lvl-four
+                        aria-current="page"
+                        {% endif %}>
+                        <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li class="no-child-one mobile-nav__item {% if mob_menu_handle_color == link.handle %}nav-color-{{ section.settings.menu_handle_color }}{% endif %}{% unless forloop.last %} border-bottom{% endunless %} li-lvlone">
+          <a
+            href="{{ link.url }}"
+            class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
+            {% if link.current %}
+            nav-lvl-one
+            aria-current="page"
+            {% endif %}>
+            <span class="mobile-nav__label">{{ link.title | escape }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    <li class="no-child-one mobile-nav__item li-lvlone">
+      <a href="#" class="mobile-nav__link">
+        <span class="mobile-nav__label return_to_hp">{{ 'return to homepage' }}</span>
+      </a>
+    </li>
+
+  </ul>
+</section>

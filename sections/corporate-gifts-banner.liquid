@@ -1,0 +1,310 @@
+
+
+
+
+<style>
+	.hm-hero-banner.en {
+		position: relative;
+		padding-top: calc( {{ section.settings.imgepic_mbl_height }} / {{ section.settings.imgepic_mbl_width }} * 100% );
+	}
+
+	.hm-hero-banner.ar {
+		position: relative;
+		padding-top: calc( {{ section.settings.ar_imgepic_mbl_height }} / {{ section.settings.ar_imgepic_mbl_width }} * 100% );
+	}
+
+	@media(min-width: 750px) {
+		.hm-hero-banner.en {
+			padding-top: calc( {{ section.settings.imgepic_height }} / {{ section.settings.imgepic_width }} * 100% );
+		}
+
+		.hm-hero-banner.ar {
+			padding-top: calc( {{ section.settings.ar_imgepic_height }} / {{ section.settings.ar_imgepic_width }} * 100% );
+		}
+	}
+
+	.hm-hero-banner_inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	picture.hm-hero-banner_picture {
+		width: 100%;
+		height: 100%;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	.hm-hero-banner_picture_img {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+        object-fit:cover;   
+	}
+    .gifts-banner-content {
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        color: #fff;
+        padding: 40px 15px;
+        transform: translate(0, -50%);
+    }
+    .gifts-banner-content {
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        color: #fff;
+        padding: 40px 15px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        max-width: 599px;
+        width: calc(100% - 30px);
+    }
+    .gifts-banner-description p {
+        color: #fff;
+        font-size: 16px;
+        line-height: 1.7;
+        text-transform: unset;
+        margin: 0;
+        padding: 0;
+    }
+    .gifts-banner-description {
+        padding: 20px 0 60px;
+    }
+    h1.gifts-banner-heading {
+        margin: 0;
+    }
+	.gifts-banner-link {
+		background: #ffffff;
+		padding: 16px 32px;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100px;
+		font-weight: 500;
+		display: inline-block;
+		font-weight: bold;
+	}
+	.gifts-banner-link:hover {
+		color: #1f1a18;
+		background-color: #e7e5e1;
+	}
+	.gift-banner {
+		background: #cccccc;
+	} 
+
+	@media all and (min-width:767px){
+		.gifts-banner-content h1.gifts-banner-heading {
+			font-size: 42px;
+			line-height: 1.5;
+		}
+		
+		.gifts-banner-description p {
+			font-size: 17px;
+		}
+		.gifts-banner-description {
+			padding: 20px 0 40px;
+		}
+	}
+
+
+	@media all and (min-width:750px) and (max-width:900px){
+		.gifts-banner-description {
+			padding: 20px 0 20px;
+		}
+	}
+
+ 
+</style>
+
+{% if request.locale.iso_code == 'ar' %} 
+	<div class="hm-hero-banner gift-banner ar">
+		<div  class="hm-hero-banner_inner">
+			<picture class="hm-hero-banner_picture">
+				<source media="(min-width:750px)" srcset="{{ section.settings.ar_imgepic | img_url:'master'}}">
+				<img class="hm-hero-banner_picture_img" src="{{ section.settings.ar_imgepic_mbl | img_url:'master'}}" alt="">
+			</picture>
+
+            {% if section.settings.ar-banner-show %}
+            <div class="gifts-banner-content">
+                <h1 class="gifts-banner-heading"> {{ section.settings.ar-banner-heading }} </h1>
+                <div class="gifts-banner-description"> {{ section.settings.ar-banner-description }}</div>
+                <a target="_blank" class="gifts-banner-link" href="{{ section.settings.ar-banner-button-link }}" > 
+                    {{ section.settings.ar-banner-button }}
+                </a>
+            </div>
+            {% endif %}
+
+		</div>
+	</div>	
+{% else %} 
+ 
+	<div class="hm-hero-banner gift-banner en">
+		<div class="hm-hero-banner_inner">
+			<picture class="hm-hero-banner_picture">
+				<source media="(min-width:750px)" srcset="{{ section.settings.imgepic | img_url:'master'}}">
+				<img class="hm-hero-banner_picture_img" src="{{ section.settings.imgepic_mbl | img_url:'master'}}" alt="">
+			</picture>
+
+            {% if section.settings.en-banner-show  %} 
+            <div class="gifts-banner-content">
+                <h1 class="gifts-banner-heading"> {{ section.settings.banner-heading }} </h1>
+                <div class="gifts-banner-description"> {{ section.settings.banner-description }}</div>
+                <a  target="_blank" class="gifts-banner-link" href="{{ section.settings.banner-button-link }}" > 
+                    {{ section.settings.banner-button }}
+                </a>
+            </div>
+             {% endif %} 
+
+		</div> 
+	</div>	
+{% endif %}
+
+
+
+{% schema %}
+{
+"name": "Corporate gifts banner",
+"settings":[
+     {
+		"type":"image_picker",
+		"id":"imgepic",
+		"label":"EN Desktop Image"
+	},
+	{
+		"type": "text",
+		"id": "imgepic_width",
+		"label": "EN Desktop Image Width: "
+	},
+	{
+		"type": "text",
+		"id": "imgepic_height",
+		"label": "EN Desktop Image Height: "
+	},
+
+	{
+		"type":"image_picker",
+		"id":"imgepic_mbl",
+		"label":"EN Mobile image"
+	},
+	{
+		"type": "text",
+		"id": "imgepic_mbl_width",
+		"label": "EN Mobile Image Width: ",
+		"default": "728"
+	},
+	{
+		"type": "text",
+		"id": "imgepic_mbl_height",
+		"label": "EN Mobile Image Height: ",
+		"default": "1024"
+	},
+
+    {
+		"type":"header",
+		"content":"En Banner Content"
+	},
+    {
+		"type": "checkbox",
+		"id": "en-banner-show",
+		"label": "EN Content Show",
+        "default": true
+	},
+    {
+		"type": "text",
+		"id": "banner-heading",
+		"label": "EN Heading",
+        "default": "Corporate Gifting"
+	},
+    {
+		"type": "richtext",
+		"id": "banner-description",
+		"label": "EN Description",
+        "default": "<p> Recognise your valued clients, colleagues and contacts with exceptional fragrance gifts from our luxury corporate collection.<p>"
+	},
+    {
+		"type": "text",
+		"id": "banner-button",
+		"label": "EN Button",
+        "default": "Download Christmas Brochure"
+	},
+
+    {
+		"type": "url",
+		"id": "banner-button-link",
+		"label": "EN Button link"
+    }, 
+	{
+		"type":"header",
+		"content":"AR banner"
+	},
+	 {
+		"type":"image_picker",
+		"id":"ar_imgepic",
+		"label":"AR Desktop Image"
+	},
+	{
+		"type": "text",
+		"id": "ar_imgepic_width",
+		"label": "AR Desktop Image Width: "
+	},
+	{
+		"type": "text",
+		"id": "ar_imgepic_height",
+		"label": "AR Desktop Image Height: "
+	},
+	{
+		"type":"image_picker",
+		"id":"ar_imgepic_mbl",
+		"label":"AR Mobile Image"
+	},
+	{
+		"type": "text",
+		"id": "ar_imgepic_mbl_width",
+		"label": "AR Mobile Image Width: ",
+		"default": "728"
+	},
+	{
+		"type": "text",
+		"id": "ar_imgepic_mbl_height",
+		"label": "AR Mobile Image Height: ",
+		"default": "1024"
+	},
+    {
+		"type":"header",
+		"content":"AR Banner Content"
+	},
+    {
+		"type": "checkbox",
+		"id": "ar-banner-show",
+		"label": "AR Content Show",
+        "default": true
+	},
+    {
+		"type": "text",
+		"id": "ar-banner-heading",
+		"label": "AR Heading"
+	},
+    {
+		"type": "richtext",
+		"id": "ar-banner-description",
+		"label": "AR Description"
+    },
+    {
+		"type": "text",
+		"id": "ar-banner-button",
+		"label": "AR Button"
+    },
+    {
+		"type": "url",
+		"id": "ar-banner-button-link",
+		"label": "AR Button link"
+    }
+ ]
+}
+{% endschema %}
+

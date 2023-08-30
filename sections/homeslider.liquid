@@ -1,0 +1,179 @@
+
+{% if settings.is_privatesale == false %}
+<style>
+ h1.banner-title{
+  line-height:{{section.settings.letter_spacing}}px !important;
+  font-size:{{section.settings.banner_font_size}}px !important; 
+} 
+</style>
+<section class="banner-wrap">
+  <div class="Home_slideshow">
+    {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'image' %}
+    <div class="inner_slide">
+      <div class="banner-img-wrap">
+
+        <div class="banner-image">
+
+          <picture  class="banner-image__picture">
+            <source srcset="{{ block.settings.imgepic | img_url:'500x', scale: 2}}" media="(min-width: 750px)"/>
+            <source srcset="{{ block.settings.imgepic_mbl | img_url:'300x', scale: 2}}" media="(max-width: 749px)"/>
+            <img src="{{ block.settings.imgepic | img_url:'500x', scale: 2}}"/>
+          </picture>
+
+
+
+        </div>
+        <div class="banner-content-wrap">
+          {% if block.settings.heading != blank %}
+          <div class="banner-content">
+            <h1 class="banner-title">{{ block.settings.heading }}</h1>
+            {% if block.settings.btn_lable != blank %}
+            <div class="banner-desc">{{ block.settings.text }}</div>
+            <div class="banner-cta">
+              <a class="btn-ctm" href="{{ block.settings.btn_link }}">{{ block.settings.btn_lable }}</a>
+            </div>
+
+          </div>
+          {% endif %}
+        </div>
+
+
+        {% endif %}
+      </div>
+    </div>
+
+
+    {% when 'video' %}
+    <div class="inner_slide iner-two">
+      <div class="video-container vides-padding">
+        <video class="responsive-iframe" width="100%" controls="true">
+          <source src="{{ block.settings.video }}" type="video/mp4">
+        </video>
+        {% comment %}
+        <iframe class="responsive-iframe" frameborder="0" allow="autoplay; fullscreen" allowTransparency="true"
+          src="{{ block.settings.video }}&controls=1&rel=0&enablejsapi=1&autoplay=1&loop=1&mute=1" frameborder="0"
+          allowfullscreen></iframe>
+        {% endcomment %}
+        <div class="inner_img video-containerss">
+
+          <picture>
+            <source data-srcset="{{ block.settings.poster_img | img_url:'master'}}" media="(min-width: 750px)"
+              srcset="{{ block.settings.poster_img | img_url:'master'}}" />
+            <source data-srcset="{{ block.settings.poster_img_mob | img_url:'original'}}" media="(max-width: 749px)"
+              srcset="{{ block.settings.poster_img_mob | img_url:'original'}}" />
+            <img class="lazy" {% comment %} src="{{ block.settings.poster_img | img_url:'master'}}" {% endcomment %}
+              data-src="{{ block.settings.poster_img | img_url:'master'}}" />
+          </picture>
+
+          {% comment %} <img class="custom-video-src" data-src="{{ block.settings.video}}"
+            src="{{ block.settings.poster_img | img_url: " original" }}"> {% endcomment %}
+          <button class="videoPoster show">Play video</button>
+        </div>
+      </div>
+
+
+
+    </div>
+    {% endcase %}
+    {% endfor %}
+  </div>
+
+</section>
+{% endif %}
+
+
+{% schema %}
+{
+"name": "Home Slider",
+"settings":[
+      
+       {
+        "type":"range",
+        "id":"letter_spacing",
+        "label":"Line spacing",
+        "default":55,
+        "unit": "px",
+        "min":1,
+        "max":60,
+        "step":1
+      },
+      {
+        "type":"range",
+        "id":"banner_font_size",
+        "label":"Banner Font Size",
+        "default":40,
+        "unit": "px",
+        "min":1,
+        "max":100,
+        "step":1
+      }
+    ],
+"blocks": [
+{
+"type": "image",
+"name": "image",
+"settings": [
+{
+"type":"image_picker",
+"id":"imgepic",
+"label":"image"
+},
+{
+"type":"image_picker",
+"id":"imgepic_mbl",
+"label":"Mobile image"
+},
+{
+"type":"text",
+"id":"heading",
+"label":"heading"
+},
+{
+"type":"textarea",
+"id":"text",
+"label":"text"
+},
+{
+"type":"text",
+"id":"btn_lable",
+"label":"button label"
+},
+{
+"type":"url",
+"id":"btn_link",
+"label":"button Link"
+}
+]
+},
+{
+"type": "video",
+"name": "video",
+"settings": [
+{
+"type":"image_picker",
+"id":"poster_img",
+"label":"Poster Image"
+},
+{
+"type":"image_picker",
+"id":"poster_img_mob",
+"label":"Poster Image mob"
+},
+{
+"type":"text",
+"id":"video",
+"label":"Video URL"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Home Slider",
+"category": "image"
+}
+]
+}
+{% endschema %}

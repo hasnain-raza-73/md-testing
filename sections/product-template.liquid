@@ -1,0 +1,138 @@
+{%- comment -%}Variables{%- endcomment -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% render 'product-info-mobile-only' %}
+
+<div class="pdp">
+    {% render 'product-media-gallery' %}
+    {% render 'product-info' with {
+        current_variant: current_variant
+    }%}
+</div>
+
+{% render 'product-related' with {
+    title: section.settings.related_products_title_english,
+    titleAr: section.settings.related_products_title_arabic,
+} %}
+
+
+{% if request.locale.iso_code == 'ar' %}  
+<script>
+  const observer = new MutationObserver((mutationRecords) => {  
+    let variantsData = JSON.parse('{{ product.variants | json }}');
+    let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+    let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];  
+    let shadowSelection = document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div") ? Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+    .shadowRoot.querySelectorAll("span")).filter(el => {
+        let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+       if(array.length > 0) return el;  
+    })[0] : null;  
+    if(shadowSelection){
+
+      let contentShowdowSelection = shadowSelection;
+      shadowSelection.style.display = "flex";
+      shadowSelection.style.flexDirection = "column";
+      shadowSelection.style.direction = "rtl";
+      shadowSelection.firstChild.style.display = "flex"; 
+      shadowSelection.firstChild.style.marginLeft = '-2px'; 
+      shadowSelection.firstChild.style.backgroundColor = '#fff'; 
+      shadowSelection.firstChild.style.zIndex = '-1'; 
+      shadowSelection.firstChild.style.flexWrap = "wrap"; 
+      shadowSelection.firstChild.querySelector("strong").style.marginRight = "3px";
+      shadowSelection.style.borderLeft="solid #fff"; 
+      shadowSelection.style.color="#333";
+
+      let load_price = shadowSelection.firstChild.querySelector("strong").textContent;
+      load_price = load_price.replace("AED","  د.إ.");
+      
+      document.getElementById("ct_payment_price").innerHTML = load_price;
+      infoImage = `<img id="infoImg" src="{{ 'info-icon.png'| asset_url }}">`;
+      let span = document.createElement("span");
+      shadowSelection.lastChild.prepend(span);
+      shadowSelection.lastChild.firstChild.innerHTML = infoImage;
+      shadowSelection.lastChild.style.display = "flex";
+      shadowSelection.lastChild.style.textDecoration = "none";
+      shadowSelection.lastChild.style.color = "#626262";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.width = "15px";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginTop = "3px";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginLeft = "5px";
+      contentShowdowSelection.style.border = "none";
+      contentShowdowSelection.style.paddingLeft = "0";
+      contentShowdowSelection.style.paddingRight = "0"; 
+      contentShowdowSelection.style.flexDirection = "row-reverse";
+    }
+  });
+  observer.observe(document.querySelector("#TabbyPromo1, #TabbyPromo2"), {
+    childList: true,
+    subtree: true,
+  })
+</script>
+{% else %}  
+<script>
+  const observer = new MutationObserver((mutationRecords) => {       
+    let variantsData = JSON.parse('{{ product.variants | json }}');
+    let currentSelectedOptionValue = Array.from($(".pdp__content__swatches .pdp__content__swatches__item.active")).map(el => el.dataset.option);
+    let selectedVariant = currentSelectedOptionValue.length > 0 ? variantsData.find(el => el.options.length == currentSelectedOptionValue.length && el.options.every(el => currentSelectedOptionValue.indexOf(el) != -1)) : variantsData[0];  
+    let shadowSelection = document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div") ? Array.from(document.querySelector(`#TabbyPromo1[data-id='${selectedVariant.id}'] div div, #TabbyPromo2[data-id='${selectedVariant.id}'] div div`)
+    .shadowRoot.querySelectorAll("span")).filter(el => {
+        let array = Array.from(el.classList).filter(el => el.includes("styles__tabby-promo-snippet__text"));
+       if(array.length > 0) return el;  
+    })[0] : null;
+    if(shadowSelection){
+      let contentShowdowSelection = shadowSelection;
+      shadowSelection.style.display = "flex";
+      shadowSelection.style.flexDirection = "column";
+      shadowSelection.firstChild.style.display = "flex"; 
+      shadowSelection.firstChild.style.marginRight = '-3px'; 
+      shadowSelection.firstChild.style.backgroundColor = '#fff'; 
+      shadowSelection.firstChild.style.zIndex = '-1'; 
+      shadowSelection.firstChild.style.flexWrap = "wrap"; 
+      shadowSelection.firstChild.querySelector("strong").style.marginLeft = "3px";
+      shadowSelection.style.borderRight="solid #fff"; 
+      shadowSelection.style.color="#333";
+      let load_price = shadowSelection.firstChild.querySelector("strong").textContent;
+      console.log(load_price);
+      document.getElementById("ct_payment_price").innerHTML = load_price;
+      infoImage = `<img id="infoImg" src="{{ 'info-icon.png'| asset_url }}">`;
+      let span = document.createElement("span");
+      shadowSelection.lastChild.prepend(span);
+      shadowSelection.lastChild.firstChild.innerHTML = infoImage;
+      shadowSelection.lastChild.style.display = "flex";
+      shadowSelection.lastChild.style.textDecoration = "none";
+      shadowSelection.lastChild.style.color = "#626262";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.width = "15px";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginTop = "3px";
+      document.querySelector("#TabbyPromo1 div div, #TabbyPromo2 div div").shadowRoot.querySelector("#infoImg").style.marginRight = "5px";
+      contentShowdowSelection.style.border = "none";
+      contentShowdowSelection.style.paddingLeft = "0";
+      contentShowdowSelection.style.paddingRight = "0"; 
+    };
+  });
+  observer.observe(document.querySelector("#TabbyPromo1, #TabbyPromo2"), {
+    childList: true,
+    subtree: true,
+  })
+</script>
+{%endif %}
+{% schema %}
+{
+    "name" : "Product",
+    "settings": [
+        {
+            "type": "text",
+            "label": "Related Products Title",
+            "id": "related_products_title_english"
+        },
+        {
+            "type": "text",
+            "label": "Related Products Title - Arabic",
+            "id": "related_products_title_arabic"
+        },
+        {
+            "type": "text",
+            "label": "Delivery Message",
+            "id": "related_products_del_msg"
+        }         
+    ]
+}
+{% endschema %}

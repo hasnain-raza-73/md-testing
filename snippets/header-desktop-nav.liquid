@@ -1,0 +1,141 @@
+{% assign nav_menu_color = section.settings.menu_handle_color %}
+<style>
+  .lvl-li-one.has-subs.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }},
+  .lvl-li-one.nav-color-{{ nav_menu_color }} a.{{ nav_menu_color }}{
+    color:{{section.settings.nav_color}} !important;
+  }
+</style>
+
+<nav class="mb-dt-nav-cont" role="navigation">
+  <ul class="container ul-reset text-center">
+    {%- for link in linklists.main-menu.links -%}
+    {%- if link.links != blank -%} 
+    {% assign nav_menu_color = section.settings.menu_handle_color %}
+	   <li class="droppable lvl-li-one has-subs {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}" data-handle="{{ link.handle }}">
+    {%- else -%}
+       <li class="droppable lvl-li-one {% if nav_menu_color == link.handle %}nav-color-{{ nav_menu_color }} {% endif %}">
+    {%- endif -%}
+         
+        <a class="{{ nav_menu_color }}" href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+          {{ link.title }}
+        </a>
+
+        {%- if link.links != blank -%}
+        <div class='mega-menu'>
+         <div class="container cf">
+          <ul class="ul-reset sub-first-lvl">                       
+            {%- for child_link in link.links -%}
+            
+            
+             {%- if child_link.links != blank -%}
+              <li class="lvl-li-two lvl2-w-subs">
+                <a class="lvl-one-link" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  <b>{{ child_link.title }}</b>
+                </a>
+                
+                  <ul class="sub-second-lvl">
+                    {%- for grandchild_link in child_link.links -%}
+                    {% assign boldmenu = '' %}       
+ 					     	{% assign menu_handle = bold_menu | split: ',' %}
+                    	{% for handle in menu_handle %}
+                        	{% assign handle_down =  handle | downcase %}
+                        		{% assign currentmenu = grandchild_link.handle | downcase %} 
+                					{% if handle_down == currentmenu %}
+                    					{% assign boldmenu = 'show_bold_menu' %} 
+                					{% endif %}
+              			{% endfor %}
+                      <li class="lvl-li-three {{ boldmenu }}" menu-handle="{{grandchild_link.handle}}">
+                        <a class="lvl-two-link" href="{{ grandchild_link.url }}" {% if grandchild_link.active %}aria-current="page"{% endif %}>
+                          {{ grandchild_link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+              
+
+              </li>
+             {%- else -%}
+            <li class="lvl-li-two lvl2-title">
+                <a class="lvl-one-link" href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  <b>{{ child_link.title }}</b>
+                </a>
+            </li>
+             {%- endif -%}      
+
+            {%- endfor -%}
+   <div class="right_img_desk">                          
+   {% for block in section.blocks %} 
+            {% assign block_menu = block.settings.navigation_text %}
+            {% if block_menu == link.handle %}
+            	{% if block.settings.imgepic %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link }}">
+                            <img class="lazy" data-src="{{ block.settings.imgepic | img_url: '220x' }}">
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title }}</h4>
+                            {% if block.settings.description != blank %}
+                            <p><span>{{ block.settings.description }}</span></p>
+                            {% endif %}
+                            {% if block.settings.btn_label != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link }}"><span>{{ block.settings.btn_label }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+            	 {% if block.settings.imgepic-2 %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link-2 }}">
+                            <img class="lazy" data-src="{{ block.settings.imgepic-2 | img_url: '220x' }}" />
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title-2 }}</h4>
+                            {% if block.settings.description-2 != blank %}
+                            <p><span>{{ block.settings.description-2 }}</span></p>
+                            {% endif %}
+                           {% if block.settings.btn_label-2 != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link-2 }}"><span>{{ block.settings.btn_label-2 }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+                 {% if block.settings.imgepic-3 %}
+                      <li class="featured-block">
+                        <div class="mg-mnu-ftimg-cont">
+                          <a href="{{ block.settings.link-3 }}">
+                            <img class="lazy" data-src="{{ block.settings.imgepic-3 | img_url: '220x' }}" />
+                          </a>
+                          <div class="mg-mnu-ftimg">
+                            <h4>{{ block.settings.title-3 }}</h4>
+                            {% if block.settings.description-3 != blank %}
+                            <p><span>{{ block.settings.description-3 }}</span></p>
+                            {% endif %}
+                            {% if block.settings.btn_label-3 != blank %}
+                            <a class="collection-nav-url-link" href="{{ block.settings.link-3 }}"><span>{{ block.settings.btn_label-3 }}</span></a>
+                            {% endif %}
+                          </div>
+                        </div>
+                   	  </li>
+            	 {% endif %}
+            {% endif %}  
+   {% endfor %}         
+ </div>          
+          </ul>
+           
+
+           
+         </div>
+          
+           
+          
+        </div>
+        {%- endif -%}
+
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

@@ -1,0 +1,96 @@
+
+<div class="page-width">
+<div class="card-container">
+<div class="card-header pt-56">
+    {% if block.settings.heading != blank %}
+        <h2> {{ block.settings.heading }} </h2>
+    {% endif %}
+    {% if block.settings.description != blank %}
+            {{ block.settings.description }}
+    {% endif %}
+</div>
+<div class="card-body">
+        <div class="card-item card-item-three">
+            <div class="card-box">
+                <div class="card-image">
+                    <a href="{{ block.settings.card-url-one }}" class="card-link">
+                        {% if block.settings.image-one != blank %}
+                            <img class="lazy" src="{{ block.settings.image-one | img_url: '600x' }}" data-src="{{ block.settings.image-one | img_url: '600x' }}" alt="image" />
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="card-content">
+                        {% if block.settings.card-heading-one != blank %}
+                            <h3>{{ block.settings.card-heading-one }}</h3>
+                        {% endif %}
+                        {% if block.settings.card-description-one != blank %}
+                        <div class="card-para">
+                            {{ block.settings.card-description-one }}
+                        </div>
+                            {% endif %}
+                            {% if block.settings.card-button-one != blank %}
+                            <a href="{{ block.settings.card-url-one }}" class="btn-ctm card-btn">{{ block.settings.card-button-one }}</a>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="card-item card-item-three">
+            <div class="card-box">
+                <div class="card-image">
+                    <a href="{{ block.settings.card-url-two }}" class="card-link">
+                        {% if block.settings.image-two != blank %}
+                            <img class="lazy" src="{{ block.settings.image-two | img_url: '600x' }}" data-src="{{ block.settings.image-two | img_url: '600x' }}" alt="image" />
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="card-content">
+                        {% if block.settings.card-heading-two != blank %}
+                            <h3>{{ block.settings.card-heading-two }}</h3>
+                        {% endif %}
+                        {% if block.settings.card-description-two != blank %}
+                        <div class="card-para">
+                            {{ block.settings.card-description-two }}
+                        </div>
+                            {% endif %}
+                            {% if block.settings.card-button-two != blank %}
+                            <a href="{{ block.settings.card-url-two }}" class="btn-ctm card-btn">{{ block.settings.card-button-two }}</a>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="card-item card-item-three">
+            <div class="card-box">
+                <div class="card-image">
+                    <a href="{{ block.settings.card-url-three }}" class="card-link">
+                        {% if block.settings.image-three != blank %}
+                            <img class="lazy" src="{{ block.settings.image-three | img_url: '600x' }}" data-src="{{ block.settings.image-three | img_url: '600x' }}" alt="image" />
+                        {% else %}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="card-content">
+                        {% if block.settings.card-heading-three != blank %}
+                            <h3>{{ block.settings.card-heading-three }}</h3>
+                        {% endif %}
+                        {% if block.settings.card-description-three != blank %}
+                        <div class="card-para">
+                            {{ block.settings.card-description-three }}
+                        </div>
+                            {% endif %}
+                            {% if block.settings.card-button-three != blank %}
+                            <a href="{{ block.settings.card-url-three }}" class="btn-ctm card-btn">{{ block.settings.card-button-three }}</a>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+
+</div>
+</div>
+</div>

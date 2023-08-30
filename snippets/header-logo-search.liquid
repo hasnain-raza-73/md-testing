@@ -1,0 +1,174 @@
+<script type="text/javascript">
+
+   {% layout none %}
+   {% capture results %}
+   {% for item in search.results %}
+   {% assign product = item %}
+   {
+      "title"    : { { product.title | json } },
+      "url"      : { { product.url | within: product.collections.last | json } },
+      "thumbnail": { { product.featured_image.src | product_img_url: 'thumb' | json } }
+   }
+   {% unless forloop.last %}, {% endunless %}
+   {% endfor %}
+   {% endcapture %}
+   {% comment %}
+   {
+      "results_count": { { search.results_count } },
+      "results": [{{ results }}]
+   }
+   {% endcomment %}
+</script>
+
+<!-- Logo and Search -->
+<section class="mb-top-logo">
+   <div class="mb-tool-logo-flex">
+      <div class="tb-logo-left">
+         <a class="mb-logo-2 mb-logo-2__imgbox" href="{{shop.url | append: request.locale.root_url }}">
+            <img
+            class="mb-logo-2__img lazy"
+            src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_1x1.png?v=1623487232"
+            data-src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/mwarrant-header_214x128.png?v=1623487232"
+            alt="">
+         </a>
+         
+         <a class="mb-burger-icon" href="#"><img class="lazy" data-src="{{ 'mb-icon-mob-nav.svg' | asset_url }}" width="23px" height="20px" alt=""></a>
+         </div>
+         <div class="tb-logo-mid">
+          {% if request.locale.iso_code == 'en' %}
+          <a class="mainlogo__a" href="{{shop.url | append: request.locale.root_url }}"><img width="100%" height="100%" class="mainlogo__img" src="https://cdn.shopify.com/s/files/1/0588/3228/9999/files/ENG_Logo_187a27f9-e9e5-4add-a10a-14ed75c02279_x100.png?v=1642055035" alt=""></a>
+          {% else %}
+          <a class="mainlogo__a" href="{{shop.url | append: request.locale.root_url }}"><img width="100%" height="100%" class="mainlogo__img" src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/AR-Logo_6d9a7d15-b069-40b2-bd6f-18b0018ea26f.png?v=1642055032" alt=""></a>
+          {% endif %}
+       </div>
+       <div class="tb-logo-last">
+         <div class="mb-search-logo-flex">
+            <div class="mb-search-flex">
+               <div class="search-input">
+
+                  
+
+                     <div id="searchbar" class="collapsed">
+                        <div clsss="search-box">
+                           <div class="sliding-panel-outer">
+                              <div class="sliding-panel-inner">
+                                 <form action="{{ routes.search_url }}" method="get" role="search"
+                                 class="search-form search-page-form">
+
+                                 <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="search"
+                                 role="combobox" aria-autocomplete="list" aria-owns="predictive-search-results"
+                                 aria-expanded="false" aria-label="search" aria-haspopup="listbox"
+                                 class="search-form__input search-input" data-search-page-predictive-search-input
+                                 data-base-url="{{ routes.search_url }}" />
+
+                                 <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+                              </form>
+                           </div>
+                        </div>
+
+                        <div class="search-result-weap">
+                           <div class="productData"></div>
+                           <a class="customSearchredirect" href="">
+                              <div class="viewResults"></div>
+                           </a>
+                        </div>
+
+                        <div class="search-label">
+                           <a href="#" class="mb-search-header">
+                              <span><img class="lazy" data-src="{{ 'mb-icon-search.svg' | asset_url }}" /></span>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+
+            </div>
+            <div class="mb-account-flex">
+               {% if customer %}
+               <a href="{{ routes.account_url }}" class="">
+                  <img class="lazy" style="max-height: 23px;" data-src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+               </a>
+               {% else %}
+               <a href="{{ routes.account_login_url }}" class="">
+                  <img class="lazy" style="max-height: 23px;" data-src="{{ 'mb-icon-account.png'| asset_url }}" alt="">
+               </a>
+               {% endif %}
+
+            </div>
+            <div class="mb-cart-flex">
+               <img class="lazy" style="max-height: 30px; width: 30px; height: 25px;" data-src="{{ 'cart.svg'| asset_url }}" alt=""><span class="mcart-count">{{
+               cart.item_count }}</span>
+            </div>
+         </div>
+
+         <div class="mini-cart-content hide">
+            {% if cart.item_count > 0 %}
+            <!-- Cart empty Title  -->
+            <h3 class="cartempty_text hide">Your cart is empty</h3>
+
+            <!-- Title  -->
+            <h3 class="mini-cart-title">Your cart</h3>
+            
+            <!-- List  -->
+            <section class=" mini-cart-list">
+
+               {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+               <div class="single-mcart-item">
+                  <div class="mcart-thumb">
+                     {% if item.image %}
+                     <a href="{{ item.product.url }}"
+                     title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}">
+                  {{ item.image | product_img_url: '200x200' | img_tag: item_title }}</a>
+                  {%else %}
+                  <a href="{{ item.product.url }}"
+                  title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}">
+               {{ item.product.featured_image | product_img_url: '200x200' | img_tag: item_title }}</a>
+               {% endif %}
+            </div>
+            <div class="mcart-content">
+               <p class="mcart-single-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+
+               <p class="mcart-single-price">
+
+                  {% if item.final_line_price == 0 %}
+                  <p>FREE</p>
+                  {% elsif item.final_line_price > 0 %}
+                  {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+                  {% if final_compare_price and final_compare_price > item.final_line_price %}
+                  <span class="mcart-compare-price">{{ final_compare_price | round | money }}</span>
+                  {% endif %}
+                  <span><b>{{ item.final_line_price | money }}</b></span>
+                  {% endif %}
+
+               </p>
+            </div>
+         </div>
+         {% endfor %}
+      </section>
+
+      <!-- Cart button  -->
+      <div class="mcart-go-cart">
+         <a href="/cart">View cart</a>
+      </div>
+
+      {% else %}
+      <!-- Cart empty Title  -->
+      <h3 class="cartempty_text">Your cart is empty</h3>
+
+      <!-- Title  -->
+      <h3 class="mini-cart-title hide">Your cart</h3>
+
+      <!-- List  -->
+      <section class=" mini-cart-list"></section>
+
+      <!-- Cart button  -->
+      <div class="mcart-go-cart hide">
+         <a href="/cart">View cart</a>
+      </div>
+      {% endif %}
+   </div>
+
+</div>
+</div>
+</section>

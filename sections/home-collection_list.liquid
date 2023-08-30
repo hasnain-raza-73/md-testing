@@ -1,0 +1,90 @@
+<section class="feature-wrap">
+  <div class="page-width">
+      <div class="grid-three">
+        {% for block in section.blocks %}
+          <div class="grid-items">
+              <div class="feature-col">
+                  <div class="feature-image">
+                    <a href="{{ block.settings.btnlink }}">
+                      <picture class="feature-image__homepage-category">
+                          <source data-srcset="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}" media="(min-width: 750px)"/>
+                          <source data-srcset="{{ block.settings.pic_mbl | img_url:'300x', scale: 2 }}" media="(max-width: 749px)"/>
+                          <img class="lazy feature-image__homepage-category__img" data-src="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}"/>
+                      </picture>
+                    </a>
+                  </div>
+                  <div class="feature-content">
+                    {% if block.settings.title != blank %}
+                      <h3>{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                      <div class="rte-setting">
+                          <p>{{ block.settings.text }}</p>
+                      </div>
+           {% endif %}
+                    {% if block.settings.btnlabel != blank %}
+                      <a href="{{ block.settings.btnlink }}" class="btn-ctm" aria-label="VIEW COLLECTION" style="margin-top: auto !important;">{{ block.settings.btnlabel }}</a>
+                    {% endif %}
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+</div>
+  </div>
+</section>
+
+
+
+
+{% schema %}
+  {
+      "name": "Home collection list",
+      "settings": [
+      ],
+  "blocks": [
+    {
+      "type": "collection",
+  "name": "collection",
+      "settings": [
+   {
+        "type":"image_picker",
+        "id":"pic_desk",
+        "label":"Desktop image"
+        },
+  {
+        "type":"image_picker",
+        "id":"pic_mbl",
+        "label":"Mobile image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "description"
+        },
+        {
+          "type": "text",
+          "id": "btnlabel",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "btnlink",
+          "label": "Button link"
+        }
+        
+      ]
+    }
+ ],
+    "presets": [
+          {
+              "name": "Home collection list",
+              "category": "collection"
+          }
+      ]
+  }
+{% endschema %}

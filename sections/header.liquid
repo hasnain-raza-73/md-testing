@@ -1,0 +1,208 @@
+{% render 'header-toolbar' %}
+{% render 'header-logo-search' %}
+{% include 'header-desktop-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered', bold_menu: section.settings.bold_menu, nav_color: section.settings.nav_color, menu_handle_color: section.settings.menu_handle_color %}
+{% render 'mob-nav', nav_color_mob: section.settings.nav_color, mob_menu_handle_color: section.settings.menu_handle_color %}
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_bar",
+        "label": "Announcement Bar Message1"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link",
+        "label": "Announcement Bar link"
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar2",
+        "label": "Announcement Bar Message2"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link2",
+        "label": "Announcement Bar link2"
+      }, {
+        "type": "text",
+        "id": "announcement_bar3",
+        "label": "Announcement Bar Message3"
+      }, {
+        "type": "url",
+        "id": "announcement_link3",
+        "label": "Announcement Bar link3"
+      }, {
+        "type": "range",
+        "id": "second_limit",
+        "label": "Slide change seconds timer",
+        "min": 5,
+        "max": 10,
+        "step": 1,
+        "default": 5
+      }, {
+        "type": "link_list",
+        "id": "link_list_id",
+        "label": "Top menu",
+        "default": "main-menu"
+      }, {
+        "type": "checkbox",
+        "id": "show_breadcrumb_nav",
+        "label": "Show breadcrumb navigation"
+      }, {
+        "type": "textarea",
+        "id": "bold_menu",
+        "label": "Bold menu"
+      }, {
+        "type": "header",
+        "content": "Find a store"
+      }, {
+        "type": "text",
+        "id": "find_store_text",
+        "label": "Find Store Text"
+      }, {
+        "type": "url",
+        "id": "find_store_url",
+        "label": "Find Store url"
+      }, {
+        "type": "text",
+        "id": "change_country_text",
+        "label": "Change Text country"
+      }, {
+        "type": "image_picker",
+        "id": "ksa_img",
+        "label": "KSA img"
+      }, {
+        "type": "text",
+        "id": "ksa_text",
+        "label": "KSA Text"
+      }, {
+        "type": "url",
+        "id": "ksa_text_url",
+        "label": "KSA url"
+      }, {
+        "type": "header",
+        "content": "Current store Info"
+      }, {
+        "type": "image_picker",
+        "id": "uae_img",
+        "label": "UAE img"
+      }, {
+        "type": "text",
+        "id": "uae_text",
+        "label": "UAE Text"
+      }, {
+        "type": "url",
+        "id": "uae_text_url",
+        "label": "UAE url"
+      }, {
+        "type": "header",
+        "content": "Menu color "
+      }, {
+        "type": "text",
+        "id": "menu_handle_color",
+        "label": "menu handle",
+        "info": "Note: only lowercase allow & '-' in the place of space."
+      }, {
+        "type": "color",
+        "id": "nav_color",
+        "label": "Menu color",
+        "default": "#780302"
+      }
+
+
+    ],
+    "blocks": [
+      {
+        "type": "Navigation",
+        "name": "Navigation",
+        "settings": [
+          {
+            "type": "text",
+            "id": "navigation_text",
+            "label": "Navigation Handle"
+          },
+          {
+            "type": "header",
+            "content": "image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "imgepic",
+            "label": "image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "title"
+          }, {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          }, {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Button label"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }, {
+            "type": "header",
+            "content": "image 2"
+          }, {
+            "type": "image_picker",
+            "id": "imgepic-2",
+            "label": "image"
+          }, {
+            "type": "text",
+            "id": "title-2",
+            "label": "title"
+          }, {
+            "type": "textarea",
+            "id": "description-2",
+            "label": "Description"
+          }, {
+            "type": "text",
+            "id": "btn_label-2",
+            "label": "Button label"
+          }, {
+            "type": "url",
+            "id": "link-2",
+            "label": "Link"
+          }, {
+            "type": "header",
+            "content": "image 3"
+          }, {
+            "type": "image_picker",
+            "id": "imgepic-3",
+            "label": "image"
+          }, {
+            "type": "text",
+            "id": "title-3",
+            "label": "title"
+          }, {
+            "type": "textarea",
+            "id": "description-3",
+            "label": "Description"
+          }, {
+            "type": "text",
+            "id": "btn_label-3",
+            "label": "Button label"
+          }, {
+            "type": "url",
+            "id": "link-3",
+            "label": "Link"
+          }
+
+
+        ]
+      }
+
+
+    ]
+  }
+{% endschema %}

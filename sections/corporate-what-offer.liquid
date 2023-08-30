@@ -1,0 +1,170 @@
+<style>
+    .corporate-offer-items .feature-image {
+        padding-top: calc(387 / 387 * 100%);
+    }
+    .corporate-offer-items picture.feature-image__homepage-category {
+        height: 100%;
+    }
+    .corporate-offer-items picture.feature-image__homepage-category img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .corporate-offer {
+        margin: 40px 0;
+    }
+    .corporate-offer h2.sec-title {
+        margin: 0 0 40px;
+        text-align: center;
+    }
+    
+    .corporate-offer {
+        margin: 40px 0;
+    }
+    
+    .corporate-offer h2.sec-title {
+        margin: 0 0 40px;
+        text-align: center;
+        font-size: 24px;
+    }
+    
+    .corporate-offer-items .feature-content {
+        text-align: left;
+        padding: 0 24px;
+    }
+
+    html[dir="rtl"]  .corporate-offer-items .feature-content {
+        text-align: right;
+    }
+    
+    .corporate-offer-items .feature-content h3 {
+        margin: 18px 0 16px 0;
+        font-size: 20px;
+    }
+    
+    .corporate-offer-items .feature-content p {
+        font-style: normal;
+        line-height: 1.6;
+        font-size: 15px;
+        margin: 0;
+        color: #1a1a1a;
+    }
+    .grid-items.corporate-offer-items .btn-ctm {
+        width: auto !important;
+        min-width: auto !important;
+        max-width: fit-content;
+        font-weight: 600;
+        border-radius: 100px;
+        padding: 16px 32px;
+        text-transform: capitalize;
+    }
+    
+    @media all and (min-width: 749px) {
+        section.corporate-offer {
+            padding: 0 15px;
+            margin: 80px 0;
+        }
+        .corporate-offer-items .feature-content {
+            padding: 0;
+        }
+        .corporate-offer h2.sec-title {
+            margin-bottom: 60px;
+            font-size: 30px;
+        }
+    }
+    
+</style> 
+
+
+<section class="corporate-offer">
+<div class="page-width">
+
+    <h2 class="sec-title">
+        {{ section.settings.heading }}
+    </h2>
+    <div class="grid-three corporate-offer-grid">
+        {% for block in section.blocks %}
+        <div class="grid-items corporate-offer-items">
+            <div class="feature-col">
+                <div class="feature-image">
+                    <picture class="feature-image__homepage-category">
+                        <source data-srcset="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}" media="(min-width: 750px)"/>
+                        <source data-srcset="{{ block.settings.pic_mbl | img_url:'300x', scale: 2 }}" media="(max-width: 749px)"/>
+                        <img class="lazy feature-image__homepage-category__img" data-src="{{ block.settings.pic_desk | img_url:'500x', scale: 2 }}"/>
+                    </picture>
+                </div>
+                <div class="feature-content">
+                    {% if block.settings.title != blank %}
+                    <h3>{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                    <div class="rte-setting">
+                        <p>{{ block.settings.text }}</p>
+                    </div>
+                  {% endif %}
+                    {% if block.settings.btnlabel != blank %}
+                    <a href="{{ block.settings.btnlink }}" class="btn-ctm" aria-label="VIEW COLLECTION" style="margin-top: auto !important;">{{ block.settings.btnlabel }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+
+
+
+
+{% schema %}
+    {
+    "name": "What We Offer",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "What We Offer"
+        }
+    ],
+    "max_blocks": 3,
+    "blocks": [
+        {
+        "type": "what-offer",
+        "name": "what-offer",
+        "settings": [
+        {
+        "type":"image_picker",
+        "id":"pic_desk",
+        "label":"Desktop image"
+        },
+        {
+        "type":"image_picker",
+        "id":"pic_mbl",
+        "label":"Mobile image"
+        },
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
+        {
+        "type": "textarea",
+        "id": "text",
+        "label": "description"
+        },
+        {
+        "type": "text",
+        "id": "btnlabel",
+        "label": "Button label"
+        },
+        {
+        "type": "url",
+        "id": "btnlink",
+        "label": "Button link"
+        }
+
+        ]
+    }
+    ]
+    }
+{% endschema %}

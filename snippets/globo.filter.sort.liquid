@@ -1,0 +1,133 @@
+<div class="short-overlay"></div>
+<div class="hide-desktop short-trigger">
+  <h5>Sort By 
+    <svg width="15" height="15">
+      <path d="M.293 1L1 .293 14.707 14l-.707.707z"></path>
+      <path d="M1 14.707L.293 14 14 .293l.707.707z"></path>
+    </svg>
+  </h5>
+  <ul onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=featured">FEATURED PRODUCTS</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}/latest-arrivals">LATEST ARRIVALS</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=best-selling">BEST SELLERS</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=title-ascending">FROM A TO Z</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=title-descending">FROM Z TO A</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=price-ascending">FROM LEAST EXPENSIVE</a></li>
+    <li><a href="{{shop.url}}{{collection.url}}?sort_by=price-descending">FROM MOST EXPENSIVE</a></li>
+  </ul>
+</div>
+
+{% raw %}
+{% assign root_url = {% endraw %}"{%- if routes.root_url != "/" -%}{{ routes.root_url }}{%- endif -%}"{% raw %} %}
+<div id="gf-controls-container">
+
+  <div class="select-data">
+    <select name="slct" id="slct" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+      <option selected disabled>Sort By</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=featured">Featured Products</option>
+      <option value="{{shop.url}}{{collection.url}}/latest-arrivals">Latest Arrivals</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=best-selling">Best Sellers</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=title-ascending">From A to Z</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=title-descending">From Z to A</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=price-ascending">From least expensive</option>
+      <option value="{{shop.url}}{{collection.url}}?sort_by=price-descending">From most expensive</option>
+    </select>
+  </div>
+
+  {% if pagination.total > 0 %}
+  <div class="gf-actions">
+    <div class="gf-filter-trigger">
+      <h3 class="gf-refine-toggle-mobile" tabindex="0">
+        <span onclick="globofilter.toggleCanvas()"><i class="fa fa-tasks" aria-hidden="true"></i> {{translation.filter.filter_by | default: "Filter by"}}</span>
+      </h3>
+    </div>
+
+    <span class="gf-summary">
+    </span>
+
+    <div class="gf-filter-selection">
+
+
+    </div>
+
+    <div class="globo-selected-items-wrapper visible-xs">
+      {% if has_filter and filters %}
+      <ul class="globo-selected-items">
+        {% capture selected_item_html %}
+        {% assign filter_count = 0 %}
+        {% for filter in filters %}
+        {% if filter.is_selected %}
+        {% if filter.style == 'Slider' %}
+        {% assign filter_count = filter_count | plus: 1 %}
+        <li class="selected-item gf-option-label">
+          <a onclick="removeFilter({{filter.id}})">
+            <span class="selected-item">
+              <strong>
+                {% if filter.attribute == 'Price' %}
+                <span class="money">{{filter.values.min | times: 100 | money}}</span> - <span class="money">{{filter.values.max | times: 100 | money}}</span>
+                {% elsif filter.attribute == 'Percent Sale' %}
+                {{filter.values.min}}% - {{filter.values.max}}%
+                {% else %}
+                {{filter.values.min}} - {{filter.values.max}}
+                {% endif %}
+              </strong>
+            </span>
+            <span class="gf-clear">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11.414 10l6.293-6.293a1 1 0 10-1.414-1.414L10 8.586 3.707 2.293a1 1 0 00-1.414 1.414L8.586 10l-6.293 6.293a1 1 0 101.414 1.414L10 11.414l6.293 6.293A.998.998 0 0018 17a.999.999 0 00-.293-.707L11.414 10z" fill="#5C5F62"/></svg>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        {% for value in filter.values %}
+        {% if value.selected %}
+        {% assign filter_count = filter_count | plus: 1 %}
+        <li class="selected-item gf-option-label">
+          <a onclick="removeFilterValue({{filter.id}},'{{value.value | replace:"'", "\'" | escape_once}}')">
+            <span class="selected-item"><strong>{{value.label}}</strong></span>
+            <span class="gf-clear"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11.414 10l6.293-6.293a1 1 0 10-1.414-1.414L10 8.586 3.707 2.293a1 1 0 00-1.414 1.414L8.586 10l-6.293 6.293a1 1 0 101.414 1.414L10 11.414l6.293 6.293A.998.998 0 0018 17a.999.999 0 00-.293-.707L11.414 10z" fill="#5C5F62"/></svg></span>
+          </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% endcapture %}
+        {% if filter_count > 1 %}
+        <li class="selected-item gf-option-label"><a onclick="clearAllFilter()" class="clear-refinements">{{ translation.filter.clear_all | default: "Clear all"}}</a></li>
+        {% endif %}
+        {{selected_item_html}}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endraw %}
+
+
+
+<script>
+
+  $( document ).ready(function() {
+    if($(window).width()<=768) {
+      $('.select-data').on('click', function(e) {
+        $('.short-trigger').addClass('open-short');
+        $('.short-overlay').addClass('open');
+      });
+      $('.short-trigger h5 svg,.short-overlay').on('click', function(e) {
+        $('.short-trigger').removeClass('open-short');
+        $('.short-overlay').removeClass('open');
+      });
+      
+	}
+    $(".short-trigger li").on("click",function() {
+		$(".short-trigger li").removeClass("active");
+		$(this).addClass("active");
+    });
+	var url = window.location.href;
+	$(".short-trigger li a[href='"+url+"']").parent("li").addClass("active");
+  });
+
+</script>
+

@@ -1,0 +1,19 @@
+{% case media.media_type %}
+{% when 'image' %}
+<div class="pdp__media__thumbs__slide">
+    <img src="{{ media.image | img_url: '500x', scale: 2}}" alt="{{ media.alt }}"
+        class="pdp__media__master__slide__img">
+</div>
+
+{% when 'video' %}
+<div class="pdp__media__thumbs__slide">
+    
+    <div class="pdp__media__thumbs__slide__video-playbox">
+        <img src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945" alt="{{media.preview_image.alt}}" class="pdp__media__thumbs__slide__video-playbox__img">
+    </div>    
+    <img src="{{ media.preview_image.src | img_url: '500x', scale: 2}}" alt="{{ media.preview_image.alt }}"
+        class="pdp__media__master__slide__img">
+
+</div>
+{% else %}
+{% endcase %}

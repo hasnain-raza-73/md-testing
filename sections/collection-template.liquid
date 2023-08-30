@@ -1,0 +1,149 @@
+<div class="padding-zero page-container">
+  <div class="collection-header">
+    {% assign collection_img = false %}
+    {% assign img_url = blank %}
+    {% assign mbl_img_url = blank %}
+    {% for block in section.blocks %}
+    {% assign coll = collections[block.settings.collection_id] %}
+    {% assign colhandle = coll.handle | downcase %}
+    {% assign handle = collection.handle | downcase %}
+    {% if colhandle == handle %}
+    {% if block.settings.col_img %}
+    {% assign collection_img = true %}
+    {% assign img_url = block.settings.col_img | img_url: '2048x600' %}
+    {% assign mbl_img_url = block.settings.col_img | img_url: 'original' %}
+    {% if block.settings.col_img_mbl %}
+    {% assign mbl_img_url = block.settings.col_img_mbl | img_url: 'original' %}
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %} 
+    {% if collection_img %}  
+    <div class="collection-image">
+      <picture>
+        <source media="(min-width:750px)" srcset="{{ img_url }}">
+        <img src="{{ mbl_img_url }}" alt="collection-banner">
+      </picture>
+      {% if collection.description == blank %}
+      <h1 class="collection-hero__title title_with_img">
+        {{ collection.title }}
+      </h1>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if collection.description != blank %}
+    <div class="collection-header-wraper">
+
+      <div class="section-header">
+
+        <h1 class="collection-hero__title">
+          {{ collection.title }}
+        </h1>
+
+        {% if collection.description != blank %}
+        <div class="rte collection-description">
+          {{ collection.description }}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+
+    {% endif %}
+    {% if collection.description == blank and collection_img == false %}
+    <div class="collection-header-wraper">
+
+      <div class="sigle_col_title">
+        <h1 class="collection-hero__title">
+          {{ collection.title }}
+        </h1>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="flex-bet collection-wrapper">
+  <div class="custom-product-data">
+  <ul data-sectionId="{% if section.id %}{{section.id}}{% endif %}" data-settings='{% if section.settings %}{{section.settings | json}}{% endif %}' id="gf-products">
+  </ul>
+  </div>
+  </div>
+</div>
+
+
+<div class="page-container">
+
+  <div class="flex-bet collection-wrapper">
+
+
+
+    <div class="side-bar-fillter">
+
+    </div>
+
+
+    <div class="custom-product-data"> 
+      {% if collection.products_count > 0 %}
+      <ul data-sectionId="{% if section.id %}{{section.id}}{% endif %}" data-settings='{% if section.settings %}{{section.settings | json}}{% endif %}' id="gf-products" class="grid-four">
+        {% for product in collection.products %}
+        <li class="grid-items">
+
+          {% include 'product-card-grid' %}
+        </li>
+        {%endfor%}
+      </ul>
+      {%endif%}
+    </div>
+
+
+  </div>
+
+</div>
+
+
+{% schema %}
+{
+"name": "Section name",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_feature_img",
+"label": "Show Feature Image"
+}
+],
+"blocks": [
+{
+"type": "collection_img",
+"name": "collection image",
+"settings": [
+{
+"type": "collection",
+"id": "collection_id",
+"label": "collection"
+},
+{
+"type":"image_picker",
+"id":"col_img",
+"label":"image"
+},
+{
+"type":"image_picker",
+"id":"col_img_mbl",
+"label":"Mobile image"
+}
+]
+}
+
+
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

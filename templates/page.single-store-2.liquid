@@ -1,0 +1,123 @@
+{% assign is_single_store = true %}
+
+<style type="text/css">
+{% if is_single_store == true %}
+nav.breadcrumbs-tree > ol > li.find-store-bc{display:inline !important;}
+{% endif %}
+    .single-store-page .store-list .store-list-item {
+        cursor: auto;
+    }    
+
+.store-hours-list {
+    margin: 20px 0;
+}
+
+.page_header-single-store > h1 {
+    margin: 40px 0 30px 0;
+}
+
+.store-sidebar.store-sidebar-single{
+    width: 40%;
+}
+
+.single-store-content {
+    width: 60%;
+}
+
+@media all and (max-width: 749px){
+
+.single-store-content, .store-sidebar.store-sidebar-single {
+    width: 100%;
+    padding-bottom: 0;
+}
+
+.page_header-single-store > h1 {
+    margin: 20px 0 0 0;
+    font-size: 23px;
+    line-height: 1.3;
+}
+
+
+}/*END MQ*/
+</style>
+<div class="store_wrap">
+  <div class="page_container">
+    <div class="page_header-single-store text-center">
+      <h1>{{page.title}}</h1>
+    </div> 
+    <div class="store_grid single-store-page">
+      <div class="store-sidebar store-sidebar-single">
+        <div class="store-list">
+          <ul class="store-list-wrap">
+             <li class="store-list-item is-store-loc" id="1">
+                <div class="store-img">
+                   {{ 'mb-detail-tabstore.png' | asset_url | img_tag }}
+                </div>
+                <div class="store-desc">
+                   <div class="store-desc-left">
+                      <div class="store-name">
+                         {{page.title}}
+                      </div>
+                      <div class="store-address">
+                         <address>
+                            Mall of the Emirates, Ground Floor, Main Entrance
+                         </address>
+                      </div>
+                      <div class="store-info">
+                         <ul>
+                            <li class="mobile-no">
+                               <a href="tel:+971 4 409 8888"><b>+971 4 409 8888</b></a>
+                            </li>
+                            <li class="working-hrs">
+                               10am to 12am
+                            </li>
+                         </ul>
+                      </div>
+                    <div class="store-hours-list">
+                       <table class="wpsl-opening-hours">
+                          <tbody>
+                             <tr>
+                                <td>Monday</td>
+                                <td><time>10:00 AM - 10:00 PM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Tuesday</td>
+                                <td><time>10:00 AM - 10:00 PM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Wednesday</td>
+                                <td><time>10:00 AM - 10:00 PM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Thursday</td>
+                                <td><time>10:00 AM - 12:00 AM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Friday</td>
+                                <td><time>10:00 AM - 12:00 AM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Saturday</td>
+                                <td><time>10:00 AM - 10:00 PM</time></td>
+                             </tr>
+                             <tr>
+                                <td>Sunday</td>
+                                <td><time>10:00 AM - 10:00 PM</time></td>
+                             </tr>
+                          </tbody>
+                       </table>
+                    </div>                     
+                   </div>
+                </div>
+             </li>          
+          </ul>
+        </div>
+      </div>
+      <div class="single-store-content">
+            <div id="map_canvas_single">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.5199361362!2d55.198419315372156!3d25.11810698393302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6bbee4f11525%3A0x8306a311045b764b!2sMolton%20Brown%20MOE!5e0!3m2!1sen!2sus!4v1628419592455!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>            
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

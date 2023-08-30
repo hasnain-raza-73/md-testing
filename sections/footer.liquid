@@ -1,0 +1,387 @@
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="page-width">
+      <div class="footer-grid footer-grid_row">
+        
+        {% if section.settings.title1 != blank %}
+        <div class="footer-item">
+          
+            <div class="footer-header">
+              <h5 class="footer-title">{{section.settings.title1}}
+                <span class="arrow-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                  </svg>
+                </span>
+                 <span class="arrow-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                  </svg>
+                 </span>
+              </h5>
+            </div>
+          
+            
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu1].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {%endif%}
+        
+        {% if section.settings.title2 != blank %}
+        <div class="footer-item">
+            <div class="footer-header">
+              <h5 class="footer-title">{{section.settings.title2}}
+                <span class="arrow-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                  </svg>
+                </span>
+                 <span class="arrow-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                  </svg>
+                 </span>
+              </h5>
+            </div>
+          
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu2].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {%endif%}
+        
+        {% if section.settings.title3 != blank  %}
+        <div class="footer-item">
+            <div class="footer-header">
+              <h5 class="footer-title">{{section.settings.title3}}
+                <span class="arrow-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                  </svg>
+                </span>
+                 <span class="arrow-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                  </svg>
+                 </span>
+              </h5>
+            </div>
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu3].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        
+         {%endif%}
+        
+        {% if section.settings.title4 != blank %}
+        <div class="footer-item">
+          
+            <div class="footer-header">
+              <h5 class="footer-title">{{section.settings.title4}}
+                <span class="arrow-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                  </svg>
+                </span>
+                 <span class="arrow-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                  </svg>
+                 </span>
+              </h5>
+            </div>
+          
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu4].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {%endif%}
+        
+        {% if section.settings.title5 != blank %}
+        <div class="footer-item">
+          
+          <div class="footer-header">
+          	<h5 class="footer-title">{{section.settings.title5}}
+              <span class="arrow-right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: none;
+                        stroke: #000;
+                      }
+                    </style>
+                  </defs>
+                  <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                </svg>
+              </span>
+               <span class="arrow-down">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: none;
+                        stroke: #000;
+                      }
+                    </style>
+                  </defs>
+                  <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                </svg>
+               </span>
+            </h5>
+          </div>
+         
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu5].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+         {%endif%}
+         {% if section.settings.title6 != blank %}
+        <div class="footer-item">
+         
+            <div class="footer-header">
+              <h5 class="footer-title">{{section.settings.title6}}
+                <span class="arrow-right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6.924" height="12.434" viewBox="0 0 6.924 12.434">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1900" data-name="Path 1900" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(11902.711 18787.635)"/>
+                  </svg>
+                </span>
+                 <span class="arrow-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12.434" height="6.924" viewBox="0 0 12.434 6.924">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                        }
+                      </style>
+                    </defs>
+                    <path id="Path_1897" data-name="Path 1897" class="cls-1" d="M-11902.357-18787.281l5.863,5.867-5.863,5.859" transform="translate(-18775.201 11902.711) rotate(90)"/>
+                  </svg>
+                 </span>
+              </h5>
+            </div>
+         
+          <div class="footer-body">
+            <ul class="footer-list">
+              {% for link in linklists[section.settings.menu6].links %}
+              <li class="footer-menu-item">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+         {%endif%}
+        
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="page-width">
+      <div class="copyright=text">
+      	© Molton Brown Limited 2021. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+  
+
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    
+		{
+		  "type": "header",
+		  "content": "Menu 1"
+		},  
+		{
+          "type": "text",
+          "id": "title1",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu1",
+          "label": "Select Menu"
+        },
+		{
+		  "type": "header",
+		  "content": "Menu 2"
+		},  
+		{
+          "type": "text",
+          "id": "title2",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu2",
+          "label": "Select Menu"
+        },
+		{
+		  "type": "header",
+		  "content": "Menu 3"
+		},  
+		{
+          "type": "text",
+          "id": "title3",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu3",
+          "label": "Select Menu"
+        },
+	    {
+		  "type": "header",
+		  "content": "Menu 4"
+		},  
+		{
+          "type": "text",
+          "id": "title4",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu4",
+          "label": "Select Menu"
+        },
+		{
+		  "type": "header",
+		  "content": "Menu 5"
+		},  
+		{
+          "type": "text",
+          "id": "title5",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu5",
+          "label": "Select Menu"
+        },
+		{
+		  "type": "header",
+		  "content": "Menu 6"
+		},  
+		{
+          "type": "text",
+          "id": "title6",
+          "label": "Menu Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu6",
+          "label": "Select Menu"
+        }
+		
+
+  ]
+}
+{% endschema %}

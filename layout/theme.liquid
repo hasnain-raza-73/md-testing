@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% if search.results.size == 0 %}
+           <meta name="robots" content="noindex,nofollow">
+      {% endif %} 
+      <link rel="canonical" href="{{ canonical_url }}">
+      <link rel="shortcut icon" href="{{ 'mb-favicon.png' | asset_url }}">
+
+      <link rel="alternate" hreflang="en-ae" href=https://www.moltonbrown.ae/> 
+      <link rel="alternate" hreflang="ar-ae" href=https://www.moltonbrown.ae/ar/> 
+      <link rel="alternate" hreflang="en-sa" href=https://www.moltonbrown.sa/> 
+      <link rel="alternate" hreflang="ar-sa" href=https://www.moltonbrown.sa/ar/> 
+
+      <link rel="preload" as="font" type="font/woff2" crossorigin="" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/13/assets/CenturyGothic.woff2?v=79435038297128845861626094587" />
+
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/13/assets/boost-pfs-custom-sparx.css?v=50222765599397966331637565265" />
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/13/assets/theme.css?v=161029311612312793811662618258" />
+      <link rel="preload" as="style" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/13/assets/bundle.css?v=38030263151046594021649395862" />
+
+      <link rel="preload" as="script" href="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" />
+      <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" />
+      <link rel="preload" as="script" href="https://cdn.shopify.com/s/files/1/0575/8517/2679/t/40/assets/theme.js?v=137151697700891135871662690447" />
+      <link rel="preload" as="script" href="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver%2CIntersectionObserverEntry%2CMutationObserver" />
+      
+      {% include 'faq-Schema'%}
+      {%- capture seo_title -%}
+      {%- if request.page_type == 'search' and search.performed == true -%}
+      {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      {%- else -%}
+      {{ page_title }}
+      {%- endif -%}
+      {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+      {%- endif -%}
+      {%- if current_page != 1 -%}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+      {%- endif -%}
+      {%- assign escaped_page_title = page_title | escape -%}
+      {%- unless escaped_page_title contains shop.name or escaped_page_title contains "مولتون براون الإمارات" -%}
+      &ndash; {% if request.locale.iso_code == "ar" -%}مولتون براون UAE{%- else -%}{{ shop.name }}{%- endif -%}
+      {%- endunless -%}
+      {%- endcapture -%}
+      <title>{{ seo_title | strip }}</title>  
+      {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+      {%- endif -%}    
+      
+      {% include 'script-datadog' %}      
+
+      <style type="text/css">
+        @font-face {
+          font-family: 'Century Gothic';
+          src: url({{ 'CenturyGothic.woff2' | asset_url }}) format('woff2'),
+            url({{ 'CenturyGothic.woff' | asset_url }}) format('woff');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      </style>  
+  
+  
+      {{ content_for_header }}
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+      <!-- MB Styles  -->
+      {% if request.locale.iso_code == 'ar' %}  
+        {% render 'arabic-fonts-data' %}
+        {{- 'theme-rtl.css' | asset_url | stylesheet_tag -}}
+      {% else %}
+        {{- 'theme.css' | asset_url | stylesheet_tag -}}
+      {% endif %} 
+       {{- 'bundle.css' | asset_url | stylesheet_tag -}}
+  
+      {% comment %} Liquid to Javascript  {% endcomment %}
+      {% render 'object-data' %}
+       {%- if request.page_type contains 'customers/' -%}
+          <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+        {%- endif -%}
+        {% render 'boost-pfs-style'%}
+        {% if request.locale.iso_code == 'ar' %}
+          {{- 'mb-rtl.css' | asset_url | stylesheet_tag -}}
+        {% endif %} 
+
+
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PT9GQZ7');</script>
+  <!-- End Google Tag Manager -->  
+
+  
+    {% include 'wiser' %}{% include 'wiser_popup' %}
+    <script src="{{ 'timesact.js' | asset_url }}" defer="defer"></script>
+    </head>
+
+    
+  
+     <body {% if template.suffix contains 'th-bundle' %}class="th-bundle" {% endif %} >
+      
+      
+      <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT9GQZ7"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+      <!-- JQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>      
+      <main>
+        {% section 'header-top-tabby' %}
+        {% section 'header' %}
+        {% if template == 'index' %}
+          {% render 'private-sale' %}
+        {% endif %}
+        {% section 'breadcrumbs-data' %}  
+        {{ content_for_layout }}
+        {% section 'footer-icon_list' %}
+        {% section 'footernewsletter' %}
+        {% section 'footer' %}
+      </main>
+  
+      {% render 'product-modal-addedtocart' %}
+  
+      
+      <!-- Axios  -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> 
+      
+          <!-- Slick -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <!-- Molton Brown script  -->
+          {% comment %} GSAP  {% endcomment %}
+
+          {% if template != "index" %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+          {% endif %}
+  
+      <!-- Molton Brown Script  -->
+      <script src="{{ 'theme.js' | asset_url }}"></script>
+      {% comment %} 
+      <script src="{{ 'deepak.js' | asset_url }}"></script>
+      <script src="{{ 'andrew.js' | asset_url }}"></script> {% endcomment %}
+      <div id="mymodalgwp" class="modal-gwp-added hide">
+        <div class="gwp-modal-content">
+          <p class="redirecting text-center"><span id="gwptext">Your Complimentary gift was added to your cart </span><span class="loading-dotts text-center">
+            <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0435/1053/0216/files/dotts-loading.gif?v=1619517241aa">
+            </span>
+          </p>
+        </div>
+      </div>    
+      
+      {% render 'boost-pfs' %}  
+
+      <!-- langify-v2-scripts-begin -->
+      {% comment %}ly_liquid_scripts_begin {% endcapture %} {% endcomment %}
+      {% comment %}ly_liquid_scripts_end{% endcomment %}{% comment %}ly_core_scripts_begin{% endcomment %}
+      {% comment %}ly_core_scripts_end{% endcomment %}{% comment %}ly_switcher_factory_begin{% endcomment %}
+      {% comment %}ly_switcher_factory_end{% endcomment %}
+      <!-- langify-v2-scripts-end -->
+
+      {% render 'ly-liquid-scripts' content: ly_liquid_content %}
+      {% render 'ly-core-scripts' %}
+      {% render 'ly-switcher-factory' %}
+        {% if template contains 'cart' %}
+          <script>
+            $(document).ready(function(){
+              $('#CartNote').text('Gift Box : No\nGift Message : None');
+            });        
+          </script>
+      {% endif %}
+
+    {% render 'th-bundle-product' %} 
+
+    </body>
+  </html>

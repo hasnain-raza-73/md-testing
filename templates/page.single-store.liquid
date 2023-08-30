@@ -1,0 +1,185 @@
+<div class="store_wrap">
+  <div class="page_container">
+    <div class="page_header">
+      <h1>STORE LOCATOR</h1>
+    </div>
+    <div class="store_grid">
+      <div class="store-sidebar store-sidebar-single">
+			<!-- Create a div to hold the filter check boxes. --> 
+            
+        <div class="store-list">
+          <ul class="store-list-wrap">
+          	
+          </ul>
+        </div>
+      </div>
+      <div class="store-content">
+      	<!-- Create a div to hold the map. --> 
+            <div id="map_canvas"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcW0BmF4mgxzkhTFpyzd6XFC9jI0YAHbQ&libraries=geometry&sensor=false">
+</script>
+
+<script type="text/javascript">
+ var map; // Create a global variable for the map. 
+  var markers = [];  // Create a global variable for the markers.
+  
+   var listOfStore = [
+   {
+     id:1,
+     name:'Molton Brown, Abu Dhabi, The Galleria Mall',
+     phone:'+971 4 593 5858',
+     address1:'The Galleria, Al Maryah Island, Ground Floor, Main Entrance Abu Dhabi',
+     address2:'Main Entrance',
+     startTime:'10am',
+     endTime:'11pm',
+     image:'https://cdn.shopify.com/s/files/1/0583/7783/0591/files/Mask_Group_18.png?v=1626760345',
+     type:'store',
+     storesCenter:[{
+        name: 'store 1',
+       position: new google.maps.LatLng24.5013364,54.3870011),
+        type: 'store',
+        icon: 'https://i.postimg.cc/d0P4Jqfs/map-store.png',
+        filterIcon: 'https://i.postimg.cc/d0P4Jqfs/map-store.png'
+        }]
+   },
+   {
+     id:2,
+     name:'The Galleria Mall, Dubai',
+     phone:'+971 4 593 5858',
+     address1:'Al Maryah Island, Ground Floor',
+     address2:'Main Entrance',
+     startTime:'10am',
+     endTime:'11pm',
+     image:'https://cdn.shopify.com/s/files/1/0583/7783/0591/files/Mask_Group_18.png?v=1626760345',
+     type:'store',
+     storesCenter:[]
+   },
+   {
+     id:3,
+     name:'The Galleria Mall branch, Dubai',
+     phone:'+971 4 593 5858',
+     address1:'Al Maryah Island, Ground Floor',
+     address2:'Main Entrance',
+     startTime:'10am',
+     endTime:'11pm',
+     image:'https://cdn.shopify.com/s/files/1/0583/7783/0591/files/Mask_Group_18.png?v=1626760345',
+     type:'branch',
+     storesCenter:[{
+        name: 'Drive-Thru 1',
+        position: new google.maps.LatLng(32.4279, 53.6880),
+        type: 'branch',
+        icon: 'https://i.postimg.cc/D0MPHFsK/map-fsnb-New.png',
+        filterIcon: 'https://i.postimg.cc/D0MPHFsK/map-fsnb-New.png'
+      }]
+   },
+   {
+     id:4,
+     name:'The Galleria Mall, Dubai',
+     phone:'+971 4 593 5858',
+     address1:'Al Maryah Island, Ground Floor',
+     address2:'Main Entrance',
+     startTime:'10am',
+     endTime:'11pm',
+     image:'https://cdn.shopify.com/s/files/1/0583/7783/0591/files/Mask_Group_18.png?v=1626760345',
+     type:'store',
+     storesCenter:[]
+   }
+ ];
+  // Load the map on the page, center and set zoom level. 
+  function initialize() {
+    map = new google.maps.Map(document.getElementById('map_canvas'), {
+      zoom: 5,
+      center: new google.maps.LatLng(24.97595, 54.6814213),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    });
+
+
+
+    
+ 
+  function toDisplayList(listOfStore){
+    let elem= document.getElementsByClassName('store-list-wrap')[0];
+      let domElement=[];
+      listOfStore.forEach((key)=>{
+      let html = `<li class="store-list-item">
+              <div class="store-img">
+              	<img src=${key.image}/ alt="store-img">
+              </div>
+              <div class="store-desc">
+                <div class="store-desc-left">
+                  <div class="store-name">
+                     ${key.name}
+                  </div>
+                  <div class="store-address">
+                    <address>
+                    	${key.address1},
+                      ${key.address2}
+                    </address>
+                  </div>
+                  <div class="store-info">
+                    <ul>
+                      <li class="mobile-no">
+                        <a tel:${key.phone}>${key.phone} </a>
+                      </li>
+                      <li class="working-hrs">
+                          ${key.startTime} to ${key.endTime}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+               
+                
+              </div>
+            </li>`;
+        
+        for (var i = 0, feature; feature = key['storesCenter'][i]; i++) {
+             var marker = new google.maps.Marker({
+        position: feature.position,
+        icon: key['storesCenter'][i].icon,
+        title: key['storesCenter'][i].name,
+        map: map
+      });
+      markers.push({
+        marker: marker,
+        type: feature.type
+      });
+        google.maps.event.addListener(marker, 'click', function(){
+            if (typeof infowindow != 'undefined') infowindow.close();
+            infowindow = new google.maps.InfoWindow({
+                content: feature.name
+            });
+            infowindow.open(map, marker);
+        });
+ // This section will close any open info windows when you click anywhere on the map. 
+      google.maps.event.addListener(map, 'click', function(){
+    infowindow.close();
+  });
+     
+    }
+        domElement.push(html)
+        });
+      elem.innerHTML = domElement;
+  }
+  var url = location.href;
+  var url_id = url.substring(url.lastIndexOf('/') + 1);
+    let getFinalData = listOfStore.filter((res)=>{
+      return res.id == url_id
+    })
+    
+       toDisplayList(getFinalData)          
+  
+  }
+   
+  
+  
+  
+// Load and initialize the page. 
+  google.maps.event.addDomListener(window, 'load', initialize); 
+</script>  

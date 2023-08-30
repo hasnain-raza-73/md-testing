@@ -1,0 +1,120 @@
+<style>
+    section.corporate-form {
+        margin: 50px 0;
+    }
+    
+    .corporate-form-box {
+        padding: 30px 20px;
+    }
+    
+    .corporate-form-box h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+    
+    .corporate-form-con p {
+        line-height: 1.6;
+        font-size: 15px;
+    }
+    .corporate-form-con p a {
+        font-weight: bold;
+    }
+    .corporate-form-image {
+        display: none;
+    }
+
+    @media all and (min-width:767px){
+        .corporate-form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .corporate-form-col {
+            width: calc(50% - 30px);
+        }
+        .corporate-form-box {
+            padding: 0;
+        }
+        section.corporate-form {
+            padding: 0 15px;
+        }
+        section.corporate-form {
+            margin: 70px 0;
+        }
+        .corporate-form-image {
+            display: block;
+        }
+    }
+    @media all and (min-width:1200px){
+        .corporate-form-image {
+            padding: 0 80px;
+        }
+    }
+    @media all and (min-width:1440px){
+        .corporate-form-image {
+            padding: 0 40px 0 0;
+        }
+    }
+
+
+</style>
+
+
+<section class="corporate-form">
+    <div class="page-width">
+        <div class="corporate-form-row">
+            <div class="corporate-form-col">
+                <div class="corporate-form-image">
+                    {% if section.settings.img_left != _blank %}
+                    <img class="hm-hero-banner_picture_img" src="{{ section.settings.img_left | img_url:'master'}}" alt="">
+                   {%else %}
+                   {{ 'lifestyle-2' | placeholder_svg_tag }}
+                   {% endif %}
+                </div>
+            </div>
+            <div class="corporate-form-col">
+                <div class="corporate-form-box">
+                    <h2> {{ section.settings.form-heading }} </h2>
+                    <div class="corporate-form-con">
+                        {{ section.settings.form-content }} 
+                    </div>
+                    {{ section.settings.form-shortcode }} 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  
+
+
+
+
+{% schema %}
+{
+"name": "Corporate gifts Form",
+"settings":[
+    {
+		"type":"image_picker",
+		"id":"img_left",
+		"label":"Form Image"
+	},
+    {
+		"type": "text",
+		"id": "form-heading",
+		"label": "Form Heading",
+        "default": "Speak To Our Team"
+	},
+    {
+		"type": "richtext",
+		"id": "form-content",
+		"label": "Form Content",
+        "default": "<p>Contact our corporate gifting team, who will be delighted to help you choose your tailored company package.</p>"
+	},
+    {
+		"type": "html",
+		"id": "form-shortcode",
+		"label": "Form Shortcode"
+	}
+ ]
+}
+{% endschema %}
+

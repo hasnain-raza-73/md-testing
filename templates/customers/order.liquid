@@ -1,0 +1,213 @@
+<div class="page_container">
+   <div class="page_header">
+    <h1>{{ 'customer.account.title' | t }}</h1>
+    <p><a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
+  </div>
+  
+  
+  <div class="account-wrap">
+    <div class="left-sidebar">
+    	<ul id="profile_tabs" class="tabs-main">
+            <li class="tab-link " data-tab="my_profile">
+                <a href="/account">
+                    MY PROFILE
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li class="tab-link current" data-tab="my_order"> 
+				<a href="/account#my_order">
+                    ORDER HISTORY
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li >
+                 <a href="/account/addresses">
+                   ADDRESS BOOK
+                   <span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    
+    <div class="sidebar-content">
+       	<div class="myaccount">
+            <div class="myaccount__order-history">
+              
+              <div class="order_grid_list">
+                <div class="order-grid-item  order-grid-details">
+                  <div  class="order-list-left" >
+                  		<ul>
+                          <li>
+                            <span class="order_label_title">Order Number</span><span class="order_label_value">{{ order.name }}</span>
+                          </li>
+                          <li>
+                            <span class="order_label_title"> Order Date</span><span class="order_label_value">{{ order.created_at | time_tag: format: 'date' }}</span>
+                          </li>
+                           <li>
+                             <span class="order_label_title"> Total Price </span><span class="order_label_value">{{ order.total_price | money }}</span>
+                          </li>
+                          <li>
+                            <span class="order_label_title"> Order Status</span> <span class="order_label_value"> {{ order.fulfillment_status_label }}</span>
+                          </li>
+                          </ul>
+                  </div>
+                </div>
+              </div>
+              
+              {% comment %}
+                    
+              <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
+
+              {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%}
+              <p>{{ 'customer.order.date_html' | t: date: order_date }}</p>
+
+              {% endcomment %}
+              
+              
+              {%- if order.cancelled -%}
+                <div class="order--cancelled">
+                  {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
+                  <p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+                  <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+                </div>
+              {%- endif -%}
+
+            </div>
+          <div class="payment_details">
+            <p>Payment Details</p>
+            <div class="order-grid-item  order-grid-details">
+              <div class="order-list-left">
+           			 <ul>
+                       <li>
+                         <span class="order_label_title">{{ 'customer.order.payment_status' | t }}</span>
+                         <span class="order_label_value">{{ order.financial_status_label }}</span>
+                       </li>
+                          <li>
+                            <span class="order_label_title">{{ 'customer.order.subtotal' | t }}</span><span class="order_label_value">{{ order.line_items_subtotal_price | money }}</span>
+                          </li>
+               {%- for shipping_method in order.shipping_methods -%}
+              <li>
+                <span class="order_label_title"> {{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</span>
+                <span>{{ shipping_method.price | money }}</span>
+              </li>
+          {%- endfor -%}
+              {%- for tax_line in order.tax_lines -%}
+            <li>
+              <span>{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+              <span class="text-right" data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{{ tax_line.price | money }}</span>
+            </li>
+          {%- endfor -%} 
+                       <li> <span class="order_label_title">VAT (5%)</span><span class="order_label_value">{{ order.total_price| times: 5 | divided_by: 100 | money}}</span></li>         
+              <li>
+                <span class="order_label_title">{{ 'customer.order.total' | t }} (Including VAT)</span><span class="order_label_value">{{ order.total_price | money_with_currency }}</span>
+              </li>
+           </ul>
+            </div>
+            </div>
+          </div>
+        <!-- product list -->
+          <div class="order-view-details">
+            <h3>Your Products</h3>
+                   {%- for line_item in order.line_items -%} 
+                   <div class="order-item">
+                   		<div class="order-details">
+                          <div class="order-info">
+                            <div class="order_img">
+                              {{ line_item.image | img_url: '100x100' | img_tag }}
+  							 </div>
+                            
+                            <div class="order-content">
+                              <div class="order-title">
+                                  <h4>{{ line_item.title | link_to: line_item.product.url }}</h4>
+                              </div>
+                              <div class="order-qty">
+                                <div class="qty-col">
+                                	 <p><span>Quantity</span> {{ line_item.quantity }}</p>
+                                </div>
+                                  <div class="order-price">
+                                    <dt>
+                                        <span class="visually-hidden">Regular price</span>
+                                    </dt>
+                                    {%- if line_item.original_line_price != line_item.final_line_price -%}
+                                      <dl>
+                                        <dt>
+                                          <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                                        </dt>
+                                        <dd>
+                                          <s>{{ line_item.original_line_price | money }}</s>
+                                        </dd>
+                                        <dt>
+                                          <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+                                        </dt>
+                                        <dd>
+                                          <span class="order-discount">{{ line_item.final_line_price | money }}</span>
+                                        </dd>
+                                      </dl>
+                                    {%- else -%}
+                                      {{ line_item.original_line_price | money }}
+                                    {%- endif -%}
+                                  </div>
+                              </div>
+                              </div>
+                          	</div>
+                      	 </div>
+				 	</div>
+                  {%- endfor -%} 
+                 </div>
+          
+          
+          
+          <!-- end product list -->
+          
+            <div class="grid__item myaccount__account-details">
+              <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+				 {% comment %}
+              			<p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+				 {% endcomment %}
+              {{ order.shipping_address | format_address }}
+              <h3>{{ 'customer.order.billing_address' | t }}</h3>
+              {% comment %}
+              <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+			  {% endcomment %}
+              
+              {{ order.billing_address | format_address }}
+
+              
+            </div>
+          
+          
+       
+                  {%- if order.cart_level_discount_applications != blank -%}
+                    <tr>
+                      {%- for discount_application in order.cart_level_discount_applications -%}
+                        <th class="small--hide" scope="row" colspan="4">
+                          {{ 'customer.order.discount' | t }}
+                          <span class="order-discount order-discount--title">
+                            {% include 'icon-saletag' %}{{- discount_application.title -}}
+                          </span>
+                        </th>
+                        <td class="text-right" data-label="{{ 'customer.order.discount' | t }}">
+                          <div class="order-discount-wrapper">
+                            <span class="order-discount order-discount--title text-left medium-up--hide">
+                              {% include 'icon-saletag' %}{{- discount_application.title -}}
+                            </span>
+                            <span class="order-discount">-{{ discount_application.total_allocated_amount | money }}</span>
+                          </div>
+                        </td>
+                      {%- endfor -%}
+                    </tr>
+                  {%- endif -%}
+    </div>
+       
+    </div>
+
+  
+</div>
+</div>     

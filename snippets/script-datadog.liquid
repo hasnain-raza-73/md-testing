@@ -1,0 +1,23 @@
+{% if request.host == "www.moltonbrown.ae" %}
+    <script>
+        (function(h,o,u,n,d) {
+        h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+        d=o.createElement(u);d.async=1;d.src=n
+        n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+        })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
+        DD_RUM.onReady(function() {
+            DD_RUM.init({
+                applicationId: '5fe8202c-504a-489e-b000-fe00a5507850',
+                clientToken: 'pub4a66b672f78d659d70bf70c3c30e5a75',
+                site: 'datadoghq.eu',
+                service:'molton-brown-ae',
+                env:'production',
+                version: '1.0.0',
+                sampleRate: 40,
+                trackInteractions: true
+            });
+        })
+  </script>
+{% endif %}
+
+

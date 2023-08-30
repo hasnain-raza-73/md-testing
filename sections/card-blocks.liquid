@@ -1,0 +1,409 @@
+{% for block in section.blocks %}
+{% case block.type %}
+    {% when 'card-two' %}
+    {% include 'card-two' %}
+
+    {% when 'card-three' %}
+    {% include 'card-three' %}
+
+    {% when 'card-four' %}
+    {% include 'card-four' %}
+
+    {% when 'prouct-carousel' %}
+    {% include 'prouct-carousel' %}
+
+{% endcase %}
+
+{% endfor %}
+
+
+
+
+
+{% schema %}
+{
+"name": "cards blocks",
+"tag": "section",
+"class": "ramadan-sec",
+"settings":[
+ ],
+ "blocks":[
+     {
+         "type": "card-two",
+         "name": "card two",
+         "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "card-three",
+      "name": "card three",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 3"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-three",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-three",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-three",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-three",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-three",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "card-four",
+      "name": "card four",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "header",
+                "content": "card 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-one",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-one",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-one",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-one",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-one",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 2"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-two",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-two",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-two",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-two",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-two",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 3"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-three",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-three",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-three",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-three",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-three",
+                "label": "Card link"
+            },
+            {
+                "type": "header",
+                "content": "card 4"
+            },
+            {
+                "type": "image_picker",
+                "id": "image-four",
+                "label": "image"
+            },
+            {
+                "type": "text",
+                "id": "card-heading-four",
+                "label": "Card heading",
+                "default": "rose dunes"
+            },
+            {
+                "type": "richtext",
+                "id": "card-description-four",
+                "label": "Card Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "card-button-four",
+                "label": "Card button",
+                "default": "shop now"
+            },
+            {
+                "type": "url",
+                "id": "card-url-four",
+                "label": "Card link"
+            }
+         ]
+     },
+     {
+      "type": "prouct-carousel",
+      "name": "Product Carousel",
+      "settings":[
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "heading",
+                "default": "section header"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description",
+                "default": "<p>Shop your Favourite fragrant luxuries with our limited time offer across fragrances.</p>"
+            },
+            {
+                "type": "text",
+                "id": "btn",
+                "label": "button",
+                "default": "View All"
+            },
+            {
+                "type": "url",
+                "id": "btn-link",
+                "label": "link"
+            },
+            {
+                "type": "collection",
+                "id": "ramadan-coll",
+                "label": "collection"
+            }
+         ]
+     }
+ ]
+}
+{% endschema %}

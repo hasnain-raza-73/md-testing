@@ -1,0 +1,95 @@
+<section class="collection-wrap">
+  <div class="page-width">
+    <div class="collection-block">
+    {% if section.settings.heading != blank %}
+    	<div class="block-header">
+          <h2>{{ section.settings.heading }}</h2>
+        </div>
+    {% endif %}  	
+       <ul class="grid-five desktop-view">
+        {%- assign collection = collections[section.settings.collection_id] -%}
+        {% assign pro_limit = section.settings.grid %}
+         
+        {% for product in collection.products limit:pro_limit %}
+            <li class="grid-items">
+                {% render 'product-grid-layout' with {
+                    product: product
+                }%}
+            </li>
+        {% endfor %}
+        </ul>
+      
+       <ul class="grid-five mobile-view">
+        {%- assign collection = collections[section.settings.collection_id] -%}
+        {% assign pro_limit_mobile = section.settings.grid_mobile %}
+        {% for product in collection.products limit:pro_limit_mobile %}
+            <li class="grid-items">
+                {% render 'product-grid-layout' with {
+                    product: product
+                }%}
+            </li>
+        {% endfor %}
+        </ul>
+
+        {% if section.settings.show_btn %}
+        <div class="more-collection">
+                <a href="{{ collection.url }}" class="btn-ctm">{{ section.settings.btnlabel }} </a>
+        </div>
+        {% endif %}
+    </div>
+  </div>
+</section>  
+
+{% schema %}
+    {
+        "name": "Home product list",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading"
+            },
+            {
+                "type": "collection",
+                "id": "collection_id",
+                "label": "collection"
+            },
+            {
+                "type": "range",
+                "id": "grid",
+                "label": "Products per row",
+                "min": 2,
+                "max": 5,
+                "step": 1,
+                "default": 3
+            },
+			{
+                "type": "range",
+                "id": "grid_mobile",
+                "label": "Product list on mobile",
+                "min": 2,
+                "max": 6,
+                "step": 1,
+                "default": 3
+            },
+            {
+                "type": "checkbox",
+                "id": "show_btn",
+                "label":"Show Button",
+                "default": false
+            },
+            {
+                "type": "text",
+                "id": "btnlabel",
+                "label": "Button Label",
+                "default": "View All"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Home product list",
+                "category": "collection"
+            }
+        ]
+    }
+{% endschema %}

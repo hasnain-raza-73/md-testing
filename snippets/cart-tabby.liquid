@@ -1,0 +1,26 @@
+ 
+{% comment %}
+<div id="TabbyPromo"></div> 
+ 
+<script>
+new TabbyPromo({
+  selector: '#TabbyPromo', 
+  currency: 'AED', 
+  price: '{{ cart.total_price | money_without_currency }}', 
+  installmentsCount: 4, 
+  source: 'cart', 
+  publicKey: 'pk_50d38c61-f2ee-4a6a-b60e-b03002fdf3be', 
+  merchantCode: 'sk_d5c968f4-168a-4442-9df1-747db3af8ad1'  
+});
+</script>
+ 
+{% endcomment %}
+<div class="tabby-custom">
+    <div class="tb-img">
+      {% render 'icon-tabby' %} 
+    </div>
+    <div class="tb-content">
+    <h3>Split into 4 Payments</h3>
+    <p>1/4 today, and the rest within 3 months without fees</p>
+    </div>
+  </div>

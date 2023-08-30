@@ -1,0 +1,707 @@
+{% if section.settings.enable_gwp_content %}
+  <style type="text/css">
+    .modal-gwp-added { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.7); z-index: 9999; } .gwp-modal-content { background-color: #fefefe; margin: auto; padding: 25px; border: 1px solid #888; width: 450px; position: absolute; left: calc(50% - 225px); font-size: 16px; top: calc(40% - 75px); } span.loading-dotts > img { width: 35px; display: block; position: relative; top: 6px; margin: 0 auto; }
+  </style>
+    {% if cart.total_price > 0 %}
+
+      {% assign gwp_cart_val = section.settings.gwp_cart_val | plus: 0 %}
+      {% assign gwp_cart_val_num = gwp_cart_val | times: 100 %}
+
+      {% if section.settings.gwp_above_value_1 %}
+        {%- assign product_gwp_1 = section.settings.gwp_above_value_1 -%}
+        {% if product_gwp_1.selected_or_first_available_variant %}
+          {% for variant in product_gwp_1.variants %}
+            {% if variant.available %}
+              {% assign var_id_a = variant.id | plus: 0 %} 
+            {% endif %}   
+          {% endfor%}
+        {% endif %}        
+      {% endif %}
+
+      {% if section.settings.gwp_above_value_2 %}
+        {%- assign product_gwp_2 = section.settings.gwp_above_value_2 -%}
+        {% if product_gwp_2.selected_or_first_available_variant %}
+          {% for variant in product_gwp_2.variants %}
+            {% if variant.available %}
+              {% assign var_id_b = variant.id | plus: 0 %}
+            {% endif %}    
+          {% endfor%}
+        {% endif %}
+      {% endif %}
+
+      {% if section.settings.gwp_below_value_1 %}        
+        {%- assign product_gwp_3 = section.settings.gwp_below_value_1 -%} 
+        {% if product_gwp_3.selected_or_first_available_variant %}
+          {% for variant in product_gwp_3.variants %}
+            {% if variant.available %}
+              {% assign var_id_c = variant.id | plus: 0 %}  
+            {% endif %}  
+          {% endfor%}
+        {% endif %}
+      {% endif %}
+          
+      {% assign found_title = false %}
+      {% assign found_title_b = false %}
+      {% assign found_title_c = false %}
+  
+      {% for item in cart.items %}       
+          {% if item.variant.id == var_id_a %}
+            {% assign found_title = true %}
+          {% endif %}                
+          {% if item.variant.id == var_id_b %}
+            {% assign found_title_b = true %}
+          {% endif %}                               
+          {% if item.variant.id == var_id_c %}   
+            {% assign found_title_c = true %}
+          {% endif %}        
+      {% endfor %}
+    {% endif %} 
+{% endif %}  
+  <script type="text/javascript">
+    window.Currency = window.Currency || {};
+    jQuery(document).on("click", ".updateqty", function (event) {
+      var value = $(this).siblings('.cart-quantity').val();
+      var itemIndex = $(this).attr('qty-index');
+      _updateItemQuantity(itemIndex, value);
+    });
+    
+    function _updateItemQuantity(itemIndex, value) {
+      $.getJSON('/cart.js').then(function (cart) {
+        $.ajax({
+          type: 'POST',
+          url: '/cart/change.js',
+          data: {
+            quantity: value,
+            line: itemIndex
+          },
+          dataType: 'json',
+          success: function success(item) {
+            console.log("item",item);
+            $('.mcart-count').html(item.item_count);
+            var up_total_price = Currency.formatMoney(item.total_price);
+            var item_price = Currency.formatMoney(item.items[itemIndex - 1].line_price);
+            $('.cart_subtotal').html(up_total_price);
+            $("[item-loop=item-" + itemIndex + "]").find('.cart-item-price p').html(item_price);
+            $("[item-loop=item-" + itemIndex + "]").find('.price-cart-mob').html(item_price);               
+            setTimeout(function() { 
+                $('#mymodalgwp').removeClass('hide');
+                $('#gwptext').html('Updating cart');
+                location.reload();
+            }, 1000);
+          }
+        });
+      });
+    }   
+  </script>
+  {% if cart.total_price == 0 and cart.item_count > 0 %} 
+  <script type="text/javascript">
+    $( document ).ready(function() { 
+    $.ajax({
+        type: "POST",
+        url: '/cart/clear.js',
+        data: '',
+        dataType: 'json',
+        success: function() {
+          $('#mymodalgwp').removeClass('hide');
+          $('#gwptext').html('Updating cart');
+          location.reload();
+        },
+        error: function(XMLHttpRequest, textStatus) {
+        }
+      });
+      return false; 
+  });    
+  </script> 
+{% endif %} 
+
+  {% if section.settings.enable_gwp_content %}  
+  {% if cart.total_price > gwp_cart_val_num and found_title == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+          var productId = {{ var_id_a }};
+          jQuery.post('/cart/update.js', 'updates['+productId+']=1'); 
+  
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Updating cart');
+  
+        setTimeout(function() { 
+            window.location.reload();
+        }, 3000);
+      });
+    </script>
+    {% elsif cart.total_price < gwp_cart_val_num and found_title  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+        var productId = {{ var_id_a }};
+        jQuery.post('/cart/update.js', 'updates['+productId+']=0'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Your Complimentary first gift was <u>removed</u> from your cart');
+        setTimeout(function() {
+            window.location.reload();
+        }, 1000);
+    
+      });
+    </script>
+  {% endif %}  
+    
+  {% if cart.total_price > gwp_cart_val_num and found_title_b  == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+        var productId_b = {{ var_id_b }};
+        jQuery.post('/cart/update.js', 'updates['+productId_b+']=1'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Your Complimentary second gift was <u>added</u> from your cart');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+    
+      });
+    </script> 
+    {% elsif cart.total_price < gwp_cart_val_num and found_title_b  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+         var productId_b = {{ var_id_b }};
+         jQuery.post('/cart/update.js', 'updates['+productId_b+']=0'); 
+         $('#mymodalgwp').removeClass('hide');
+         $('#gwptext').html('Your Complimentary second gift was <u>removed</u> from your cart');
+         setTimeout(function() { 
+            window.location.reload();
+         }, 1000);
+      });
+    </script>
+  {% endif %}
+     
+  {% if cart.total_price < gwp_cart_val_num and found_title_c  == false %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+         var productId_c = {{ var_id_c }};
+         jQuery.post('/cart/update.js', 'updates['+productId_c+']=1'); 
+         $('#mymodalgwp').removeClass('hide');
+         $('#gwptext').html('Your Complimentary gift was <u>added</u> to your cart ');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+      });
+    </script> 
+    {% elsif cart.total_price > gwp_cart_val_num and found_title_c  == true %} 
+    <script type="text/javascript">  
+      $( document ).ready(function() { 
+        var productId_c = {{ var_id_c }};
+        jQuery.post('/cart/update.js', 'updates['+productId_c+']=0'); 
+        $('#mymodalgwp').removeClass('hide');
+        $('#gwptext').html('Updating cart');
+        setTimeout(function() { 
+            window.location.reload();
+        }, 1000);
+      });
+    </script>
+  {% endif %} 
+  {% endif %}  
+    <script type="text/javascript">
+      function remove_item(id){
+        document.getElementById('updates_' + id).value = 0;
+        document.getElementById('cartform').submit();
+      }
+    </script>
+    
+    {% if cart.item_count > 0 %}
+    <section id="cart-container" class="padding_lg">
+      <h1 class="cart-title">Your Cart</h1>
+      <form action="/cart" method="post" id="cartform">
+        <div class="cart-body">
+          <div class="cart-main-data">
+            <div class="cart-titles">
+              <div class="cart-item-t">PRODUCTS</div>
+              <div class="cart-qty-t">QUANTITY</div>
+              <div class="cart-total-t">PRICE</div>
+            </div>
+            {% for item in cart.items %}{% capture item_title %}{{ item.title | escape }}{% endcapture %}
+            <div class="cart-items-loop th_pb_cart_line" item-loop="item-{{ forloop.index }}" data-idth="{{ item.id }}" data-indexth="{{ forloop.index }}">
+              <div class="cart-item-img">
+                <div>
+                  <a href="{{ item.product.url }}" title="{{ item_title }} — {{ item.product.description | strip_html | truncate: 50 | escape }}"> 
+                     <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'small' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>                   
+                  </a>
+                </div>
+                <div class="cart-title-dt">
+                  <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+                   {%- assign variant_options = 'template ' | split: ' ' -%}
+                        {%- if item.product.has_only_default_variant != true -%}
+                          {%- assign variant_options = item.options_with_values -%}
+                        {%- endif -%}
+                        {%- assign property_size = item.properties | size -%}
+                        
+                        {%- assign variant_options_hide = false -%}
+                        {% if item.product.has_only_default_variant and property_size == 0 %}
+                         {%- assign variant_options_hide = true -%}
+                   {% elsif variant_options.size == 1 and variant_options[0].value == "Default title" %}
+                         {%- assign variant_options_hide = true -%}
+                        {% endif %}
+                {% assign remove_qty = false %}            
+                         <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                          {%- for option in variant_options -%}
+                            <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
+                          {%- endfor -%}
+                           {%- assign properties = 'template ' | split: ' ' -%}
+                      {%- if property_size > 0 -%}
+                        {%- assign properties = item.properties -%}
+                      {%- endif -%}
+                      {%- for p in properties -%}
+                          {% for block in section.blocks %}
+                           {% if p.last contains block.settings.bundle_id %}
+                             <span class="cart_bundle_label">{{ block.settings.bundle_label }}</span>
+                            {% endif %}
+                          {% endfor %}
+                      	{%- if p.first contains '_th_bundle_type' -%}
+                             {% assign remove_qty = true %}  
+                          <span class="th_bundle_discount_text"></span>
+                          {%- continue -%}
+                        {%- endif -%}
+                        {% assign property_first_char = p.first | slice: 0 %}
+                        <li class="product-details__item product-details__item--property
+                          {%if property_size == 0 or p.last == blank or property_first_char == '_' %} hide{% endif %}" data-cart-item-property>
+                          <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
+                          {%- comment -%}
+                            Check if there was an uploaded file associated
+                          {%- endcomment -%}
+                          <span data-cart-item-property-value>
+                            {%- if p.last contains '/uploads/' -%}
+                              <a href="{{ p.last }}" data-role="product-upload">{{ p.last | split: '/' | last }}</a>
+                            {%- else -%}
+                              {{ p.last }}
+                            {%- endif -%}
+                          </span>
+                        </li>
+                      {%- endfor -%}
+                  </ul>
+                  {% if item.final_line_price == 0 %}
+                    {% else %}
+                      <p class="cart__remove">
+                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent th_pb_remove_cart_item" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+                      </p>
+                    {% endif %}
+                </div>
+    
+              </div>
+              <div class="cart-item-qty">
+                <div class="cart-title-mob">
+                  <p><a href="{{ item.product.url }}">{{ item.product.title }}</a></p>
+                    {% assign remove_qty = false %}            
+                    <ul class="item-variant-details{% if variant_options_hide and property_size == 0 %} hide{% endif %}" >
+                          {%- for option in variant_options -%}
+                            <li class="product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
+                          {%- endfor -%}
+                           {%- assign properties = 'template ' | split: ' ' -%}
+                      {%- if property_size > 0 -%}
+                        {%- assign properties = item.properties -%}
+                      {%- endif -%}
+                      {%- for p in properties -%}
+                          {% for block in section.blocks %}
+                           {% if p.last == block.settings.bundle_id %}
+                             <span class="cart_bundle_label">{{ block.settings.bundle_label }}</span>
+                             {% endif %}
+                          {% endfor %}
+                      	{%- if p.first contains '_th_bundle_type' -%}
+                             {% assign remove_qty = true %}  
+                          <span class="th_bundle_discount_text"></span>
+                          {%- continue -%}
+                        {%- endif -%}
+                        {% assign property_first_char = p.first | slice: 0 %}
+                        <li class="product-details__item product-details__item--property
+                          {%if property_size == 0 or p.last == blank or property_first_char == '_' %} hide{% endif %}" data-cart-item-property>
+                          <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
+                          {%- comment -%}
+                            Check if there was an uploaded file associated
+                          {%- endcomment -%}
+                          <span data-cart-item-property-value>
+                            {%- if p.last contains '/uploads/' -%}
+                              <a href="{{ p.last }}" data-role="product-upload">{{ p.last | split: '/' | last }}</a>
+                            {%- else -%}
+                              {{ p.last }}
+                            {%- endif -%}
+                          </span>
+                        </li>
+                      {%- endfor -%}
+                  </ul>
+                </div>
+                <div class="qty-selc">
+    
+                  <div class="qty-slctor-arws {% if remove_qty %} remove_qty {% endif %}"> 
+                    <p class="qty-txt-mob">Qty</p>
+    
+                    {%- if item.line_price != 0 -%}
+                    <a class="minusqty updateqty" data-loop="" qty-index="{{ forloop.index }}">{% include 'down-arrow' %}</a>               
+                    <input {% if remove_qty %}disabled{% endif %} name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" onfocus="this.select();" value="{{ item.quantity }}" size="2"/>
+                    <a class="addqty updateqty" qty-index="{{ forloop.index }}">{% include 'upper-arrow' %}</a>
+                    {%- elsif item.line_price == 0 -%}
+                    <input name="updates[]" type="text" class="qtycart cart-quantity" id="updates_{{ item.cart_index }}" value="1" size="1"/>
+                    {%- endif-%}
+    
+    
+                  </div>
+                  
+                  <div class="mobile-cart-compair th_item_line_price">     
+                    
+                    {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+                    {% if final_compare_price and final_compare_price > item.final_line_price %}
+                    <p class="pdp__content__price__compare">{{ final_compare_price | round | money }}</p>
+                    {% endif %}
+                    <p class="price-cart-mob">{{ item.final_line_price | money }}</p>
+                  </div>
+    
+                </div>   
+                {% if item.final_line_price == 0 %}
+                  {% else %}
+                  <p class="cart__remove">
+                    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent th_pb_remove_cart_item" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">Delete {% include 'delete' %}</a>
+                  </p>               
+                  {% endif %} 
+              </div>
+                <div class="cart-item-price th_item_line_price">
+                    {% if item.final_line_price == 0 %}
+                      <p>FREE</p>
+                    {% elsif item.final_line_price > 0 %}
+                    {% assign final_compare_price = item.variant.compare_at_price | times: item.quantity %}
+                    {% if final_compare_price and final_compare_price > item.final_line_price %}
+                          <p class="pdp__content__price__compare">{{ final_compare_price | round | money }}</p>
+                    {% endif %}
+                    <p>{{ item.final_line_price | money }}</p>
+                  {% endif %}
+
+              </div>
+            </div>
+            {% endfor %}
+            
+            
+            
+              <!-- -->
+              
+              {% if section.settings.enable_gift_message %}
+              <div class="cart__footer">
+          <div class="grid-wrapper">
+    
+            <div class="col-sp-sm col-sp-md">
+              <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Would you like a FREE gift box and gift message?</label>
+            <textarea name="note" id="CartNote" style="display:none;">{{ cart.note }}</textarea>
+              <!-- Yes and No content goes here-->
+              <div class="login-wrap">
+                <div class="radio-group">
+                  
+                  <input type="checkbox" id="{{ formId }}-mrs" class="giftyes" data-name="Gift box"  value="Yes">
+                  <label for="{{ formId }}-mrs">Yes</label>
+                </div>
+              </div>
+              <!-- Gift message option code goes here-->
+              
+              <!-- 12-07-21 -->
+              
+              <script type="text/javascript">
+                  $(function () {
+                      $("#-ms_chk_gift_msg").click(function () {
+                          if ($(this).is(":checked")) {
+                              $("#CartSpecialInstructions").removeAttr("disabled");
+                              $("#CartSpecialInstructions").focus();
+
+                          } else {
+                             $("#CartSpecialInstructions").attr("disabled", "disabled");
+                          }
+                      });
+                  });
+              </script>
+              <style>
+                .giftmessage textarea:disabled { background:#eee; overflow:hidden;}
+              </style>
+              <!-- end of 12-07-21-->
+             
+         <div class="gift_msg">
+              <div class="login-wrap giftmessage ">
+                <div class="radio-group">
+                  <input type="checkbox" id="{{ formId }}-ms_chk_gift_msg" name="choice-giftmessage"  />
+                  <label for="{{ formId }}-ms_chk_gift_msg">I would like to provide a gift message.</label>
+                </div>
+                
+                	
+                    <div class="gift_notes_not_checked">
+               		 <textarea  id="CartSpecialInstructions" class="cart-note__input" 
+                                placeholder="Please enter a message up to 250 characters (including spaces)*"
+                                disabled="disabled"
+								                value="None"
+                                data-name="Gift message"  >
+                    </textarea>
+                <span id="countcharacter"></span><br>
+                </div>    
+                
+                
+                
+              </div>
+    
+              <span class="custom-cart-text">
+                  {{ section.settings.giftmessage }}
+              </span>
+           </div>
+            </div>
+    
+          </div>
+        </div>
+
+         {% endif %}
+              
+              <!-- -->
+               
+              
+            {% if section.settings.enable_shipping %}
+              <div class="item shipping-item">
+              <div class="shipping-item-row">
+              <div class="ship-img ship-img-desk">
+              <img class="lazy" src="{{ 'delivery-van.svg' | asset_url  }}" data-src="{{ 'delivery-van.svg' | asset_url  }}" width="50" />
+              </div>
+              <div class="shipping-description">
+              <h3>
+                <div class="ship-img ship-img-mob">
+                  <img class="lazy" src="{{ 'delivery-van.svg' | asset_url  }}" data-src="{{ 'delivery-van.svg' | asset_url  }}" width="50" />
+                  </div>
+                {{section.settings.shipping-title}}</h3>
+              <div class="shipping-des">{{section.settings.shipping-description}}</div>
+              </div>
+              </div>
+              </div>
+            {% endif %}
+            
+          </div>
+          
+          
+          <div class="right-side-cart cart-main-prices">
+    
+            <div class="flex-bet shipping-free">
+              <span class="cart-subtotal__title">SHIPPING </span>
+              <span class="cart-subtotal__price">Free</span>
+            </div>
+            <div class="shipping-day">
+              <p>Free Shipping within 2-3 days</p>
+            </div>
+            <div colspan="5" class="total_vat">
+            <h4 class="flex-bet">
+              <span class="vat__title">VAT</span>
+              <span class="cart-subtotal__title cart_vat"></span>
+            </h4>
+          </div>
+            <div colspan="5" class="subtotal">
+              <h4 class="flex-bet">
+                <span class="cart-subtotal__title">Subtotal</span>
+                 <span class="cart-subtotal__title cart_subtotal"><span class="th_cart_total_price"><span class="th_cart_total_price">{{ cart.total_price | money }}</span></span></span>
+              </h4>
+            </div>
+            <div class="vat-shiping">
+              <p>(VAT included)</p>
+            </div>
+            
+            
+            
+            
+            <div id="cart-right">
+              
+              <div class="promo_code_wrap">
+                <div class="promo-title"> Have a promocode?  </div>
+                  <div class="promo-body">
+                    <form class="promo-form">
+                      <div class="form-group form_inline">
+                        <input type="text" placeholder="Enter promo code"  class="form_control" id="promo_coupon">
+                        <button type="submit" class="btn-ctm promo-submit" id="redemDevPromo"> APPLY  </button>
+                      </div>
+                    </form>
+                  </div>
+                
+              </div> 
+              
+              
+              
+              
+              <input name="checkout" type="submit" class="button" id="checkout-button" value="PROCEED TO CHECKOUT">
+              {% if additional_checkout_buttons %}
+              <div class="additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+              {% endif %}
+            </div>
+    
+            <div class="tabby-custom">
+              <div class="tb-img">
+                {% render 'icon-tabby' %} 
+              </div>
+              <div class="tb-content">
+                {% if request.locale.iso_code == 'ar' %}  
+                <h3 style="font-size:14px;">قسمها على 4 دفعات وبدون فوائد</h3>
+                <p>1/4 اليوم والباقي على 3 أشهر بدون رسوم </p>
+                {% else %}
+              <h3>Split into 4 Payments</h3>
+              <p>1/4 today, and the rest within 3 months without fees</p>
+              {% endif %}
+              </div>
+            </div>
+
+          <!-- tamara cart html start -->
+
+            <div class="tabby-custom tamara-icon-cart">
+              <div class="tb-img">
+              {% if request.locale.iso_code == 'ar' %}  
+                  <img src="{{"tamara-arabic-logo.png" | asset_img_url: "original"}}"> 
+                {% else %}
+                  <img src="{{"tamara-logo.png" | asset_img_url: "original"}}"> 
+              {% endif %}
+              </div> 
+              <div class="tb-content">
+                {% if request.locale.iso_code == 'ar' %}  
+                <h3 style="font-size:14px;">قسمها على 3 دفعات وبدون فوائد</h3>
+                <p>1/3 اليوم والباقي على 2 أشهر بدون رسوم </p>
+                {% else %}
+              <h3>Split into 3 Payments</h3>
+              <p>1/3 today, and the rest within 2 months without fees</p>
+              {% endif %}
+              </div>
+            </div> 
+
+            <!-- tamara cart html end -->
+
+
+          </div>
+        </div>
+        
+      </form> 
+    </section> 
+    {%else%}
+    <section class="empty-section">
+      <h1 class="cart-title">Your Cart</h1>
+      <div class="page-container">
+        <p>Your cart is empty!</p>
+        <a href="{{shop.url}}" class="btn">CONTINUE SHOPPING</a>
+      </div>
+    </section>
+{%endif%}
+    <style>
+      .mb-search-logo-flex .mb-cart-flex, .remove_qty{pointer-events: none;}
+      .th_bundle_discount_text, .cart_bundle_label{font-size:12px; line-height:normal; margin:8px 0;}
+      .remove_qty .updateqty {
+          background: #F5F5F5;
+          opacity: .5;
+          pointer-events: none;
+      }
+       .th_bundle_discount_text{display: none !important;}    
+</style>
+
+
+    <script>
+  
+  const priceWithTax = {{ cart.total_price }};
+        const priceWithoutTax = parseInt(priceWithTax / 1.05);
+        const taxAmount = parseInt(priceWithTax - priceWithoutTax);
+   var pice = (taxAmount)/100;
+  $('.cart-subtotal__title.cart_vat').html(pice+' <span>AED</span>');
+</script>
+{% if cart.items != blank %}
+  {% if cart.total_price < 100 %}
+<script>
+  $.ajax({
+      type: "POST",
+      url: '/cart/clear.js',
+      success: function(){
+        location.reload();
+      },
+      dataType: 'json'
+    }); 
+</script>
+{% endif %}
+{% endif %}
+ 
+<script>
+//alert('a')
+</script>
+  {% schema %}
+    {
+      "name": "Cart Settings",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Gift Box & Message"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_gift_message",
+          "label": "Enable Gift Box & Message"
+        },
+        {
+      "type": "header",
+      "content": "Shipping Delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shipping",
+      "label": "Enable Shipping",
+      "default":true
+    },
+    {
+      "type": "text",
+      "id":"shipping-title",
+      "label":"Shipping title",
+      "default":"Next Day Delivery available!"
+    },
+    {
+      "type": "richtext",
+      "id":"shipping-description",
+      "label":"Shipping description",
+      "default":"<p>Place your order before 4pm and recieve complimentary delivery on orders above 500 AED *Conditions apply</p>"
+    },
+        {
+          "type": "checkbox",
+          "id": "enable_gwp_content",
+          "label": "Enable GWP?"
+        },
+  
+        {
+          "type": "text",
+          "id": "gwp_cart_val",
+          "label": "GWP total cart value"
+        }, 
+        {
+          "type": "product",
+        "id": "gwp_above_value_1",
+        "label": "GWP above value 1"
+        }, 
+        
+        {
+          "type": "product",
+        "id": "gwp_above_value_2",
+        "label": "GWP above value 2"
+        }, 
+        
+        {
+          "type": "product",
+        "id": "gwp_below_value_1",
+        "label": "GWP below value 1"
+        },         
+     
+         {
+          "type": "textarea",
+          "id": "giftmessage",
+          "label": "gift message note"
+          }      
+    ],
+"blocks":[
+     {
+         "type": "bundle",
+         "name": "bundle label",
+         "settings":[
+            {
+                "type": "number",
+                "id": "bundle_id",
+                "label": "bundle id"
+            },
+ 		  {
+                "type": "text",
+                "id": "bundle_label",
+                "label": "bundle label"
+            }
+]
+}
+]
+  }
+  {% endschema %} 

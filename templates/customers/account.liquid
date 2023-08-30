@@ -1,0 +1,264 @@
+<div class="page_container">
+  <div class="page_header">
+    <h1>MY ACCOUNT</h1>
+  </div>
+  <div class="account-wrap">
+    <div class="left-sidebar">
+    	<ul id="profile_tabs" class="tabs-main">
+            <li class="tab-link current" data-tab="my_profile">
+                <a>
+                    MY PROFILE
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li class="tab-link" data-tab="my_order"> 
+				<a id="my_order">
+                    ORDER HISTORY
+                  	<span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+            <li >
+                 <a href="/account/addresses">
+                   ADDRESS BOOK
+                   <span class="icon-box">
+                      <img src="{{"arrow_right.png" | asset_img_url: "original"}}" alt="arrow-icon" style="width:auto;">
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="sidebar-content">
+    	<div class="my_profile tabs-items current"> 
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">MY PROFILE</h3> 
+             <div class="header-action">
+<!--                 <a href="javascript:void(0)">Edit</a> -->
+                 <div class="logout_btn">
+                    {{ 'log out' | customer_logout_link }}
+                  </div>
+              </div> 
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box"> 
+                  <ul>
+                    <!--<li><span class="p-label">Title</span>  <span class="p-value">Ms.</span> </li>-->
+                    <li><span class="p-label">First Name</span>  <span class="p-value">{{ customer.first_name }}</span> </li>
+                    <li><span class="p-label">Last Name</span>  <span class="p-value">{{customer.last_name}}</span> </li>
+                    <li><span class="p-label">Mobile Number	</span>  <span class="p-value">{{customer.phone}}</span> </li>
+                  </ul>
+                </div>
+                <div class="p-box">
+                   <ul>
+                    <li><span class="p-label">Email Address</span>  <span class="p-value">{{ customer.email }}</span> </li>
+                    <!--<li><span class="p-label">Date of Birth	</span>  <span class="p-value">13/02/1989</span> </li>-->
+                    <li>Subscribed to Molton Brown Newsletters </li>
+                  </ul>
+                </div>
+                
+                <div class="p-boxfooter">
+                	<a href="javascript:void(0)">Edit</a>
+                </div>
+                
+              </div>
+          </div>
+           
+		<div class="profile-footer">
+            	 <div class="header-action">
+					<!--<a href="javascript:void(0)">Edit</a> -->
+                 <div class="logout_btn">
+                    {{ 'log out' | customer_logout_link }}
+                  </div>
+              </div> 	
+		</div>
+            
+    	</div>
+          
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">MY ORDERS</h3>
+              <div class="header-action">
+                <a href="javascript:void(0)" id="view-order-d">View all</a>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box p-box-order">
+                   {% if customer.orders.size == 0 %}
+                	<p>You haven’t placed an order yet!</p>
+                  {% else %}
+                  <p class="rec_order_title">Recent Order</p>
+                  
+                
+                  	{% for order in customer.orders %}
+                    <ul>
+                      <li>
+                        <span class="order_label_title">Order Number</span><span class="order_label_value">{{ order.name }}</span>
+                      </li>
+                      <li>
+                        <span class="order_label_title"> Order Date</span><span class="order_label_value">{{ order.created_at | time_tag: format: 'date' }}</span>
+                      </li>
+                       <li>
+                         <span class="order_label_title"> Total Price </span><span class="order_label_value">{{ order.total_price | money }}</span>
+                      </li>
+                      <li>
+                        <span class="order_label_title"> Order Status</span> <span class="order_label_value"> {{ order.fulfillment_status_label }}</span>
+                      </li>
+                      </ul>
+					{% endfor %}
+                  
+                  {% endif %}
+                </div>
+                 <div class="p-boxfooter">
+                	<a href="javascript:void(0)">View all</a>
+                </div>
+              </div>
+          </div>
+            
+            <div class="profile-footer">
+            	 <div class="header-action">
+					 <a href="javascript:void(0)" id="view-order-m">View all</a>
+              	</div> 	
+		   	</div>
+          </div>  
+            
+          
+          <div class="profile_item">
+            <div class="profile-header">
+              <h3 class="title">MY ADDRESSSES</h3>
+              <div class="header-action">
+                <a href="/account/addresses">View all</a>
+                <a href="/account/addresses" class="add_address">Add new address</a>
+              </div>
+            </div>
+            <div class="profile-body">
+              <div class="profile-row">
+                <div class="p-box">
+                
+                {% paginate customer.addresses by 1 %}
+                {% assign addressstatus = false %}
+                {% for address in customer.addresses  %}
+        		{% assign addressstatus = true %}  
+                  
+                  <div class="address-block">
+              <div class="address-left">
+            {{ customer.default_address | format_address }}
+                </div>
+        
+            </div>
+              {%endfor%} 
+              {%endpaginate%}
+                  {% if addressstatus == false %}
+                	<p>You have no addresses saved.</p>
+                  {%endif%}
+                </div>
+                 <div class="p-boxfooter">
+                	<a href="javascript:void(0)">View all</a>
+                </div>
+              </div>
+          </div>
+          
+            <div class="profile-footer">
+            	 <div class="header-action">
+                    <a href="/account/addresses">View all</a>
+                    <a href="/account/addresses" class="add_address">Add new address</a>
+                  </div>
+		   	</div>
+            
+            
+    	</div>
+          
+          
+  </div>	
+   <!-- order tab -->
+      <div class="my_order tabs-items">
+          <div class="grid myaccount">
+          
+ <!-- order list --->           
+             {% paginate customer.orders by 20 %}
+       		 {% if customer.orders.size != 0 %}
+			<div class="order_grid_list">
+           	{% for order in customer.orders %}
+              <div class="order-grid-item">
+                <div class="order-list-left">
+                  <ul>
+                    <li>
+                      <span class="order_label_title">
+                      	Order Number
+                      </span>
+                      <span class="order_label_value">
+                      	{{ order.name }}
+                      </span>
+                    </li>
+                     <li>
+                      <span class="order_label_title">
+                      	Order Date
+                      </span>
+                      <span class="order_label_value">
+                      	{{ order.created_at | time_tag: format: 'date' }}
+                      </span>
+                    </li>
+                     <li>
+                      <span class="order_label_title">
+                      	Total Price
+                      </span>
+                      <span class="order_label_value">
+                      	{{ order.total_price | money }}
+                      </span>
+                    </li>
+                     <li>
+                      <span class="order_label_title">
+                      	Order Status
+                      </span>
+                      <span class="order_label_value">
+                      	{{ order.fulfillment_status_label }}
+                      </span>
+                    </li>
+                  </ul>
+                 		 
+                    
+                </div>
+                <div class="order-list-action">
+                  	<a href="{{ order.customer_url }}">View details</a>
+                </div>
+              </div>
+               
+              {% endfor %}
+            </div>
+        {% else %}
+
+        <div class="order-empty">
+            <div class="bucket-image">
+				<img src="{{"empty-bucket.PNG" | asset_img_url: "original"}}" alt="store-icon" style="width:auto;">
+            </div>
+            <p class="empty-cont">
+            	You haven’t placed an order yet!
+            </p>
+            <div class="cta-action">
+              <a href="/collections/bestsellers" class="btn-ctm"> SHOP BESTSELLERS </a>
+            </div>
+          </div>
+
+        {% endif %}
+        {%- if paginate.pages > 1 -%}
+          {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+      {% endpaginate %}
+<!-- end order list -->           
+     
+          </div>
+       </div>
+    	
+      
+      
+    </div>
+  </div> 
+
+   
+</div> 

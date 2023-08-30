@@ -1,0 +1,89 @@
+<style>
+   .tamara-widget .tamara-product-widget {
+    border: none !important;
+    padding: 0 !important;
+    font-family: Century Gothic !important;
+}
+.tamara-widget .tamara-product-widget span.tamara-product-price.money {
+    font-weight: 700 !important;
+    font-size: 14px;
+    color: #292929;
+}
+
+.tamara-widget .tamara-product-widget > span {
+    display: block !important;
+    text-decoration: none !important;
+}
+
+.tamara-widget .tamara-product-widget span.tamara-product-price.money {
+    display: inline-block !important;
+    background: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.tamara-widget {
+    border-top: 1px solid #cccccc;
+    padding-top: 16px;
+    margin-top: 8px;
+}
+img.tamara-logo {
+    right: 0 !important;
+    width: 70px !important;
+    object-fit: contain;
+}
+
+@media all and (max-width: 991px) {
+    .tamara-widget .tamara-product-widget {
+        padding-right: 100px !important;
+    }
+}
+
+@media all and (max-width: 749px) {
+    .tamara-widget .tamara-product-widget {
+        padding-right: 70px !important;
+    }
+    img.tamara-logo {
+        width: 50px !important;
+        height: auto !important;
+    }
+}
+
+    
+{% if request.locale.iso_code == 'ar' %}
+img.tamara-logo {
+    right: auto !important;
+    left: 0 !important;
+}
+@media all and (max-width: 991px) {
+    .tamara-widget .tamara-product-widget {
+        padding-left: 100px !important;
+        padding-right: 0px !important;
+    }
+}
+@media all and (max-width: 749px) {
+    .tamara-widget .tamara-product-widget {
+        padding-left: 70px !important;
+        padding-right: 0px !important;
+    } 
+    
+} 
+{% endif %} 
+    
+    
+</style>
+
+{% assign tamara_lang = request.path | slice: 1,2 %}
+{% if tamara_lang != 'ar' %}
+    {% assign tamara_lang = 'en' %}
+{% endif %}
+<div class="tamara-product-widget" data-price="{{product.price | money_without_currency | remove: ','}}" data-currency="{{shop.currency}}" data-payment-type="installment" data-lang="{{ tamara_lang }}"></div>
+
+<script charset="utf-8" src="https://cdn.tamara.co/widget/product-widget.min.js"></script>
+<script>
+    setTimeout(() => {
+        if (window.TamaraProductWidget) {
+            window.TamaraProductWidget.init({ lang: 'en' })
+            window.TamaraProductWidget.render()
+        }
+    }, 300)
+</script>

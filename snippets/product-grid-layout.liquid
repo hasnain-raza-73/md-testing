@@ -1,0 +1,128 @@
+ <div class="product_card">
+   <a href="{{ product.url}}" class="product-link"></a>
+   <div class="product_img homepage__feature-products__imgbox">
+     <img class="homepage__feature-products__img lazy" src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/placeholder-lazyload.jpg?v=1628709506" data-src="{{ product.featured_image | product_img_url: 'original' }}" alt="{{ product.title | escape }}" />
+
+   </div>
+   <div class="product_desc">
+      <div class="hm-wraper">
+     
+        
+
+
+          {% assign show_tag = true %}
+
+            {% if show_tag %}
+              {% if product.tags contains '10% OFF' %}
+                  <div class="product-tag home-desk_tp SALE percentage">10% OFF</div> 
+              {% assign show_tag = false %}
+              {% endif %}
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '15% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">15% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '20% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">20% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '25% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">25% OFF</div> 
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '30% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">30% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %} 
+
+            {% if show_tag %}
+                {% if product.tags contains '35% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">35% OFF</div> 
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '40% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">40% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %}
+            {% endif %} 
+
+            {% if show_tag %}
+                {% if product.tags contains '45% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">45% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+            {% if show_tag %}
+                {% if product.tags contains '50% OFF' %}
+                    <div class="product-tag home-desk_tp SALE percentage">50% OFF</div> 
+                    {% assign show_tag = false %}
+                {% endif %} 
+            {% endif %}
+
+          {% if show_tag %}
+                {% if product.tags contains 'PRIVATE SALE' %}
+                    <div class="product-tag home-desk_tp SALE">PRIVATE SALE</div>
+                {% assign show_tag = false %}
+                {% endif %}
+            {% endif %} 
+            
+          {% if show_tag %}
+            {% if product.tags contains '300ml for 111AED' %}
+              <div class="product-tag home-desk_tp tag_bg_color">300ml for 111AED</div>
+            {% assign show_tag = false %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_tag %}
+            {% if product.tags contains 'new' %}
+              <div class="product-tag home-desk_tp">New</div>
+            {% assign show_tag = false %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_tag %}	
+              {% if product.tags contains 'best-seller' %}
+              <div class="product-tag home-desk_tp">Best seller</div>
+              {% assign show_tag = false %}
+              {% endif %}
+              {% endif %}
+              
+        {% if show_tag %}
+              {% if product.tags contains 'exclusively_online' %}
+              <div class="product-tag home-desk_tp">Exclusively Online</div>
+              {% assign show_tag = false %}
+              {%endif%}
+              {% endif %}
+              
+          {% if show_tag %}
+                {% if product.tags contains 'sale' %}
+                <div class="product-tag home-desk_tp">sale</div>
+                {% assign show_tag = false %}
+                {%endif%}
+          {% endif %}
+      
+        
+      </div>
+
+
+    <h4 class="product_title">{{ product.title}}</h4>
+    <div class="product_reviews"></div>
+    <div class="product_price">
+      {% render 'price' , product: product %}
+    </div>
+  </div>
+</div>  

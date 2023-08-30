@@ -1,0 +1,97 @@
+{% if settings.is_privatesale %}
+    {% if customer %}
+        <div class="p-sale">
+            <div class="p-sale__banner">
+                <div class="p-sale__banner-inner">
+                    <picture class="p-sale__picture">
+                        <source media="(max-width:768px)" srcset="{{ settings.privatesale_mobile_banner | img_url: "800x" }}">
+                        <img src="{{ settings.privatesale_desktop_banner | img_url: "master" }} alt="private sale" class="p-sale__img">
+                    </picture>
+                </div>
+            </div>
+
+            <div style=" left: 15%; right: auto;" class="p-sale__content" {% if settings.privatesale_title == blank and settings.privatesale_subtitle and settings.privatesale_button_label %}style="display: none;"{% endif %}>
+                {% if settings.privatesale_title != blank and settings.privatesale_title_ar != blank %}
+                    <h2 class="p-sale__heading">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_title }}{% else %}{{ settings.privatesale_title_ar }}{% endif %}
+                    </h2>
+                {% endif %}
+
+                {% if settings.privatesale_title != blank and settings.privatesale_title_ar != blank %}
+                    <p class="p-sale__subheading">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_subtitle }}{% else %}{{ settings.privatesale_subtitle_ar }}{% endif %}
+                    </p>
+                {% endif %}
+
+                {% if settings.privatesale_title != blank and settings.privatesale_title_ar != blank and settings.privatesale_button_url != blank %}
+                    <a href="{{ settings.privatesale_button_url }}" class="p-sale__cta">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_button_label }}{% else %}{{ settings.privatesale_button_label_ar }}{% endif %}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <style>
+            .p-sale__banner {
+                padding-top: calc( ({{ settings.privatesale_desktop_banner_height }} * 100) / {{ settings.privatesale_desktop_banner_width }} * 1%);
+            }
+            @media(max-width: 768px) {
+                .p-sale__banner {
+                    padding-top: calc( ({{ settings.privatesale_mobile_banner_height }} * 100) / {{ settings.privatesale_mobile_banner_width }} * 1%);
+                }
+            }
+            .p-sale__content {
+                background-color: {{ settings.privatesale_content_background }};
+            }    
+            .p-sale__heading { color:{{settings.heading_color}} !important;}
+            .p-sale__subheading { color:{{settings.para_color}} !important}
+        </style>
+    {% else %}
+        <div class="p-sale">
+            <div class="p-sale__banner">
+                <div class="p-sale__banner-inner">
+                    <picture class="p-sale__picture">
+                        <source media="(max-width:768px)" srcset="{{ settings.privatesale_welcome_mobile_banner | img_url: "800x" }}">
+                        <img src="{{ settings.privatesale_welcome_desktop_banner | img_url: "master" }} alt="private sale" class="p-sale__img">
+                    </picture>
+                </div>
+            </div>
+
+            <div style=" left: 15%; right: auto;" class="p-sale__content" {% if settings.privatesale_welcome_title == blank and settings.privatesale_welcome_subtitle and settings.privatesale_welcome_button_label %}style="display: none;"{% endif %}>
+                {% if settings.privatesale_welcome_title != blank and settings.privatesale_welcome_title_ar != blank %}
+                    <h2 class="p-sale__heading">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_welcome_title }}{% else %}{{ settings.privatesale_welcome_title_ar }}{% endif %}
+                    </h2>
+                {% endif %}
+
+                {% if settings.privatesale_welcome_title != blank and settings.privatesale_welcome_title_ar != blank %}
+                    <p class="p-sale__subheading">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_welcome_subtitle }}{% else %}{{ settings.privatesale_welcome_subtitle_ar }}{% endif %}
+                    </p>
+                {% endif %}
+
+                {% if settings.privatesale_welcome_title != blank and settings.privatesale_welcome_title_ar != blank and settings.privatesale_welcome_button_url != blank %}
+                    <a href="{{ settings.privatesale_welcome_button_url }}" class="p-sale__cta">
+                        {% if shop.locale == "en" %}{{ settings.privatesale_welcome_button_label }}{% else %}{{ settings.privatesale_welcome_button_label_ar }}{% endif %}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <style>
+            .p-sale__banner {
+                padding-top: calc( ({{ settings.privatesale_welcome_desktop_banner_height }} * 100) / {{ settings.privatesale_welcome_desktop_banner_width }} * 1%);
+            }
+            @media(max-width: 768px) {
+                .p-sale__banner {
+                    padding-top: calc( ({{ settings.privatesale_welcome_mobile_banner_height }} * 100) / {{ settings.privatesale_welcome_mobile_banner_width }} * 1%);
+                }
+            }
+            .p-sale__content {
+                background-color: {{ settings.privatesale_welcome_content_background }};
+            }    
+            .p-sale__heading { color:{{settings.heading_color}} !important;}
+            .p-sale__subheading { color:{{settings.para_color}} !important}
+        </style>
+    {% endif %}
+{% endif %}

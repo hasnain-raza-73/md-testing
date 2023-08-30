@@ -1,0 +1,47 @@
+<div class="pdp__media">
+    <div class="pdp__media__shimmer">
+        <div class="pdp__media__shimmer__main"></div>
+        <div class="pdp__media__shimmer__thumbs">
+            <div class="pdp__media__shimmer__thumb"></div>
+            <div class="pdp__media__shimmer__thumb"></div>
+            <div class="pdp__media__shimmer__thumb"></div>
+            <div class="pdp__media__shimmer__thumb"></div>
+        </div>
+    </div>
+
+    <div class="pdp__media__master">
+        <div class="pdp__media__master__inner">
+
+            <div class="pdp__media__master__slider__arrow pdp__media__master__slider__arrow-prev">
+                <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
+                    <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(-11889.939 -18763.506) rotate(180)"/>
+                </svg>                    
+            </div>
+
+            <div class="pdp__media__master__slider__arrow pdp__media__master__slider__arrow-next">
+                <svg class="pdp__media__master__slider__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="12.771" height="24.129" viewBox="0 0 12.771 24.129">
+                    <path fill="none" stroke="#000" d="M-11902.357-18787.281l11.711 11.719-11.711 11.7" transform="translate(11902.711 18787.635)"/>
+                </svg>                    
+            </div>
+
+
+            <div class="pdp__media__master__slider">
+                {% for media in product.media %}
+                    {% render 'product-media-master', media: media %}
+                {% endfor %}
+            </div>
+
+        </div>          
+    </div>
+
+    <div class="pdp__media__thumbs">
+        <div class="pdp__media__thumbs__slider">
+            {% for media in product.media %}
+                {% render 'product-media-thumbs', media: media %}
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+

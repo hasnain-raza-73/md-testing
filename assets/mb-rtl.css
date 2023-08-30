@@ -1,0 +1,307 @@
+body{
+ direction: rtl;
+ font-family: 'GE SS Text';
+ font-weight: 400;
+ font-style: normal !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    direction: rtl;
+    font-style: normal !important;
+}
+
+.slick-list.draggable {
+    direction: ltr;
+}
+
+[dir=rtl] .slick-slide {
+    float: left !important;
+}
+
+.slick-arrow {
+    transform: rotate(180deg);
+}
+
+.boost-pfs-filter-left-col, .boost-pfs-filter-right-col {
+    float: right;
+}
+
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-left {
+    margin-left: 16px;
+}
+
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-right, 
+.boost-pfs-search-suggestion-item-product .boost-pfs-search-suggestion-left 
+{
+    float: right;
+}
+
+div.boost-pfs-filter-custom-sorting button>span:after {
+    left: 0;
+    right: auto;
+}
+
+.boost-pfs-filter-left-col * {
+    text-align: right;
+}
+
+.boost-pfs-check-box {
+    left: 15px !important;
+}
+
+div.boost-pfs-filter-tree-v .boost-pfs-filter-option-title-text:before {
+    transform: rotate(135deg);
+}
+
+a.boost-pfs-filter-button {
+    padding-left: 30px;
+}
+
+.boost-pfs-filter-custom-sorting .boost-pfs-filter-filter-dropdown {
+    left: 0;
+    right: auto;
+}
+
+ul.boost-pfs-filter-filter-dropdown li {
+    text-align: right;
+}
+
+span.boost-pfs-check-box:before {
+    width: 6px !important;
+    height: 13px !important;
+    top: 1px !important;
+    right: 5px !important;
+    transform: rotate(50deg) !important;
+}
+
+.custom-selection:before {
+    transform: rotate(-135deg);
+}
+
+.mini-cart-list .single-mcart-item {
+    justify-content: flex-start;
+}
+
+.mobile-nav__icon {
+    transform: rotate(180deg);
+}
+
+#legend input[type=checkbox]:checked:after {
+    height: 5px !important;
+    width: 10px !important;
+    transform: rotate(315deg);
+    right: 5px !important;
+    top: 5px !important;
+}
+
+.store-desc-right {
+    transform: rotate(180deg);
+    margin-right: 20px;
+}
+
+li.mobile-no {
+    direction: ltr;
+}
+
+.promo_code_wrap {
+    display: none;
+}
+
+.cart__footer .login-wrap input[type=checkbox]:checked:after{
+    transform: rotate( -45deg );
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 5px;
+}
+
+.pdp__content__accordions__item__heading__title {
+    font-weight: 500;
+}
+
+.pdp__content__accordions b {
+    font-weight: inherit;
+}
+
+.pdp__content__title {
+    font-size: 24px;
+}
+
+.feature-content h3 {
+    font-weight: 500;
+}
+
+@media all and (min-width: 750px){
+
+    .boost-pfs-filter-right-col{
+        padding-right: 30px;
+    }
+    .banner-wrap .banner-content-wrap {
+        right: calc((100vw - 1100px)/ 2) !important;
+        left: auto !important;
+    }  
+    
+}
+
+
+.product-tag.home-desk_tp.tag_bg_color {
+    background-color: #DE0D0D;
+    color: #ffffff;
+  }
+
+.pdp__content__control__qty__prev-icon, .pdp__content__control__qty__next-icon {
+    transform: rotate(90deg) !important;
+}
+
+
+
+
+/* tabby pdp css start */
+.styles__tabby-promo-snippet--54518 {
+    direction: rtl;
+}
+
+.styles__tabby-promo-snippet__content--88401 {
+    margin-right: 0 !important;
+    margin-left: 16px !important;
+}
+
+.styles__tabby-promo-snippet--54518.styles__tabby-promo-snippet_font_inherit--b7b35 {
+    padding-left: 16px;
+    padding-right: 0;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__text--f30af>span:after {
+    right: -6px;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    margin-left: 0 !important;
+    margin-right: 25px !important;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+    left: 0 !important;
+    right: -30px !important;
+}
+
+
+
+@media only screen and (max-width: 749px){
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7:before {
+    left: auto;
+    right: -25px;
+}
+
+.styles__tabby-promo-snippet__content--88401 .styles__tabby-promo-snippet__link--5b4e7 {
+    margin-left: 0px!important;
+    margin-left: 20px!important;
+}
+
+}
+/* tabby pdp css end  */
+
+
+/* register page password page css  */
+
+.password-action span {
+    right: auto !important;
+    left: 10px;
+}
+
+/* register page password page end  */
+
+.corporate-offer-items .feature-content {
+    text-align: right;
+} 
+
+
+
+/* home product list slider css START */
+
+ul.grid-slider-five.desktop-view .slick-list.draggable{
+    direction:rtl;
+}
+
+.product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+    left: auto;
+    right: 0px;
+    transform: rotate(0deg);
+  }
+  
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+    right: auto;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+  
+@media(min-width:768px){
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+      right: -20px;
+  }
+  
+  .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+      left: -20px;
+  }
+}
+@media(min-width:1024px){
+    .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+        right: 10px;
+    }
+    
+    .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+        left: 10px;
+    }
+  }
+  @media(min-width:1240px){
+    .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-next.slick-arrow {
+        right: -40px;
+    }
+    
+    .product-grid-slider.pdp-like__slider__arrow.pdp-like__slider__arrow-prev.slick-arrow {
+        left: -40px;
+    }
+  }
+
+
+/* home product list slider css end */
+
+
+
+/* home slider rtl css strat */
+.h__slider .slick-arrow {
+    right: 0;
+    left: auto;
+}
+.h__slider button.slick-next.slick-arrow {
+    left: 0;
+    right: auto;
+}
+.h__slider button.slick-next.slick-arrow:after {
+    transform: rotate(45deg);
+}
+.h__slider button.slick-prev.slick-arrow:after {
+    transform: rotate(-135deg);
+}
+.h__slider ul.slick-dots {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+
+/* home slider rtl css end */
+@media(min-width:768px){
+    .h__slide__info-overlay.ar-position-right {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 80px;
+        max-width: 300px;
+    } 
+}

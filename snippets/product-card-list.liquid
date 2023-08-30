@@ -1,0 +1,19 @@
+<div class="product_card">
+
+  <a href="{{product.url}}">
+    {% if product.featured_media.preview_image %}
+    <div class="product_img">
+      <img class="lazy" data-src="{{product.featured_media.preview_image | img_url: '160x160' }}">
+    </div>
+    {%endif%}
+
+    <div class="product_desc">
+      <h4 class="product_title">{{ product.title }}</h4>
+      <div class="product_reviews"></div>
+      <div class="product_price">
+        {% include 'product-price-listing', product: product %}
+      </div>
+    </div>
+  </a>
+  
+</div>

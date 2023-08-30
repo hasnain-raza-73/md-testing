@@ -1,0 +1,383 @@
+/* banner sec css start */
+.ramadan-sec .page-width {
+max-width: 1200px;
+margin: 0 auto;
+}
+.ramadan-banner {
+position: relative;
+}
+.banner__link {
+display: block;
+}
+
+/* banner sec css end */
+
+/* card sec css start */
+.card-header {
+text-align: center;
+margin-bottom: 24px;
+}
+.card-header h2 {
+margin: 0 0 16px;
+font-size: 20px;
+text-transform: uppercase;
+color: #000000;
+}
+.card-container {
+padding: 0 15px;
+margin: 72px 0;
+} 
+.card-header p {
+max-width: 293px;
+margin: 0 auto;
+}
+.card-body .card-item {
+margin-bottom: 40px;
+}
+.card-body .card-item:last-child {
+margin-bottom: 0;
+}
+.card-content {
+text-align: center;
+}
+.card-content {
+text-align: center;
+}
+
+.card-content h3 {
+margin: 15.5px 0 0;
+font-size: 18px;
+text-transform: uppercase;
+color: #000000;
+}
+.card-para {
+margin: 8px 0 16px;
+}
+.card-para p {
+margin: 0;
+}
+.card-btn {
+min-width: 100px;
+padding: 0 12px;
+font-size: 14px;
+line-height: 16px;
+font-weight: bold;
+height: 40px;
+align-items: center;
+display: inline-flex;
+justify-content: center;
+background-color: #000F1F;
+}
+
+a.card-link {
+display: block;
+}
+
+.card-image img {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.card-body-four {
+margin-left: -10px;
+margin-right: -10px;
+display: flex;
+flex-wrap: wrap;
+}
+.card-item-four {
+width: 50%;
+padding: 0 10px;
+box-sizing: border-box;
+}
+
+.card-item-four .card-btn {
+display: none;
+}
+.card-body  .card-item.card-item-four {
+margin-bottom: 18px;
+}
+
+.lp-products {
+display: flex;
+flex-wrap: wrap;
+
+}
+
+.lp-product-item {
+width: 50%;
+}
+.lp-products-wrap {
+overflow: hidden;
+position: relative;
+height: 40vh;
+}
+
+
+.lp-product-link {
+position: relative;
+display: block;
+}
+.lp-product-content {
+text-align: center;
+}
+.lp-product-content h3 {
+font-size: 14px;
+font-weight: normal;
+color: #000000;
+line-height: 20px;
+}
+.lp-products-wrap .slick-slider {
+margin:0 -8px;
+}
+.lp-products-wrap .slick-slide {
+margin-right:8px;
+margin-left:8px;
+}
+
+ul.lp-products-arrow {
+margin: 0;
+padding: 0;
+}
+.lp-products-arrow .slick-arrow {
+position: absolute;
+top: 45%;
+z-index: 1;
+transform: translate(0,-45%);
+width: 30px;
+height: 30px;
+text-align: center;
+line-height: 30px;
+cursor: pointer;
+}
+.lp-products-arrow li.next.slick-arrow {
+right: 0px;
+}
+.lp-products-arrow .prev.slick-arrow {
+left: 0px;
+}
+.lp-products-wrap .slick-disabled {
+opacity: .3;
+}
+
+.lp-product-content .price {font-weight: 600;font-size: 14px;}
+.card-products a.lp-all {
+display: none;
+}
+.lp-products.slick-initialized.slick-slider {
+display: block;
+width: 100%;
+}
+
+.card-box {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+.card-content {
+display: flex;
+flex-direction: column;
+flex: 1;
+align-items: center;
+}
+.card-btn {
+margin-top: auto;
+max-width: 142px;
+}
+
+/* card sec css end */
+
+
+/* gift card page css strat */
+.giftbanner-text {
+    text-align: center;
+    margin: 50px auto 0;
+    max-width: 300px;
+}
+/* gift card page css end */
+
+
+
+.card-products .slick-prev {
+    left: 5px;
+    z-index: 1;
+}
+.card-products .slick-next {
+    right: 5px;
+}
+.card-products .slick-next:before,
+.card-products .slick-prev:before {
+    color: #000000;
+    opacity: 1 !important;
+}
+.card-products .slick-arrow {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.card-products .slick-next:before {
+    content: " ";
+    border-right: 1px solid #6a6a6a;
+    border-top: 1px solid #6a6a6a;
+    width: 13px;
+    height: 13px;
+    opacity: 1;
+    transform: rotate(45deg);
+    cursor: pointer;
+    display: inline-block !important;
+}
+.card-products .slick-prev:before {
+    content: " ";
+    border-left: 1px solid #6a6a6a;
+    border-bottom: 1px solid #6a6a6a;
+    width: 13px;
+    height: 13px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    display: inline-block !important;
+}
+
+
+
+/* media css start */
+
+@media all and (min-width:750px){
+picture.banner__image {
+position: absolute;
+left: 0;
+right: 0;
+width: 100%;
+top: 0;
+}
+
+.ramadan-banner {
+background: #f5f5f5;
+padding-top: 33.33%;
+}
+
+.card-container {
+margin: 56px 0;
+}
+.card-header h2 {
+font-size: 24px;
+font-weight: normal;
+margin-bottom: 24px;
+}
+.card-header p {
+max-width: 100%;
+}
+.card-header {
+    max-width: 600px;
+    margin: 0 auto 56px;
+}
+.card-content h3 {
+font-size: 20px;
+}
+.card-content {
+max-width: 322px;
+margin: 0 auto;
+}
+
+.card-para {
+margin: 8px auto 16px;
+}
+.card-body,
+.card-body-four
+{
+margin-left: -19.5px;
+margin-right: -19.5px;
+display: flex;
+flex-wrap: wrap;
+}
+
+.card-item{
+width: 50%;
+padding: 0 19px;
+box-sizing: border-box;
+}
+.card-item-four{
+width: 25%;
+
+}
+
+.card-image img {
+width: auto;
+}
+
+
+.card-body .card-item {
+margin: 0;
+}
+.card-item-three {
+width: 33.33%;
+}
+.pt-56 {
+padding-top: 56px;
+}
+.lp-products {
+display: flex;
+flex-wrap: wrap;
+}
+
+.lp-product-item {
+width: 16.66%;
+}
+.card-products a.lp-all {
+display: inline-block;
+font-size: 16px;
+font-weight: bold;
+}
+.card-body .card-item.card-item-four {
+margin-bottom: 0;
+}
+.card-products h2 {
+margin-bottom: 8px;
+}
+
+.card-products .card-header {
+margin-bottom: 40px;
+}
+.card-item-four .card-btn {
+display: flex;
+justify-content: center;
+margin: 16px 0 0;
+}
+.lp-products-arrow li.next.slick-arrow {
+right: -10px;
+}
+.lp-products-arrow .prev.slick-arrow {
+left: -10px;
+}
+
+.giftbanner-text {
+    max-width: 600px;
+}
+.card-products .card-header p {
+    margin-bottom: 20px;
+    margin-top: 16px;
+}
+
+}
+
+@media all and (min-width:480px) and (min-width:992px){
+.lp-product-item {
+width: 33.33%;
+}
+}
+
+@media all and (min-width:992px){
+.lp-product-item {
+width: 16.66%;
+}
+.lp-products-wrap {
+height: 38vh;
+}
+
+}
+
+@media all and (min-width:1201px){
+
+.card-container {
+   padding:0;
+    }
+}

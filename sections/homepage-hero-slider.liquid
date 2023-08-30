@@ -1,0 +1,431 @@
+{% if settings.is_privatesale == false %}
+  {% comment %}
+    slider banner css
+  {% endcomment %}
+  {%- for block in section.blocks %}
+    <style>
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
+        padding-top: calc({{ block.settings.image_mobile_height }} / {{ block.settings.image_mobile_width }} * 100%);
+      }
+
+      .h__slide__videowrap[data-count="{{ forloop.index }}"] {
+        padding-top: calc({{ block.settings.poster_image_mobile_height }} / {{ block.settings.poster_image_mobile_width }} * 100%);
+      }
+      .h__slide__videowrap {
+        position: relative;
+      }
+      .h__slide__videowrap .h__slide__videowrap__inner {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay{
+        background-color: {{ block.settings.banner_content_bg_mob}}
+        ;
+      }
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__title,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__title{
+        color: {{ block.settings.title_color_mob }}
+        ;
+      }
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__desc,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__desc{
+        color: {{ block.settings.subtitle_color_mob }}
+        ;
+      }
+      .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__cta,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__cta{
+        background-color: {{ block.settings.button_bg_mob }}
+        ;
+        color: {{ block.settings.button_color_mob }}
+      }
+      @media(min-width: 768px) {
+
+        .h__slide__videowrap[data-count="{{ forloop.index }}"] {
+          padding-top: calc({{ block.settings.poster_image_height }} / {{ block.settings.poster_image_width }} * 100%);
+
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] {
+          padding-top: calc({{ block.settings.image_desktop_height }} / {{ block.settings.image_desktop_width }} * 100%);
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay{
+          background-color: {{ block.settings.banner_content_bg }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__title,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__title{
+          color: {{ block.settings.title_color }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__desc,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__desc{
+          color: {{ block.settings.subtitle_color }}
+          ;
+        }
+        .h__slide__inner.slide__inner_media[data-count="{{ forloop.index }}"] .h__slide__info-overlay__cta,.h__slide__videowrap[data-count="{{ forloop.index }}"] .h__slide__info-overlay__cta{
+          background-color: {{ block.settings.button_bg }}
+          ;
+          color: {{ block.settings.button_color }}
+        }
+      }
+    </style>
+  {% endfor %}
+  <div class="h">
+    <div class="h__slider">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          {% render 'homepage-hero-slider-image' with { block: block.settings, count: forloop.index} %}
+        {% endif %}
+
+        {% if block.type == 'video' %}
+          {% render 'homepage-hero-slider-video' with { block: block.settings, count: forloop.index} %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Homepage Hero Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop Banner"
+        },
+        {
+          "type": "number",
+          "id": "image_desktop_width",
+          "label": "Desktop Banner Width",
+          "default": 2400
+        },
+        {
+          "type": "number",
+          "id": "image_desktop_height",
+          "label": "Desktop Banner Height",
+          "default": 800
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile banner"
+        },
+        {
+          "type": "number",
+          "id": "image_mobile_width",
+          "label": "Mobile Banner Width",
+          "default": 1000
+        },
+        {
+          "type": "number",
+          "id": "image_mobile_height",
+          "label": "Mobile Banner Height",
+          "default": 750
+        },
+        {
+          "type": "header",
+          "content": "Banner Content"
+        },
+        {
+          "type": "select",
+          "id": "content-position-english",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "label": "Content Position"
+        },
+        {
+          "type": "select",
+          "id": "content-position-arabic",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "label": "Content Position Ar"
+        },
+        {
+          "type": "color",
+          "id": "banner_content_bg",
+          "label": "Banner Content Background Desktop"
+        },
+        {
+          "type": "color",
+          "id": "banner_content_bg_mob",
+          "label": "Banner Content mobile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title_arabic",
+          "label": "Title - Arabic"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "title_color_mob",
+          "label": "Title Color Mobile",
+          "default": "#fff"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle_arabic",
+          "label": "Subtitle - Arabic"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color_mob",
+          "label": "Subtitle Color Mobile",
+          "default": "#fff"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg",
+          "label": "button Background Desktop",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_mob",
+          "label": "button Background Mobile",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "button_color_mob",
+          "label": "Button Color Mobile",
+          "default": "#fff"
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "type": "video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "video_poster_image",
+          "label": "Poster image"
+        },
+        {
+          "type": "number",
+          "id": "poster_image_width",
+          "label": "Poster Image Width",
+          "default": 2400
+        },
+        {
+          "type": "number",
+          "id": "poster_image_height",
+          "label": "Poster Image Height",
+          "default": 800
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster_image_mobile",
+          "label": "Poster image mobile"
+        },
+        {
+          "type": "number",
+          "id": "poster_image_mobile_width",
+          "label": "Poster Mobile Image Width",
+          "default": 1000
+        },
+        {
+          "type": "number",
+          "id": "poster_image_mobile_height",
+          "label": "Poster Mobile Image Height",
+          "default": 750
+        },
+        {
+          "type": "text",
+          "id": "video_url_desktop",
+          "label": "Desktop Video URL"
+        },
+        {
+          "type": "text",
+          "id": "video_url_mobile",
+          "label": "Mobile Video URL"
+        },
+        {
+          "type": "header",
+          "content": "Banner Content"
+        },
+        {
+          "type": "select",
+          "id": "content-position-english",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "label": "Content Position"
+        },
+        {
+          "type": "select",
+          "id": "content-position-ar",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "label": "Content Position Ar"
+        },
+        {
+          "type": "color",
+          "id": "banner_content_bg",
+          "label": "Banner Content Background Desktop"
+        },
+        {
+          "type": "color",
+          "id": "banner_content_bg_mob",
+          "label": "Banner Content mobile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title_arabic",
+          "label": "Title - Arabic"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "title_color_mob",
+          "label": "Title Color Mobile",
+          "default": "#fff"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle_arabic",
+          "label": "Subtitle - Arabic"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color_mob",
+          "label": "Subtitle Color Mobile",
+          "default": "#fff"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg",
+          "label": "button Background Desktop",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_mob",
+          "label": "button Background Mobile",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Color Desktop",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "button_color_mob",
+          "label": "Button Color Mobile",
+          "default": "#fff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Hero Slider",
+      "category": "Homepage Sections"
+    }
+  ]
+}
+{% endschema %}

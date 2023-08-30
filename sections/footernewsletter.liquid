@@ -1,0 +1,94 @@
+<section class="newsletter-wrap">
+  <div class="page-width">
+<div class="newsletter-custom{% if section.settings.show_background %} index-section--newsletter-background{% endif %}">
+    <div class="block-header">
+      {% if section.settings.section_title != blank %}
+        <h2 class="h2">{{ section.settings.section_title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+      <div class="newsletter-desc">{{ section.settings.subheading }}  </div>
+      {% endif %}
+    </div>
+    {%- assign formId = 'Contact_' | append: section.id -%}
+    {% form 'customer', id: formId, novalidate: 'novalidate', class: 'contact-form form-single-field' %}
+      {%- if form.posted_successfully? -%}
+        <p class="form-message form-message--success" tabindex="-1" data-form-status>
+          {{ 'Thanks for subscribing!' }}
+        </p>
+      {%- endif -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="input-group {% if form.errors %} input-group--error{% endif %}">
+        <span class="envelope-icon">
+        	<svg xmlns="http://www.w3.org/2000/svg" width="19.25" height="14.503" viewBox="0 0 19.25 14.503">
+            <g>
+                <g>
+                    <path d="M31.3 22.5H14.95a1.463 1.463 0 0 0-1.45 1.45v11.6A1.463 1.463 0 0 0 14.95 37H31.3a1.463 1.463 0 0 0 1.45-1.45v-11.6a1.463 1.463 0 0 0-1.45-1.45zm-16.349.791H31.3a.238.238 0 0 1 .132.026l-5.775 5.749-.554.554-1.978 2-1.978-1.978-.554-.554-5.775-5.775a.238.238 0 0 1 .132-.022zm-.659.659v-.05l5.749 5.749-5.749 5.722zM31.3 36.212H14.95a.532.532 0 0 1-.29-.079l5.933-5.933 2.268 2.268a.4.4 0 0 0 .29.105h.026a.325.325 0 0 0 .264-.132l2.242-2.241 5.933 5.933a.7.7 0 0 1-.316.079zm.659-.844l-5.749-5.722 5.749-5.746v11.468z" transform="translate(-13.5 -22.5) translate(13.5 22.5) translate(-13.5 -22.5)"/>
+                </g>
+            </g>
+        </svg>
+        </span>
+        <input type="email"
+          name="contact[email]"
+          id="{{ formId }}-email"
+          class="input-group__field{% if form.errors %} input--error{% endif %}"
+          value="{{ form.email }}"
+          placeholder="{{ 'Enter your email address' }}"
+          aria-label="{{ 'Enter your email address'  }}"
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="off"
+          {% if form.errors %}
+            aria-invalid="true"
+            aria-describedby="{{ formId }}-email-error"
+            data-form-status
+          {% endif %}
+          >
+        <span class="input-group__btn">
+          <button type="submit" class="btn" name="commit">
+            <span>{{ 'Subscribe' }}</span>
+          </button>
+        </span>
+      </div>
+      {%- if form.errors contains 'email' -%}
+        <span id="{{ formId }}-email-error" class="input-error-message">
+          <span class="visually-hidden">{{ 'Error' }} </span>
+          {% include 'icon-error' %}
+          <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+        </span>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</div>
+
+  </section>
+
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label":"Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Promotions, new products and sales. Directly to your inbox.</p>"
+    },
+    {
+      "id": "show_background",
+      "type": "checkbox",
+      "label": "Show background",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)"
+        
+    }
+  ]
+}
+{% endschema %}

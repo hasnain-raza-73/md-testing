@@ -1,0 +1,54 @@
+<div class="h__slide">
+  <div class="h__slide__videowrap" data-count="{{ count }}">
+    <div class="h__slide__inner h__slide__videowrap__inner">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0575/8517/2679/files/playbutton2.png?v=1627570945"
+        alt=""
+        class="h__slide__play-icon"
+      >
+
+      <video
+        class="h__slide__video desktop"
+        width="100%"
+        muted
+        preload="metadata"
+        poster="{{ block.video_poster_image | img_url: '500x', scale: 2 }}"
+      >
+        <source src="{{ block.video_url_desktop }}" type="video/mp4">
+        <source src="{{ block.video_url_desktop }}" type="video/ogg">
+        <source src="{{ block.video_url_desktop }}" type="video/webm">
+      </video>
+
+      <video
+        class="h__slide__video mobile"
+        width="100%"
+        muted
+        preload="metadata"
+        poster="{{ block.video_poster_image_mobile | img_url: '500x', scale: 2 }}"
+      >
+        <source src="{{ block.video_url_mobile }}" type="video/mp4">
+        <source src="{{ block.video_url_mobile }}" type="video/ogg">
+        <source src="{{ block.video_url_mobile }}" type="video/webm">
+      </video>
+      <div class="h__slide__info-overlay {% if block.content-position-english == 'right'  %} position-right {%endif%} {% if shop.locale == 'ar' %} {% if block.content-position-ar %} ar-position-right{% endif %}{% endif %}">
+        <div class="h__slide__info-overlay__title">
+          {% if shop.locale == 'ar' %}
+            {{ block.title_arabic }}
+          {% else %}
+            {{ block.title -}}
+          {%- endif %}
+        </div>
+        <div class="h__slide__info-overlay__desc">
+          {% if shop.locale == 'ar' %}
+            {{ block.subtitle_arabic }}
+          {% else %}
+            {{ block.subtitle -}}
+          {%- endif %}
+        </div>
+        {% unless block.button_text == blank or block.button_link == blank %}
+          <a href="{{ block.button_link }}" class="h__slide__info-overlay__cta">{{ block.button_text }}</a>
+        {% endunless %}
+      </div>
+    </div>
+  </div>
+</div>
